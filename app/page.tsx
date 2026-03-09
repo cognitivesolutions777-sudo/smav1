@@ -1,5 +1,23 @@
-import SMAIntegration from '@/app/components/SMAIntegration';
+'use client';
+
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+
+const SMAIntegration = lazy(() => import('@/app/components/SMAIntegration'));
 
 export default function Home() {
-  return <SMAIntegration />;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-black" />;
+  }
+
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+      <SMAIntegration />
+    </Suspense>
+  );
 }

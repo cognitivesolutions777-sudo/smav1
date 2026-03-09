@@ -67,7 +67,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className="bg-black text-white overflow-x-hidden">
+      <body className="bg-black text-white overflow-x-hidden" suppressHydrationWarning>
         {children}
       </body>
     </html>

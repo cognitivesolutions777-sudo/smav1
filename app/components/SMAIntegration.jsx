@@ -149,6 +149,12 @@ function ProgressBar({ progress }) {
 
 // Componente: Engranajes Hero
 function GearHero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="h-screen flex items-center justify-center relative overflow-hidden">
       {/* Fondo */}
@@ -164,8 +170,8 @@ function GearHero() {
 
       {/* Contenido */}
       <div className="relative z-10 w-full h-full flex items-center justify-center">
-        <div className="relative w-96 h-96">
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
+        <div className="relative w-96 h-96" suppressHydrationWarning>
+          {mounted && <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
             <defs>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -208,20 +214,10 @@ function GearHero() {
             <line x1="200" y1="200" x2="295" y2="115" stroke="#4A7C34" strokeWidth="1" opacity="0.3" strokeDasharray="5,5" />
             <line x1="200" y1="200" x2="290" y2="290" stroke="#4A7C34" strokeWidth="1" opacity="0.3" strokeDasharray="5,5" />
             <line x1="200" y1="200" x2="110" y2="200" stroke="#E87722" strokeWidth="1" opacity="0.3" strokeDasharray="5,5" />
-          </svg>
+          </svg>}
 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <div className="mb-6">
-                <Image
-                  src="/logo.png"
-                  alt="SMA - Servicios Medio Ambientales"
-                  width={307}
-                  height={188}
-                  className="mx-auto drop-shadow-[0_0_15px_rgba(74,124,52,0.4)]"
-                  priority
-                />
-              </div>
               <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#4A7C34] to-[#E87722] bg-clip-text text-transparent">
                 360°
               </h1>
@@ -440,8 +436,19 @@ export default function SMAIntegration() {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden" suppressHydrationWarning>
       <ProgressBar progress={scrollProgress} />
+      {/* Logo fijo arriba a la izquierda */}
+      <div className="fixed top-4 left-6 z-50">
+        <Image
+          src="/logo_sma_111.png"
+          alt="SMA - Servicios Medio Ambientales"
+          width={160}
+          height={98}
+          className="drop-shadow-[0_0_15px_rgba(74,124,52,0.4)]"
+          priority
+        />
+      </div>
       <GearHero />
       {AXES_DATA.map((axis, index) => (
         <AxisSection key={axis.id} axis={axis} index={index} />
