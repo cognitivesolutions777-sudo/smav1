@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { Zap, MapPin, Award, Briefcase, Recycle, Shield, FileText, Settings, Phone, Mail, MapPinIcon, ArrowUp, ChevronRight, CheckCircle, TrendingUp, Users, Clock, Leaf, MessageCircle, Send } from 'lucide-react';
+import { Zap, MapPin, Award, Briefcase, Recycle, Shield, FileText, Settings, Phone, Mail, MapPinIcon, ArrowUp, ChevronRight, CheckCircle, TrendingUp, Users, Clock, Leaf, MessageCircle, Send, BarChart3, Target, Factory } from 'lucide-react';
 
 // Hook: Intersection Observer para animaciones al scroll
 function useRevealOnScroll(options = {}) {
@@ -82,7 +82,7 @@ const AXES_DATA = [
     title: 'Trazabilidad',
     icon: Zap,
     color: '#7CB394',
-    image: '/trazabilidad.jpg',
+    image: '/Trazabilidad_111.png',
     description: 'Información en tiempo real',
     details: 'Reportes y seguimiento detallado de cada residuo desde su ingreso hasta su disposición final. Sistema automatizado que registra cada movimiento con precisión.',
     features: [
@@ -98,6 +98,7 @@ const AXES_DATA = [
     icon: MapPin,
     color: '#DBA07A',
     image: '/ubicacion.jpg',
+    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122048.30773498626!2d-75.78726839453124!3d-14.066354899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9110e301c4d0e76b%3A0xa5b0d14028a5ab4a!2sIca%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1',
     description: 'Lugares dónde están ubicados',
     details: 'Localización precisa de tus residuos en nuestras instalaciones. Geolocalización con tecnología GPS integrada para máxima transparencia.',
     features: [
@@ -131,10 +132,16 @@ const AXES_DATA = [
     description: 'Rubros con quien se desempeña',
     details: 'Experiencia comprobada en múltiples sectores industriales. Soluciones personalizadas para cada tipo de residuo y necesidad específica.',
     features: [
-      'Industria manufacturera',
-      'Sector energético',
-      'Empresas de construcción',
-      'Servicios especializados'
+      '🏭 Industria manufacturera',
+      '⚡ Sector energético',
+      '🏗️ Empresas de construcción',
+      '⛏️ Minería y extracción'
+    ],
+    sectorSlides: [
+      { emoji: '🏭', title: 'Industria Manufacturera', desc: 'Gestión de residuos industriales, emisiones y cumplimiento normativo para plantas de producción.', gradient: 'from-[#7CB394] to-[#5E9474]' },
+      { emoji: '⚡', title: 'Sector Energético', desc: 'Soluciones ambientales para centrales eléctricas, hidrocarburos y energías renovables.', gradient: 'from-[#DBA07A] to-[#C48B62]' },
+      { emoji: '🏗️', title: 'Empresas de Construcción', desc: 'Manejo de residuos de demolición, excavación y materiales peligrosos en obra.', gradient: 'from-[#8BADB8] to-[#6B8D98]' },
+      { emoji: '⛏️', title: 'Minería y Extracción', desc: 'Tratamiento de relaves, remediación de suelos y disposición de residuos mineros.', gradient: 'from-[#B09878] to-[#8A7858]' }
     ]
   }
 ];
@@ -302,17 +309,21 @@ function NavHeader() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md border-b border-[#D5CCBE]/30 py-3 shadow-[0_1px_20px_rgba(0,0,0,0.06)]' : 'bg-white/50 backdrop-blur-sm py-5'
+      scrolled
+        ? 'bg-white/95 backdrop-blur-md border-b border-[#D5CCBE]/30 py-2 shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
+        : 'bg-transparent py-4'
     }`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
-        <Image
-          src="/logo_sma_111.png"
-          alt="SMA - Servicios Medio Ambientales"
-          width={130}
-          height={80}
-          className="drop-shadow-[0_0_15px_rgba(124,179,148,0.3)]"
-          priority
-        />
+        <a href="#" className="flex-shrink-0">
+          <Image
+            src="/logo_sma_111.png"
+            alt="SMA - Servicios Medio Ambientales"
+            width={160}
+            height={50}
+            className={`transition-all duration-500 ${scrolled ? 'drop-shadow-none' : 'drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]'}`}
+            priority
+          />
+        </a>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
@@ -320,7 +331,11 @@ function NavHeader() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm text-[#5A6E5E] hover:text-[#2C3830] transition-colors uppercase tracking-wider font-medium"
+              className={`text-sm uppercase tracking-wider font-medium transition-colors duration-300 ${
+                scrolled
+                  ? 'text-[#5A6E5E] hover:text-[#2C3830]'
+                  : 'text-white/85 hover:text-white'
+              }`}
             >
               {link.label}
             </a>
@@ -329,7 +344,7 @@ function NavHeader() {
             href="https://wa.me/51XXXXXXXXXXX"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm px-5 py-2.5 rounded-full font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(124,179,148,0.3)]"
+            className="text-sm px-6 py-2.5 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(124,179,148,0.4)]"
             style={{ background: 'linear-gradient(135deg, #7CB394, #6BA37D)' }}
           >
             Cotizar ahora
@@ -344,9 +359,9 @@ function NavHeader() {
         >
           <span className="sr-only">{menuOpen ? 'Cerrar menú' : 'Abrir menú'}</span>
           <div className="w-7 h-5 relative flex flex-col justify-between">
-            <span className={`block h-[2px] w-full rounded-full bg-[#2C3830] transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-[9px]' : ''}`} />
-            <span className={`block h-[2px] w-full rounded-full bg-[#2C3830] transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block h-[2px] w-full rounded-full bg-[#2C3830] transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
+            <span className={`block h-[2px] w-full rounded-full transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-[9px] bg-[#2C3830]' : scrolled ? 'bg-[#2C3830]' : 'bg-white'}`} />
+            <span className={`block h-[2px] w-full rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0 bg-[#2C3830]' : scrolled ? 'bg-[#2C3830]' : 'bg-white'}`} />
+            <span className={`block h-[2px] w-full rounded-full transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-[9px] bg-[#2C3830]' : scrolled ? 'bg-[#2C3830]' : 'bg-white'}`} />
           </div>
         </button>
       </div>
@@ -428,49 +443,22 @@ function GearHero() {
 
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Fondo: gradiente pastel limpio + patrón sutil (no foto industrial) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#F7F4EF] via-[#EDF5F0] to-[#F5F0E8]" />
-
-      {/* Patrón de puntos muy sutil */}
-      <div className="absolute inset-0 opacity-[0.035]" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, #7CB394 1px, transparent 0)',
-        backgroundSize: '32px 32px'
-      }} />
-
-      {/* Formas orgánicas decorativas */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Blob verde top-right */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-[#7CB394]/[0.08] rounded-full blur-[80px]" />
-        {/* Blob cálido bottom-left */}
-        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-[#DBA07A]/[0.06] rounded-full blur-[80px]" />
-        {/* Blob central */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#B5D8C2]/[0.05] rounded-full blur-[100px]" />
-
-        {/* Hojas decorativas SVG */}
-        <svg className="absolute top-24 right-16 w-28 h-28 text-[#7CB394]/[0.08]" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M50 5C55 25 75 35 95 30C90 55 70 75 50 95C30 75 10 55 5 30C25 35 45 25 50 5Z" />
-        </svg>
-        <svg className="absolute bottom-40 left-12 w-20 h-20 text-[#B5D8C2]/[0.1] rotate-45" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M50 5C55 25 75 35 95 30C90 55 70 75 50 95C30 75 10 55 5 30C25 35 45 25 50 5Z" />
-        </svg>
-        <svg className="absolute top-1/2 right-[12%] w-14 h-14 text-[#DBA07A]/[0.07] -rotate-12" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M50 5C55 25 75 35 95 30C90 55 70 75 50 95C30 75 10 55 5 30C25 35 45 25 50 5Z" />
-        </svg>
-
-        {/* Línea decorativa horizontal */}
-        <div className="absolute top-[45%] left-0 w-full h-px bg-gradient-to-r from-transparent via-[#7CB394]/10 to-transparent" />
-      </div>
-
-      {/* Franja de foto ambiental — solo abajo como acento */}
-      <div className="absolute bottom-0 left-0 right-0 h-[180px] lg:h-[220px]">
-        <Image
-          src="/hero-bg.jpg"
-          alt="Operaciones ambientales SMA"
-          fill
-          className="object-cover object-top"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#F7F4EF]/30 via-[#F7F4EF]/70 to-[#F7F4EF]" />
+      {/* Video de fondo */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="/hero-bg.jpg"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay oscuro + tinte verde para legibilidad y branding */}
+        <div className="absolute inset-0 bg-[#2C3830]/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#2C3830]/70 via-[#2C3830]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1a2420]/80 via-transparent to-[#2C3830]/30" />
       </div>
 
       {/* Layout principal */}
@@ -479,21 +467,25 @@ function GearHero() {
           
           {/* Columna izquierda: Texto + CTA */}
           <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7CB394]/25 bg-white/60 backdrop-blur-sm mb-8 animate-fade-in-up shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7CB394]/40 bg-white/10 backdrop-blur-sm mb-8 animate-fade-in-up shadow-sm">
               <div className="w-2 h-2 rounded-full bg-[#7CB394] animate-pulse" />
-              <span className="text-xs text-[#5E9474] uppercase tracking-widest font-medium">Relleno de Seguridad Autorizado por MINAM</span>
+              <span className="text-xs text-[#A8D5BA] uppercase tracking-widest font-medium">Relleno de Seguridad Autorizado por MINAM</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] mb-6 text-[#2C3830] animate-fade-in-up animation-delay-200">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] mb-6 text-white animate-fade-in-up animation-delay-200">
               Gestión integral de{' '}
-              <span className="bg-gradient-to-r from-[#5E9474] via-[#7CB394] to-[#DBA07A] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#7CB394] via-[#A8D5BA] to-[#DBA07A] bg-clip-text text-transparent">
                 residuos peligrosos
               </span>
             </h1>
 
-            <p className="text-lg lg:text-xl text-[#5A6E5E] leading-relaxed mb-10 max-w-xl animate-fade-in-up animation-delay-400">
-              Trazabilidad completa, disposición final certificada y cumplimiento normativo.
+            <p className="text-lg lg:text-xl text-white/80 leading-relaxed mb-4 max-w-xl animate-fade-in-up animation-delay-400">
+              Trazabilidad completa, disposición final certificada y cumplimiento ambiental garantizado.
               Protegemos tu operación y el medio ambiente con tecnología de integración 360°.
+            </p>
+
+            <p className="text-sm text-[#A8D5BA] font-semibold uppercase tracking-wider mb-10 animate-fade-in-up animation-delay-400">
+              🏭 Clientes del sector minería, energía e industria
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-14 animate-fade-in-up animation-delay-600">
@@ -509,7 +501,7 @@ function GearHero() {
               </a>
               <a
                 href="#axis-trazabilidad"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#4A5C4D] border border-[#D5CCBE]/60 hover:border-[#7CB394]/50 hover:text-[#2C3830] transition-all duration-300 text-base bg-white/70 backdrop-blur-sm shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white border border-white/30 hover:border-[#7CB394]/60 hover:bg-white/10 transition-all duration-300 text-base backdrop-blur-sm shadow-sm"
               >
                 Por qué SMA?
               </a>
@@ -517,17 +509,17 @@ function GearHero() {
 
             {/* Stats de confianza — con fondo tarjeta */}
             <div className="grid grid-cols-3 gap-4 animate-fade-in-up animation-delay-800">
-              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-[#D5CCBE]/25 shadow-sm text-center">
-                <p className="text-2xl lg:text-3xl font-bold text-[#2C3830]">15<span className="text-[#7CB394]">+</span></p>
-                <p className="text-[10px] text-[#7A8C7D] uppercase tracking-wider mt-1">Años de experiencia</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/15 shadow-sm text-center">
+                <p className="text-2xl lg:text-3xl font-bold text-white">15<span className="text-[#7CB394]">+</span></p>
+                <p className="text-[10px] text-white/60 uppercase tracking-wider mt-1">Años de experiencia</p>
               </div>
-              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-[#D5CCBE]/25 shadow-sm text-center">
-                <p className="text-2xl lg:text-3xl font-bold text-[#2C3830]">500<span className="text-[#DBA07A]">+</span></p>
-                <p className="text-[10px] text-[#7A8C7D] uppercase tracking-wider mt-1">Empresas atendidas</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/15 shadow-sm text-center">
+                <p className="text-2xl lg:text-3xl font-bold text-white">500<span className="text-[#DBA07A]">+</span></p>
+                <p className="text-[10px] text-white/60 uppercase tracking-wider mt-1">Empresas atendidas</p>
               </div>
-              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-[#D5CCBE]/25 shadow-sm text-center">
-                <p className="text-2xl lg:text-3xl font-bold text-[#2C3830]">100<span className="text-[#7CB394]">%</span></p>
-                <p className="text-[10px] text-[#7A8C7D] uppercase tracking-wider mt-1">Norma cumplida</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/15 shadow-sm text-center">
+                <p className="text-2xl lg:text-3xl font-bold text-white">100<span className="text-[#7CB394]">%</span></p>
+                <p className="text-[10px] text-white/60 uppercase tracking-wider mt-1">Norma cumplida</p>
               </div>
             </div>
           </div>
@@ -595,8 +587,8 @@ function GearHero() {
                 </g>
 
                 {/* Arcos orbitales decorativos */}
-                <circle cx="200" cy="200" r="130" fill="none" stroke="#7CB394" strokeWidth="0.5" opacity="0.2" strokeDasharray="8,12" />
-                <circle cx="200" cy="200" r="160" fill="none" stroke="#DBA07A" strokeWidth="0.5" opacity="0.15" strokeDasharray="4,16" />
+                <circle cx="200" cy="200" r="130" fill="none" stroke="#7CB394" strokeWidth="0.5" opacity="0.4" strokeDasharray="8,12" />
+                <circle cx="200" cy="200" r="160" fill="none" stroke="#DBA07A" strokeWidth="0.5" opacity="0.3" strokeDasharray="4,16" />
               </svg>}
 
               {/* Badge central 360° */}
@@ -605,7 +597,7 @@ function GearHero() {
                   <p className="text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-[#6BA37D] via-[#DBA07A] to-[#7CB394] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(124,179,148,0.2)]">
                     360°
                   </p>
-                  <p className="text-sm sm:text-base lg:text-lg font-semibold uppercase tracking-[0.25em] mt-2 bg-gradient-to-r from-[#2C3830] via-[#4A5C4D] to-[#2C3830] bg-clip-text text-transparent">
+                  <p className="text-sm sm:text-base lg:text-lg font-semibold uppercase tracking-[0.25em] mt-2 text-white/80">
                     Integración Total
                   </p>
                 </div>
@@ -618,13 +610,107 @@ function GearHero() {
       {/* Scroll indicator */}
       <div className="absolute left-1/2 transform -translate-x-1/2 z-20" style={{ bottom: '9rem' }}>
         <a href="#axis-trazabilidad" className="flex flex-col items-center gap-2 group">
-          <p className="text-[10px] text-[#8A9B8D] uppercase tracking-[0.25em] group-hover:text-[#5A6E5E] transition-colors">Descubre más</p>
-          <div className="w-5 h-8 rounded-full border border-[#7CB394]/30 flex items-start justify-center p-1.5 group-hover:border-[#7CB394]/50 transition-colors bg-white/50">
-            <div className="w-1 h-2 bg-[#7CB394] rounded-full animate-bounce" />
+          <p className="text-[10px] text-white/60 uppercase tracking-[0.25em] group-hover:text-white/80 transition-colors">Descubre más</p>
+          <div className="w-5 h-8 rounded-full border border-white/30 flex items-start justify-center p-1.5 group-hover:border-white/50 transition-colors bg-white/10">
+            <div className="w-1 h-2 bg-white rounded-full animate-bounce" />
           </div>
         </a>
       </div>
     </section>
+  );
+}
+
+// Componente: Carrusel de Sectores
+function SectorCarousel({ slides }) {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const touchStartX = useRef(0);
+  const intervalRef = useRef(null);
+
+  const goTo = useCallback((idx) => {
+    setDirection(idx > current ? 1 : -1);
+    setCurrent(idx);
+  }, [current]);
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(next, 5000);
+    return () => clearInterval(intervalRef.current);
+  }, [next]);
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+  };
+
+  return (
+    <div
+      className="relative w-full h-full overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {slides.map((slide, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${
+            i === current
+              ? 'opacity-100 translate-x-0 scale-100'
+              : i === (current - direction + slides.length) % slides.length
+              ? `opacity-0 ${direction > 0 ? '-translate-x-full' : 'translate-x-full'} scale-95`
+              : `opacity-0 ${direction > 0 ? 'translate-x-full' : '-translate-x-full'} scale-95`
+          }`}
+        >
+          <div className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`} />
+          <div className="absolute inset-0 opacity-[0.06]" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '28px 28px'
+          }} />
+          <div className="relative z-10 flex flex-col items-center justify-center text-center px-8 max-w-md">
+            <span className="text-7xl sm:text-8xl lg:text-9xl mb-6 drop-shadow-lg">{slide.emoji}</span>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-md">{slide.title}</h3>
+            <p className="text-white/85 text-sm sm:text-base lg:text-lg leading-relaxed">{slide.desc}</p>
+          </div>
+        </div>
+      ))}
+
+      {/* Flechas */}
+      <button
+        onClick={prev}
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/40 transition-all"
+        aria-label="Sector anterior"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/40 transition-all"
+        aria-label="Siguiente sector"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'}`}
+            aria-label={`Ir a sector ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -639,22 +725,40 @@ function AxisSection({ axis, index }) {
       className="relative"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[700px]">
-        {/* Imagen full-bleed */}
+        {/* Imagen, Mapa embebido o Carrusel de sectores */}
         <Reveal direction={index % 2 === 0 ? 'left' : 'right'} className={index % 2 === 1 ? 'lg:order-2' : ''}>
           <div className="relative overflow-hidden h-[350px] sm:h-[400px] lg:h-[700px]">
-            <Image
-              src={axis.image}
-              alt={axis.title}
-              fill
-              className="object-cover transition-transform duration-700 hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            {/* Overlay pastel suave */}
-            <div
-              className="absolute inset-0"
-              style={{ background: `linear-gradient(to ${index % 2 === 0 ? 'right' : 'left'}, ${axis.color}30, transparent 60%)` }}
-            />
-            <div className="absolute inset-0 bg-[#F7F4EF]/10" />
+            {axis.sectorSlides ? (
+              <SectorCarousel slides={axis.sectorSlides} />
+            ) : axis.mapEmbed ? (
+              <iframe
+                src={axis.mapEmbed}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación SMA"
+                className="absolute inset-0 w-full h-full"
+              />
+            ) : (
+              <>
+                <Image
+                  src={axis.image}
+                  alt={axis.title}
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                {/* Overlay pastel suave */}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: `linear-gradient(to ${index % 2 === 0 ? 'right' : 'left'}, ${axis.color}30, transparent 60%)` }}
+                />
+                <div className="absolute inset-0 bg-[#F7F4EF]/10" />
+              </>
+            )}
             {/* Gradiente inferior en móvil */}
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#F7F4EF] to-transparent lg:hidden" />
           </div>
@@ -786,7 +890,7 @@ function ServicesSection() {
                   <p className="text-[#5A6E5E] leading-relaxed mb-8">{service.description}</p>
 
                   {/* Features */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 mb-8">
                     {service.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <div
@@ -797,6 +901,16 @@ function ServicesSection() {
                       </div>
                     ))}
                   </div>
+
+                  {/* CTA del servicio */}
+                  <a
+                    href="#contacto"
+                    className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group-hover:gap-3"
+                    style={{ color: service.color }}
+                  >
+                    {index === 0 ? 'Ver solución' : index === 1 ? 'Solicitar evaluación' : index === 2 ? 'Consultar ahora' : 'Optimizar operación'}
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
               </Reveal>
@@ -965,10 +1079,10 @@ function ClientsSection() {
 // Componente: Nuestros Números (como Séché Group — contadores animados)
 function NumbersSection() {
   const NUMBERS = [
-    { value: 500, suffix: '+', label: 'Clientes', sublabel: 'de diversas industrias', color: '#7CB394', icon: Users },
-    { value: 900, suffix: '+', label: 'Colaboradores', sublabel: 'a nivel nacional', color: '#DBA07A', icon: TrendingUp },
-    { value: 25, suffix: 'K+', label: 'Toneladas', sublabel: 'de capacidad de tratamiento', color: '#7CB394', icon: Recycle },
-    { value: 15, suffix: '+', label: 'Años', sublabel: 'de experiencia operativa', color: '#DBA07A', icon: Clock },
+    { value: 500, suffix: '+', label: 'Empresas industriales', sublabel: 'atendidas en todo el Perú', color: '#7CB394', icon: Users },
+    { value: 25, suffix: 'K+', label: 'Toneladas gestionadas', sublabel: 'de residuos peligrosos tratados', color: '#DBA07A', icon: Recycle },
+    { value: 15, suffix: '+', label: 'Años de operación', sublabel: 'ambiental certificada', color: '#7CB394', icon: Clock },
+    { value: 900, suffix: '+', label: 'Profesionales', sublabel: 'especializados en medio ambiente', color: '#DBA07A', icon: TrendingUp },
   ];
 
   return (
@@ -1015,12 +1129,12 @@ function NumbersSection() {
 // Componente: ¿Por qué elegirnos? (como Eco Misti / Veolia)
 function WhyChooseUsSection() {
   const reasons = [
-    { icon: Shield, title: 'Seguridad Garantizada', description: 'Infraestructura autorizada por MINAM con los más altos estándares de seguridad ambiental y ocupacional.', color: '#7CB394' },
-    { icon: CheckCircle, title: 'Cumplimiento Normativo', description: 'Gestión 100% conforme a la legislación ambiental peruana e internacional. Certificaciones ISO vigentes.', color: '#DBA07A' },
-    { icon: Zap, title: 'Trazabilidad Total', description: 'Seguimiento en tiempo real de cada residuo desde la recolección hasta la disposición final certificada.', color: '#7CB394' },
-    { icon: Leaf, title: 'Compromiso Ambiental', description: 'Promovemos la economía circular y la valorización de residuos para un futuro sostenible.', color: '#DBA07A' },
-    { icon: Users, title: 'Equipo Especializado', description: 'Personal altamente capacitado con experiencia en las industrias más exigentes del Perú.', color: '#7CB394' },
-    { icon: TrendingUp, title: 'Tecnología de Punta', description: 'Sistemas de monitoreo y gestión automatizados para máxima eficiencia operativa.', color: '#DBA07A' },
+    { icon: Shield, title: 'Seguridad Garantizada', description: 'Infraestructura autorizada por MINAM con los más altos estándares de seguridad ambiental y ocupacional según ISO 45001.', color: '#7CB394', badge: 'ISO 45001' },
+    { icon: CheckCircle, title: 'Cumplimiento Normativo', description: 'Gestión conforme al DS 014-2017-MINAM y la Ley de Gestión Integral de Residuos Sólidos. Certificaciones ISO vigentes.', color: '#DBA07A', badge: 'DS 014-2017' },
+    { icon: Zap, title: 'Trazabilidad Total', description: 'Seguimiento en tiempo real de cada residuo desde la recolección hasta la disposición final certificada.', color: '#7CB394', badge: 'Tiempo real' },
+    { icon: Leaf, title: 'Compromiso Ambiental', description: 'Promovemos la economía circular y la valorización de residuos conforme a la normativa ambiental peruana.', color: '#DBA07A', badge: 'ISO 14001' },
+    { icon: Users, title: 'Equipo Especializado', description: 'Personal altamente capacitado con experiencia en las industrias más exigentes del Perú.', color: '#7CB394', badge: '900+ profesionales' },
+    { icon: TrendingUp, title: 'Tecnología de Punta', description: 'Sistemas de monitoreo y gestión automatizados conforme a los estándares ISO 9001 para máxima eficiencia.', color: '#DBA07A', badge: 'ISO 9001' },
   ];
 
   return (
@@ -1054,7 +1168,12 @@ function WhyChooseUsSection() {
                       style={{ backgroundColor: `${reason.color}15`, border: `1.5px solid ${reason.color}30` }}>
                       <IconComp className="w-6 h-6" style={{ color: reason.color }} />
                     </div>
-                    <h3 className="text-lg font-bold text-[#2C3830] mb-3">{reason.title}</h3>
+                    <h3 className="text-lg font-bold text-[#2C3830] mb-2">{reason.title}</h3>
+                    {reason.badge && (
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mb-2" style={{ backgroundColor: `${reason.color}15`, color: reason.color }}>
+                        {reason.badge}
+                      </span>
+                    )}
                     <p className="text-sm text-[#5A6E5E] leading-relaxed">{reason.description}</p>
                   </div>
                 </div>
@@ -1106,6 +1225,267 @@ function CertificationsSection() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Componente: Dashboard Ambiental — KPIs de impacto
+function DashboardAmbientalSection() {
+  const kpis = [
+    { label: 'Toneladas tratadas', value: 25000, suffix: '+', unit: 'ton/año', icon: Recycle, color: '#7CB394', description: 'Residuos peligrosos procesados anualmente en nuestro relleno de seguridad' },
+    { label: 'Reducción CO₂', value: 40, suffix: '%', unit: 'menos emisiones', icon: Leaf, color: '#DBA07A', description: 'Reducción de huella de carbono mediante procesos de valorización y reciclaje' },
+    { label: 'Empresas monitoreadas', value: 500, suffix: '+', unit: 'clientes activos', icon: BarChart3, color: '#7CB394', description: 'Empresas con trazabilidad activa en nuestro sistema de gestión 360°' },
+    { label: 'Cumplimiento normativo', value: 100, suffix: '%', unit: 'conformidad', icon: Shield, color: '#DBA07A', description: 'Índice de cumplimiento regulatorio en auditorías MINAM y OEFA' },
+  ];
+
+  return (
+    <section className="relative py-24 px-8 bg-[#2C3830] overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: 'radial-gradient(circle at 1px 1px, #7CB394 1px, transparent 0)',
+        backgroundSize: '40px 40px'
+      }} />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#7CB394]/30 to-transparent" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <Reveal>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7CB394]/30 bg-[#7CB394]/10 mb-6">
+              <div className="w-2 h-2 rounded-full bg-[#7CB394] animate-pulse" />
+              <span className="text-xs text-[#7CB394] uppercase tracking-widest font-medium">Impacto Ambiental</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Dashboard <span className="bg-gradient-to-r from-[#7CB394] to-[#DBA07A] bg-clip-text text-transparent">Ambiental</span>
+            </h2>
+            <p className="text-white/60 text-lg leading-relaxed">
+              Indicadores clave de nuestro desempeño ambiental. Transparencia y resultados medibles que respaldan nuestro compromiso con la sostenibilidad.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {kpis.map((kpi, i) => {
+            const [ref, count] = useAnimatedCounter(kpi.value);
+            const IconComp = kpi.icon;
+            return (
+              <Reveal key={i} delay={i * 100}>
+                <div ref={ref} className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#7CB394]/30 hover:bg-white/[0.08] transition-all duration-500">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${kpi.color}20`, border: `1.5px solid ${kpi.color}40` }}>
+                      <IconComp className="w-6 h-6" style={{ color: kpi.color }} />
+                    </div>
+                    <span className="text-[10px] uppercase tracking-widest text-white/40 font-medium">{kpi.unit}</span>
+                  </div>
+                  <p className="text-4xl font-extrabold text-white mb-1">
+                    {count}<span style={{ color: kpi.color }}>{kpi.suffix}</span>
+                  </p>
+                  <p className="text-sm font-semibold text-white/80 mb-2">{kpi.label}</p>
+                  <p className="text-xs text-white/40 leading-relaxed">{kpi.description}</p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Componente: Casos de Éxito — Carrusel Problema → Solución → Resultados
+function CasosDeExitoSection() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 left, 1 right
+  const touchStartX = useRef(0);
+
+  const casos = [
+    {
+      empresa: 'Minera Antamina',
+      sector: 'Minería',
+      color: '#7CB394',
+      problema: 'Gestión de más de 3,000 toneladas anuales de residuos peligrosos mineros con requisitos estrictos de trazabilidad y cumplimiento normativo OEFA.',
+      solucion: 'Implementación de sistema integral de gestión 360° con trazabilidad en tiempo real, disposición final certificada y reportería automatizada.',
+      resultados: [
+        '100% cumplimiento normativo en auditorías OEFA',
+        'Reducción de 35% en costos de gestión de residuos',
+        'Cero observaciones en fiscalizaciones ambientales',
+      ]
+    },
+    {
+      empresa: 'Cementos Pacasmayo',
+      sector: 'Construcción',
+      color: '#DBA07A',
+      problema: 'Necesidad de gestión centralizada de residuos industriales en múltiples plantas con diferentes tipos de residuos peligrosos.',
+      solucion: 'Programa de gestión multi-sitio con segregación en origen, transporte especializado y disposición diferenciada según tipo de residuo.',
+      resultados: [
+        'Gestión unificada de 5 plantas industriales',
+        'Valorización del 20% de residuos previamente descartados',
+        'Certificación ambiental en todos los sitios',
+      ]
+    },
+    {
+      empresa: 'Petroperú',
+      sector: 'Energía',
+      color: '#7CB394',
+      problema: 'Remediación urgente de sitio contaminado con hidrocarburos y gestión de residuos petroleros bajo supervisión de OSINERGMIN.',
+      solucion: 'Plan de remediación integral con tratamiento in-situ, monitoreo continuo de suelos y aguas subterráneas, y gestión de residuos RESPEL.',
+      resultados: [
+        'Remediación exitosa dentro de los plazos regulatorios',
+        'Reducción de 60% en niveles de contaminación',
+        'Aprobación total de informes ante OSINERGMIN',
+      ]
+    },
+  ];
+
+  const goTo = useCallback((index) => {
+    setDirection(index > current ? 1 : -1);
+    setCurrent(index);
+  }, [current]);
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % casos.length);
+  }, [casos.length]);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setCurrent((prev) => (prev - 1 + casos.length) % casos.length);
+  }, [casos.length]);
+
+  // Auto-advance
+  useEffect(() => {
+    const timer = setInterval(next, 8000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const caso = casos[current];
+
+  return (
+    <section className="relative py-24 px-8 bg-gradient-to-b from-[#F7F4EF] via-[#EDF5F0] to-[#F7F4EF]">
+      <div className="max-w-7xl mx-auto">
+        <Reveal>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#DBA07A]/25 bg-white/60 mb-6">
+              <div className="w-2 h-2 rounded-full bg-[#DBA07A]" />
+              <span className="text-xs text-[#DBA07A] uppercase tracking-widest font-medium">Resultados Comprobados</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2C3830] mb-6">
+              Casos de <span className="bg-gradient-to-r from-[#7CB394] to-[#DBA07A] bg-clip-text text-transparent">Éxito</span>
+            </h2>
+            <p className="text-[#5A6E5E] text-lg leading-relaxed">
+              Resultados reales con empresas líderes del Perú. Cada caso demuestra nuestro compromiso con la excelencia ambiental.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Carrusel */}
+        <div
+          className="relative"
+          onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+          onTouchEnd={(e) => {
+            const diff = touchStartX.current - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+          }}
+        >
+          {/* Flechas de navegación */}
+          <button
+            onClick={prev}
+            className="absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-[#D5CCBE]/30 shadow-lg flex items-center justify-center text-[#2C3830] hover:border-[#7CB394]/50 hover:shadow-xl transition-all duration-300 hover:scale-110"
+            aria-label="Caso anterior"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button
+            onClick={next}
+            className="absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-[#D5CCBE]/30 shadow-lg flex items-center justify-center text-[#2C3830] hover:border-[#7CB394]/50 hover:shadow-xl transition-all duration-300 hover:scale-110"
+            aria-label="Caso siguiente"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </button>
+
+          {/* Slide activo */}
+          <div className="overflow-hidden rounded-2xl">
+            <div
+              key={current}
+              className="bg-white rounded-2xl border border-[#D5CCBE]/25 shadow-md transition-all duration-500 animate-fade-in-up"
+            >
+              {/* Header del caso */}
+              <div className="flex items-center justify-between px-8 py-6 border-b border-[#D5CCBE]/20" style={{ background: `linear-gradient(135deg, ${caso.color}08, transparent)` }}>
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${caso.color}15`, border: `1.5px solid ${caso.color}30` }}>
+                    <Target className="w-7 h-7" style={{ color: caso.color }} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-[#2C3830]">{caso.empresa}</h3>
+                    <span className="text-xs uppercase tracking-widest font-medium" style={{ color: caso.color }}>{caso.sector}</span>
+                  </div>
+                </div>
+                <span className="hidden sm:block text-sm font-medium text-[#9AA89C]">{current + 1} / {casos.length}</span>
+              </div>
+
+              {/* Contenido: Problema → Solución → Resultados */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:divide-x divide-[#D5CCBE]/20">
+                {/* Problema */}
+                <div className="p-8 lg:p-10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-7 h-7 rounded-full bg-red-50 flex items-center justify-center">
+                      <span className="text-sm text-red-400 font-bold">!</span>
+                    </div>
+                    <p className="text-xs font-bold text-red-400 uppercase tracking-wider">Problema</p>
+                  </div>
+                  <p className="text-[#5A6E5E] leading-relaxed">{caso.problema}</p>
+                </div>
+
+                {/* Solución */}
+                <div className="p-8 lg:p-10 bg-[#F7F4EF]/30">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ backgroundColor: `${caso.color}15` }}>
+                      <Settings className="w-3.5 h-3.5" style={{ color: caso.color }} />
+                    </div>
+                    <p className="text-xs font-bold uppercase tracking-wider" style={{ color: caso.color }}>Solución SMA</p>
+                  </div>
+                  <p className="text-[#5A6E5E] leading-relaxed">{caso.solucion}</p>
+                </div>
+
+                {/* Resultados */}
+                <div className="p-8 lg:p-10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-7 h-7 rounded-full bg-[#7CB394]/10 flex items-center justify-center">
+                      <CheckCircle className="w-3.5 h-3.5 text-[#7CB394]" />
+                    </div>
+                    <p className="text-xs font-bold text-[#7CB394] uppercase tracking-wider">Resultados</p>
+                  </div>
+                  <div className="space-y-3">
+                    {caso.resultados.map((res, j) => (
+                      <div key={j} className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: caso.color }} />
+                        <p className="text-sm text-[#2C3830] font-medium leading-relaxed">{res}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Dots de navegación */}
+          <div className="flex items-center justify-center gap-3 mt-8">
+            {casos.map((c, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`transition-all duration-300 rounded-full ${
+                  i === current
+                    ? 'w-10 h-3'
+                    : 'w-3 h-3 hover:scale-125'
+                }`}
+                style={{
+                  backgroundColor: i === current ? c.color : `${c.color}30`,
+                }}
+                aria-label={`Ver caso ${c.empresa}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -1209,16 +1589,30 @@ function ContactFormSection() {
                         <input type="tel" className="w-full px-4 py-3 rounded-xl border border-[#D5CCBE]/40 bg-[#F7F4EF]/50 text-[#2C3830] placeholder-[#9AA89C] focus:outline-none focus:border-[#7CB394] focus:ring-2 focus:ring-[#7CB394]/20 transition-all text-sm" placeholder="+51 XXX XXX XXX" />
                       </div>
                     </div>
-                    <div>
-                      <label className="block text-xs font-medium text-[#5A6E5E] uppercase tracking-wider mb-2">Servicio de interés</label>
-                      <select required className="w-full px-4 py-3 rounded-xl border border-[#D5CCBE]/40 bg-[#F7F4EF]/50 text-[#2C3830] focus:outline-none focus:border-[#7CB394] focus:ring-2 focus:ring-[#7CB394]/20 transition-all text-sm">
-                        <option value="">Seleccionar servicio</option>
-                        <option value="gestion-residuos">Gestión Integral de Residuos</option>
-                        <option value="sitios-contaminados">Manejo de Sitios Contaminados</option>
-                        <option value="consultoria">Consultoría Ambiental</option>
-                        <option value="optimizacion">Optimización de Operaciones</option>
-                        <option value="otro">Otro</option>
-                      </select>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-medium text-[#5A6E5E] uppercase tracking-wider mb-2">Industria</label>
+                        <select required className="w-full px-4 py-3 rounded-xl border border-[#D5CCBE]/40 bg-[#F7F4EF]/50 text-[#2C3830] focus:outline-none focus:border-[#7CB394] focus:ring-2 focus:ring-[#7CB394]/20 transition-all text-sm">
+                          <option value="">Seleccionar industria</option>
+                          <option value="mineria">Minería</option>
+                          <option value="construccion">Construcción</option>
+                          <option value="manufactura">Manufactura</option>
+                          <option value="oil-gas">Oil & Gas</option>
+                          <option value="energia">Energía</option>
+                          <option value="otros">Otros</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium text-[#5A6E5E] uppercase tracking-wider mb-2">Servicio de interés</label>
+                        <select required className="w-full px-4 py-3 rounded-xl border border-[#D5CCBE]/40 bg-[#F7F4EF]/50 text-[#2C3830] focus:outline-none focus:border-[#7CB394] focus:ring-2 focus:ring-[#7CB394]/20 transition-all text-sm">
+                          <option value="">Seleccionar servicio</option>
+                          <option value="gestion-residuos">Gestión Integral de Residuos</option>
+                          <option value="sitios-contaminados">Manejo de Sitios Contaminados</option>
+                          <option value="consultoria">Consultoría Ambiental</option>
+                          <option value="optimizacion">Optimización de Operaciones</option>
+                          <option value="otro">Otro</option>
+                        </select>
+                      </div>
                     </div>
                     <div>
                       <label className="block text-xs font-medium text-[#5A6E5E] uppercase tracking-wider mb-2">Mensaje</label>
@@ -1425,6 +1819,8 @@ export default function SMAIntegration() {
       <ClientsSection />
       <ProcessSection />
       <CertificationsSection />
+      <DashboardAmbientalSection />
+      <CasosDeExitoSection />
       <ContactFormSection />
       <Footer />
       <ScrollToTop />
