@@ -8,11 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'sma-green': '#4A7C34',
-        'sma-orange': '#E87722',
+        'sma-green': '#7CB394',
+        'sma-green-dark': '#6BA37D',
+        'sma-green-light': '#B5D8C2',
+        'sma-warm': '#DBA07A',
+        'sma-warm-light': '#EBC4A8',
+        'sma-cream': '#F7F4EF',
+        'sma-text': '#2C3830',
+        'sma-text-light': '#5A6E5E',
       },
       fontFamily: {
-        sans: ['system-ui', 'sans-serif'],
+        sans: ['Poppins', 'system-ui', 'sans-serif'],
       },
       animation: {
         'pulse': 'pulse 3s ease-in-out infinite',

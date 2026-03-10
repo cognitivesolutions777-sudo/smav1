@@ -5,7 +5,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#000000',
+  themeColor: '#F7F4EF',
 };
 
 export const metadata: Metadata = {
@@ -64,10 +64,11 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className="bg-black text-white overflow-x-hidden" suppressHydrationWarning>
+      <body className="bg-[#F7F4EF] text-[#2C3830] overflow-x-hidden" suppressHydrationWarning>
         {children}
       </body>
     </html>

@@ -1,4 +1,4 @@
-import SMAIntegration from '@/components/SMAIntegration';
+import SMAIntegration from '@/app/components/SMAIntegration';
 
 export const metadata = {
   title: 'SMA - Integración 360° | Servicios Medioambientales',
