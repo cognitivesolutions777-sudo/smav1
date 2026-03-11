@@ -12,11 +12,11 @@ export default function Home() {
   }, []);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-[#F7F4EF]" />;
+    return <div className="min-h-screen bg-white" />;
   }
 
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#F7F4EF]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
       <SMAIntegration />
     </Suspense>
   );

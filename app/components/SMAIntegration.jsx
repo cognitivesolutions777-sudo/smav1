@@ -78,70 +78,70 @@ function useAnimatedCounter(target, duration = 2000) {
 // Datos de configuración
 const AXES_DATA = [
   {
-    id: 'trazabilidad',
-    title: 'Trazabilidad',
-    icon: Zap,
+    id: 'resumen-ejecutivo',
+    title: 'Resumen Ejecutivo',
+    icon: Briefcase,
     color: '#7CB394',
     image: '/Trazabilidad_111.png',
-    description: 'Información en tiempo real',
-    details: 'Reportes y seguimiento detallado de cada residuo desde su ingreso hasta su disposición final. Sistema automatizado que registra cada movimiento con precisión.',
+    description: 'Quiénes somos',
+    details: 'En Servicios Medioambientales S.A. (SMA), entendemos que la gestión de residuos peligrosos del ámbito no municipal es uno de los mayores desafíos críticos para la industria peruana. Nuestra operación nace para cerrar la brecha de infraestructura técnica en el país, ofreciendo un destino final que garantiza la discontinuidad del riesgo legal y ambiental para nuestros socios estratégicos.',
     features: [
-      'Reportes en tiempo real',
-      'Historial completo de residuos',
-      'Auditoría digital integrada',
-      'Alertas automáticas'
+      'Custodia de residuos bajo modelo de Ingeniería de Confinamiento',
+      'Aseguramiento de cada etapa del proceso',
+      'Desde la recepción hasta la disposición final',
+      'Discontinuidad del riesgo legal y ambiental'
     ]
   },
   {
-    id: 'ubicacion',
-    title: 'Ubicación',
+    id: 'infraestructura',
+    title: 'Infraestructura',
     icon: MapPin,
     color: '#DBA07A',
     image: '/ubicacion.jpg',
     mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122048.30773498626!2d-75.78726839453124!3d-14.066354899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9110e301c4d0e76b%3A0xa5b0d14028a5ab4a!2sIca%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1',
-    description: 'Lugares dónde están ubicados',
-    details: 'Localización precisa de tus residuos en nuestras instalaciones. Geolocalización con tecnología GPS integrada para máxima transparencia.',
+    description: 'Relleno de Seguridad Ica',
+    details: 'Nuestra planta, ubicada estratégicamente en el Km 255.5 de la Panamericana Sur (Ica), es una infraestructura diseñada para el aislamiento total y definitivo de materiales peligrosos.',
     features: [
-      'Mapa interactivo en tiempo real',
-      'Ubicación de celdas de disposición',
-      'Rastreo de vehículos',
-      'Geofencing automático'
+      'Impermeabilización con geomembranas HDPE (polietileno de alta densidad)',
+      'Sistema de barreras múltiples de protección',
+      'Control de estabilidad geotécnica supervisado',
+      'Coberturas diarias que previenen dispersión de partículas'
     ]
   },
   {
-    id: 'certificaciones',
-    title: 'Certificaciones',
-    icon: Award,
+    id: 'gestion-operativa',
+    title: 'Gestión Operativa',
+    icon: Zap,
     color: '#7CB394',
     image: '/certificaciones.jpg',
-    description: 'Certificados en tiempo real',
-    details: 'Documentación oficial que certifica la disposición final adecuada de tus residuos conforme a normativa ambiental nacional e internacional.',
+    description: 'Trazabilidad y control riguroso',
+    details: 'Hemos optimizado nuestras operaciones para brindar transparencia absoluta. El residuo peligroso no municipal atraviesa un flujo de control riguroso desde el ingreso hasta la disposición final.',
     features: [
-      'Certificados ISO actualizados',
-      'Calibración INACAL verificada',
-      'Reportes conformidad ambiental',
-      'Auditorías regulares'
+      'Gestión documentaria: Manifiestos y Guías de Remisión verificados',
+      'Balanza electrónica de 80 Tn certificada por INACAL',
+      'Certificado de Disposición Final emitido al cierre',
+      'Trazabilidad total: reportes detallados en tiempo real'
     ]
   },
   {
     id: 'sectores',
     title: 'Sectores',
-    icon: Briefcase,
+    icon: Factory,
     color: '#DBA07A',
     image: '/sectores.jpg',
-    description: 'Rubros con quien se desempeña',
-    details: 'Experiencia comprobada en múltiples sectores industriales. Soluciones personalizadas para cada tipo de residuo y necesidad específica.',
+    description: 'Sectores de alto impacto',
+    details: 'Nuestros principales clientes pertenecen a los sectores industriales más exigentes del Perú. Brindamos soluciones de confinamiento especializadas para cada tipo de residuo peligroso.',
     features: [
-      '🏭 Industria manufacturera',
-      '⚡ Sector energético',
-      '🏗️ Empresas de construcción',
-      '⛏️ Minería y extracción'
+      '⛏️ Minería y Metalurgia',
+      '⚡ Energía e Hidrocarburos',
+      '🌾 Agroindustria',
+      '🏭 Manufactura y Química'
     ],
     sectorSlides: [
-      { emoji: '🏭', title: 'Industria Manufacturera', desc: 'Gestión de residuos industriales, emisiones y cumplimiento normativo para plantas de producción.', gradient: 'from-[#7CB394] to-[#5E9474]' },
-      { emoji: '⚡', title: 'Sector Energético', desc: 'Soluciones ambientales para centrales eléctricas, hidrocarburos y energías renovables.', gradient: 'from-[#DBA07A] to-[#C48B62]' },
-      { emoji: '🏗️', title: 'Empresas de Construcción', desc: 'Manejo de residuos de demolición, excavación y materiales peligrosos en obra.', gradient: 'from-[#8BADB8] to-[#6B8D98]' },
-      { emoji: '⛏️', title: 'Minería y Extracción', desc: 'Tratamiento de relaves, remediación de suelos y disposición de residuos mineros.', gradient: 'from-[#B09878] to-[#8A7858]' }
+      { emoji: '⛏️', title: 'Minería y Metalurgia', desc: 'Confinamiento de lodos industriales, relaves de proceso y reactivos químicos caducos.', gradient: 'from-[#B09878] to-[#8A7858]' },
+      { emoji: '⚡', title: 'Energía e Hidrocarburos', desc: 'Gestión de suelos contaminados por hidrocarburos, aceites usados y residuos de generación eléctrica.', gradient: 'from-[#DBA07A] to-[#C48B62]' },
+      { emoji: '🌾', title: 'Agroindustria', desc: 'Manejo de envases críticos de agroquímicos con triple lavado y residuos químicos derivados del procesamiento agrícola.', gradient: 'from-[#7CB394] to-[#5E9474]' },
+      { emoji: '🏭', title: 'Manufactura y Química', desc: 'Disposición de solventes, pinturas, resinas y materiales con características de peligrosidad.', gradient: 'from-[#8BADB8] to-[#6B8D98]' }
     ]
   }
 ];
@@ -208,43 +208,43 @@ const SERVICES_DATA = [
 const PROCESS_STEPS = [
   {
     number: '01',
-    title: 'Control de Ingreso de Vehículos',
-    icon: '🚛',
+    title: 'Gestión Documentaria',
+    icon: '📋',
     image: '/proceso-ingreso.jpg',
-    description: 'Verificación exhaustiva de documentación y residuos',
+    description: 'Verificación exhaustiva de Manifiestos y Guías de Remisión',
     details: [
-      'Validación de manifiestos de residuos sólidos peligrosos',
-      'Verificación de Guía de remisión y transporte',
-      'Confirmación de residuos vs. documentación',
-      'Instrucción de medidas de seguridad'
+      'Validación de Manifiestos de Residuos Sólidos Peligrosos',
+      'Verificación de Guías de Remisión debidamente llenadas',
+      'Confirmación de residuos vs. documentación antes del ingreso',
+      'Autorización de ingreso a celdas de confinamiento'
     ],
     color: '#7CB394'
   },
   {
     number: '02',
-    title: 'Control de Pesaje',
+    title: 'Precisión Metrológica',
     icon: '⚖️',
     image: '/proceso-pesaje.jpg',
-    description: 'Balanza electrónica certificada de 80 toneladas',
+    description: 'Balanza electrónica de 80 Tn certificada por INACAL',
     details: [
-      'Balanza calibrada por laboratorio INACAL',
+      'Balanza de alta capacidad calibrada por laboratorio acreditado ante INACAL',
+      'Peso reportado = peso real para declaraciones SIGERSOL',
       'Pesaje al ingreso y salida del vehículo',
-      'Cálculo preciso de residuos',
-      'Comprobante con información exacta'
+      'Comprobante con información exacta y certificada'
     ],
     color: '#DBA07A'
   },
   {
     number: '03',
-    title: 'Disposición Final de Residuos',
-    icon: '🌍',
+    title: 'Disposición Final y Certificación',
+    icon: '🛡️',
     image: '/proceso-disposicion.jpg',
-    description: 'Confinamiento seguro en celdas especializadas',
+    description: 'Confinamiento seguro y emisión de Certificado de Disposición Final',
     details: [
-      'Tecnología de geosintéticos anti-filtración',
-      'Confinamiento diario para seguridad ambiental',
-      'Documentación de cumplimiento normativo',
-      'Protección del medio ambiente garantizada'
+      'Confinamiento en celdas con geomembranas HDPE',
+      'Coberturas diarias para seguridad ambiental',
+      'Emisión del Certificado de Disposición Final',
+      'Trazabilidad total desde el ingreso hasta la disposición final'
     ],
     color: '#7CB394'
   }
@@ -301,7 +301,7 @@ function NavHeader() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Por qué SMA?', href: '#axis-trazabilidad' },
+    { label: 'Nosotros', href: '#axis-resumen-ejecutivo' },
     { label: 'Servicios', href: '#servicios' },
     { label: 'Proceso', href: '#process' },
     { label: 'Contacto', href: '#contacto' },
@@ -473,19 +473,19 @@ function GearHero() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] mb-6 text-white animate-fade-in-up animation-delay-200">
-              Gestión integral de{' '}
+              Bienvenidos a SMA:{' '}
               <span className="bg-gradient-to-r from-[#7CB394] via-[#A8D5BA] to-[#DBA07A] bg-clip-text text-transparent">
-                residuos peligrosos
+                El Relleno de Seguridad de Ica
               </span>
             </h1>
 
             <p className="text-lg lg:text-xl text-white/80 leading-relaxed mb-4 max-w-xl animate-fade-in-up animation-delay-400">
-              Trazabilidad completa, disposición final certificada y cumplimiento ambiental garantizado.
-              Protegemos tu operación y el medio ambiente con tecnología de integración 360°.
+              No gestionamos residuos; confinamos riesgos y blindamos tu responsabilidad ambiental.
+              Ingeniería de Confinamiento con trazabilidad completa y cumplimiento ambiental garantizado.
             </p>
 
             <p className="text-sm text-[#A8D5BA] font-semibold uppercase tracking-wider mb-10 animate-fade-in-up animation-delay-400">
-              🏭 Clientes del sector minería, energía e industria
+              ⛏️ Minería · ⚡ Energía · 🌾 Agroindustria · 🏭 Manufactura
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-14 animate-fade-in-up animation-delay-600">
@@ -500,10 +500,10 @@ function GearHero() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>
               <a
-                href="#axis-trazabilidad"
+                href="#axis-resumen-ejecutivo"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white border border-white/30 hover:border-[#7CB394]/60 hover:bg-white/10 transition-all duration-300 text-base backdrop-blur-sm shadow-sm"
               >
-                Por qué SMA?
+                Conócenos
               </a>
             </div>
 
@@ -609,7 +609,7 @@ function GearHero() {
 
       {/* Scroll indicator */}
       <div className="absolute left-1/2 transform -translate-x-1/2 z-20" style={{ bottom: '9rem' }}>
-        <a href="#axis-trazabilidad" className="flex flex-col items-center gap-2 group">
+        <a href="#axis-resumen-ejecutivo" className="flex flex-col items-center gap-2 group">
           <p className="text-[10px] text-white/60 uppercase tracking-[0.25em] group-hover:text-white/80 transition-colors">Descubre más</p>
           <div className="w-5 h-8 rounded-full border border-white/30 flex items-start justify-center p-1.5 group-hover:border-white/50 transition-colors bg-white/10">
             <div className="w-1 h-2 bg-white rounded-full animate-bounce" />
@@ -1189,12 +1189,10 @@ function WhyChooseUsSection() {
 // Componente: Certificaciones (como Eco Misti)
 function CertificationsSection() {
   const certs = [
-    { name: 'ISO 14001', desc: 'Sistema de Gestión Ambiental', color: '#7CB394' },
-    { name: 'ISO 9001', desc: 'Sistema de Gestión de Calidad', color: '#DBA07A' },
-    { name: 'ISO 45001', desc: 'Seguridad y Salud en el Trabajo', color: '#7CB394' },
-    { name: 'MINAM', desc: 'Autorización de Funcionamiento', color: '#DBA07A' },
-    { name: 'INACAL', desc: 'Calibración Certificada', color: '#7CB394' },
-    { name: 'DIGESA', desc: 'Registro Sanitario', color: '#DBA07A' },
+    { name: 'EO-RS MINAM', desc: 'EO-RS-00198-2021-MINAM/VMGA/DGRS', color: '#7CB394' },
+    { name: 'Relleno Autorizado', desc: 'Res. Nº 00678-2021-MINAM/VMGA/DGRS', color: '#DBA07A' },
+    { name: 'EIA SENACE', desc: 'Res. Nº 0071-2020-SENACE-PE/DEIN', color: '#7CB394' },
+    { name: 'INACAL', desc: 'Calibración Certificada de Balanza', color: '#DBA07A' },
   ];
 
   return (
@@ -1202,17 +1200,17 @@ function CertificationsSection() {
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <div className="text-center mb-14">
-            <p className="text-xs text-[#7A8C7D] uppercase tracking-[0.3em] mb-3">Respaldo Normativo</p>
+            <p className="text-xs text-[#7A8C7D] uppercase tracking-[0.3em] mb-3">Respaldo Institucional</p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#2C3830]">
-              Nuestras <span className="bg-gradient-to-r from-[#7CB394] to-[#DBA07A] bg-clip-text text-transparent">Certificaciones</span>
+              Marco <span className="bg-gradient-to-r from-[#7CB394] to-[#DBA07A] bg-clip-text text-transparent">Regulatorio</span>
             </h2>
             <p className="text-[#5A6E5E] mt-4 max-w-2xl mx-auto">
-              Contamos con las autorizaciones legales y certificaciones necesarias para cada uno de nuestros procesos.
+              La empresa opera bajo las siguientes resoluciones de aprobación de las autoridades competentes.
             </p>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {certs.map((cert, i) => (
             <Reveal key={cert.name} delay={i * 80}>
               <div className="group text-center bg-white rounded-2xl p-6 border border-[#D5CCBE]/25 shadow-sm hover:shadow-md hover:border-[#7CB394]/25 transition-all duration-500">
@@ -1524,15 +1522,6 @@ function ContactFormSection() {
               </p>
 
               <div className="space-y-5">
-                <a href="tel:+51XXXXXXXXX" className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#7CB394]/10 border border-[#7CB394]/25 group-hover:scale-110 transition-transform">
-                    <Phone className="w-5 h-5 text-[#7CB394]" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-[#7A8C7D]">Teléfono</p>
-                    <p className="font-semibold text-[#2C3830]">+51 XXX XXX XXX</p>
-                  </div>
-                </a>
                 <a href="mailto:contacto@sma.com.pe" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#DBA07A]/10 border border-[#DBA07A]/25 group-hover:scale-110 transition-transform">
                     <Mail className="w-5 h-5 text-[#DBA07A]" />
@@ -1542,13 +1531,22 @@ function ContactFormSection() {
                     <p className="font-semibold text-[#2C3830]">contacto@sma.com.pe</p>
                   </div>
                 </a>
-                <a href="https://wa.me/51XXXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#7CB394]/10 border border-[#7CB394]/25 group-hover:scale-110 transition-transform">
-                    <MessageCircle className="w-5 h-5 text-[#7CB394]" />
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#7CB394]/10 border border-[#7CB394]/25">
+                    <MapPinIcon className="w-5 h-5 text-[#7CB394]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#7A8C7D]">WhatsApp</p>
-                    <p className="font-semibold text-[#2C3830]">Escríbenos directamente</p>
+                    <p className="text-sm text-[#7A8C7D]">Oficina Central</p>
+                    <p className="font-semibold text-[#2C3830]">Calle Almirante Lord Nelson 354, Miraflores - Lima</p>
+                  </div>
+                </div>
+                <a href="https://maps.app.goo.gl/atuNT3foqYC2Ehq59" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#DBA07A]/10 border border-[#DBA07A]/25 group-hover:scale-110 transition-transform">
+                    <MapPinIcon className="w-5 h-5 text-[#DBA07A]" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#7A8C7D]">Ubicación del Relleno</p>
+                    <p className="font-semibold text-[#2C3830]">Panamericana Sur Km 255.5, Salas - Ica</p>
                   </div>
                 </a>
               </div>
@@ -1594,11 +1592,10 @@ function ContactFormSection() {
                         <label className="block text-xs font-medium text-[#5A6E5E] uppercase tracking-wider mb-2">Industria</label>
                         <select required className="w-full px-4 py-3 rounded-xl border border-[#D5CCBE]/40 bg-[#F7F4EF]/50 text-[#2C3830] focus:outline-none focus:border-[#7CB394] focus:ring-2 focus:ring-[#7CB394]/20 transition-all text-sm">
                           <option value="">Seleccionar industria</option>
-                          <option value="mineria">Minería</option>
-                          <option value="construccion">Construcción</option>
-                          <option value="manufactura">Manufactura</option>
-                          <option value="oil-gas">Oil & Gas</option>
-                          <option value="energia">Energía</option>
+                          <option value="mineria">Minería y Metalurgia</option>
+                          <option value="energia">Energía e Hidrocarburos</option>
+                          <option value="agroindustria">Agroindustria</option>
+                          <option value="manufactura">Manufactura y Química</option>
                           <option value="otros">Otros</option>
                         </select>
                       </div>
@@ -1695,19 +1692,19 @@ function Footer() {
     {
       title: 'Empresa',
       links: [
-        { label: 'Por qué SMA?', href: '#axis-trazabilidad' },
+        { label: 'Nosotros', href: '#axis-resumen-ejecutivo' },
+        { label: 'Infraestructura', href: '#axis-infraestructura' },
         { label: 'Nuestro Proceso', href: '#process' },
-        { label: 'Servicios', href: '#servicios' },
         { label: 'Contacto', href: '#contacto' },
       ]
     },
     {
       title: 'Servicios',
       links: [
-        { label: 'Gestión de Residuos', href: '#servicios' },
-        { label: 'Sitios Contaminados', href: '#servicios' },
-        { label: 'Consultoría Ambiental', href: '#servicios' },
-        { label: 'Optimización', href: '#servicios' },
+        { label: 'Disposición Final', href: '#servicios' },
+        { label: 'Gestión Operativa', href: '#axis-gestion-operativa' },
+        { label: 'Sectores', href: '#axis-sectores' },
+        { label: 'Marco Regulatorio', href: '#servicios' },
       ]
     },
   ];
@@ -1730,21 +1727,21 @@ function Footer() {
               className="mb-6 opacity-90"
             />
             <p className="text-[#a3b5a8] leading-relaxed max-w-md mb-8">
-              Servicios Medio Ambientales S.A.C. — Relleno de seguridad autorizado por MINAM.
-              Gestión integral de residuos peligrosos con trazabilidad 360° y cumplimiento normativo garantizado.
+              Servicios Medioambientales S.A. — Relleno de seguridad autorizado por MINAM.
+              Confinamiento de residuos peligrosos con trazabilidad completa y cumplimiento normativo garantizado.
             </p>
             <div className="space-y-3">
-              <a href="tel:+51XXXXXXXXX" className="flex items-center gap-3 text-[#a3b5a8] hover:text-white transition-colors group">
-                <Phone className="w-4 h-4 text-[#7CB394] group-hover:scale-110 transition-transform" />
-                <span className="text-sm">+51 XXX XXX XXX</span>
-              </a>
               <a href="mailto:contacto@sma.com.pe" className="flex items-center gap-3 text-[#a3b5a8] hover:text-white transition-colors group">
                 <Mail className="w-4 h-4 text-[#DBA07A] group-hover:scale-110 transition-transform" />
                 <span className="text-sm">contacto@sma.com.pe</span>
               </a>
               <div className="flex items-start gap-3 text-[#a3b5a8]">
                 <MapPinIcon className="w-4 h-4 text-[#7CB394] mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Lima, Perú</span>
+                <span className="text-sm">Calle Almirante Lord Nelson 354, Miraflores - Lima</span>
+              </div>
+              <div className="flex items-start gap-3 text-[#a3b5a8]">
+                <MapPinIcon className="w-4 h-4 text-[#DBA07A] mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Panamericana Sur Km 255.5, Salas - Ica</span>
               </div>
             </div>
           </div>
@@ -1773,12 +1770,12 @@ function Footer() {
         {/* Barra inferior */}
         <div className="py-6 border-t border-[#3a4d3f] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#6b8370]">
-            © {currentYear} SMA — Servicios Medio Ambientales S.A.C. Todos los derechos reservados.
+            © {currentYear} SMA — Servicios Medioambientales S.A. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-6">
             <span className="text-[10px] text-[#5a7360] uppercase tracking-widest">Autorizado por MINAM</span>
             <div className="w-1 h-1 rounded-full bg-[#7CB394]" />
-            <span className="text-[10px] text-[#5a7360] uppercase tracking-widest">ISO 14001</span>
+            <span className="text-[10px] text-[#5a7360] uppercase tracking-widest">EIA SENACE Aprobado</span>
           </div>
         </div>
       </div>

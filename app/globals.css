@@ -8,7 +8,7 @@
 /* Estilos personalizados — tema pastel ambiental */
 @layer base {
   body {
-    @apply bg-[#F7F4EF] text-[#2C3830];
+    @apply bg-white text-[#2C3830];
     font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
 
