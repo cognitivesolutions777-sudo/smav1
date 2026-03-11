@@ -42,9 +42,8 @@ function Reveal({ children, className = '', delay = 0, direction = 'up' }) {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? 'opacity-100 translate-x-0 translate-y-0' : `opacity-0 ${directionStyles[direction]}`
-      } ${className}`}
+      className={`transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-x-0 translate-y-0' : `opacity-0 ${directionStyles[direction]}`
+        } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -308,18 +307,17 @@ function NavHeader() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
         ? 'bg-white/95 backdrop-blur-md border-b border-[#D5CCBE]/30 py-2 shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
         : 'bg-transparent py-4'
-    }`}>
+      }`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
         <a href="#" className="flex-shrink-0">
           <Image
-            src="/logo_sma_111.png"
+            src="/sma_logo_hd.png"
             alt="SMA - Servicios Medio Ambientales"
-            width={160}
-            height={50}
+            width={180}
+            height={56}
             className={`transition-all duration-500 ${scrolled ? 'drop-shadow-none' : 'drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]'}`}
             priority
           />
@@ -331,11 +329,10 @@ function NavHeader() {
             <a
               key={link.label}
               href={link.href}
-              className={`text-sm uppercase tracking-wider font-medium transition-colors duration-300 ${
-                scrolled
+              className={`text-sm uppercase tracking-wider font-medium transition-colors duration-300 ${scrolled
                   ? 'text-[#5A6E5E] hover:text-[#2C3830]'
                   : 'text-white/85 hover:text-white'
-              }`}
+                }`}
             >
               {link.label}
             </a>
@@ -367,9 +364,8 @@ function NavHeader() {
       </div>
 
       {/* Mega menu overlay (mobile) */}
-      <div className={`md:hidden fixed inset-0 z-[55] transition-all duration-500 ${
-        menuOpen ? 'visible opacity-100' : 'invisible opacity-0'
-      }`}>
+      <div className={`md:hidden fixed inset-0 z-[55] transition-all duration-500 ${menuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        }`}>
         {/* Backdrop */}
         <div
           className="absolute inset-0 bg-[#2C3830]/40 backdrop-blur-sm"
@@ -377,9 +373,8 @@ function NavHeader() {
         />
 
         {/* Panel del menú */}
-        <div className={`absolute inset-x-0 top-0 bg-gradient-to-b from-[#F7F4EF] via-[#F5F2EC] to-[#EFF3EC] border-b border-[#D5CCBE]/30 transition-all duration-500 ${
-          menuOpen ? 'translate-y-0' : '-translate-y-full'
-        }`}>
+        <div className={`absolute inset-x-0 top-0 bg-gradient-to-b from-[#F7F4EF] via-[#F5F2EC] to-[#EFF3EC] border-b border-[#D5CCBE]/30 transition-all duration-500 ${menuOpen ? 'translate-y-0' : '-translate-y-full'
+          }`}>
           <div className="pt-24 pb-10 px-8">
             {/* Links principales */}
             <div className="space-y-2 mb-10">
@@ -464,7 +459,7 @@ function GearHero() {
       {/* Layout principal */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pt-28 pb-56 lg:pb-64">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
+
           {/* Columna izquierda: Texto + CTA */}
           <div className="order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7CB394]/40 bg-white/10 backdrop-blur-sm mb-8 animate-fade-in-up shadow-sm">
@@ -530,23 +525,23 @@ function GearHero() {
               {mounted && <svg className="absolute inset-0 w-full h-full gear-pulse" viewBox="0 0 400 400">
                 <defs>
                   <filter id="glow-green">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                    <feFlood floodColor="#7CB394" floodOpacity="0.3" result="glowColor"/>
-                    <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow"/>
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                    <feFlood floodColor="#7CB394" floodOpacity="0.3" result="glowColor" />
+                    <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow" />
                     <feMerge>
-                      <feMergeNode in="softGlow"/>
-                      <feMergeNode in="softGlow"/>
-                      <feMergeNode in="SourceGraphic"/>
+                      <feMergeNode in="softGlow" />
+                      <feMergeNode in="softGlow" />
+                      <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
                   <filter id="glow-orange">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                    <feFlood floodColor="#DBA07A" floodOpacity="0.3" result="glowColor"/>
-                    <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow"/>
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                    <feFlood floodColor="#DBA07A" floodOpacity="0.3" result="glowColor" />
+                    <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow" />
                     <feMerge>
-                      <feMergeNode in="softGlow"/>
-                      <feMergeNode in="softGlow"/>
-                      <feMergeNode in="SourceGraphic"/>
+                      <feMergeNode in="softGlow" />
+                      <feMergeNode in="softGlow" />
+                      <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
                   <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
@@ -662,13 +657,12 @@ function SectorCarousel({ slides }) {
       {slides.map((slide, i) => (
         <div
           key={i}
-          className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${
-            i === current
+          className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${i === current
               ? 'opacity-100 translate-x-0 scale-100'
               : i === (current - direction + slides.length) % slides.length
-              ? `opacity-0 ${direction > 0 ? '-translate-x-full' : 'translate-x-full'} scale-95`
-              : `opacity-0 ${direction > 0 ? 'translate-x-full' : '-translate-x-full'} scale-95`
-          }`}
+                ? `opacity-0 ${direction > 0 ? '-translate-x-full' : 'translate-x-full'} scale-95`
+                : `opacity-0 ${direction > 0 ? 'translate-x-full' : '-translate-x-full'} scale-95`
+            }`}
         >
           <div className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`} />
           <div className="absolute inset-0 opacity-[0.06]" style={{
@@ -854,65 +848,65 @@ function ServicesSection() {
             const IconComponent = service.icon;
             return (
               <Reveal key={service.id} delay={index * 120}>
-              <div
-                className="group relative rounded-2xl overflow-hidden border border-[#D5CCBE]/30 bg-white shadow-sm transition-all duration-500 hover:shadow-lg hover:border-[#D5CCBE]/50"
-              >
-                {/* Imagen de fondo del servicio */}
-                <div className="absolute inset-0">
-                  <Image
-                    src={service.bgImage}
-                    alt={service.title}
-                    fill
-                    className="object-cover opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-700"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-
-                {/* Resplandor hover */}
                 <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `radial-gradient(circle at 30% 30%, ${service.color}10, transparent 70%)` }}
-                />
-
-                <div className="relative z-10 p-8 lg:p-10">
-                  {/* Icono + Título */}
-                  <div className="flex items-center gap-4 mb-6">
-                    <div
-                      className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundColor: `${service.color}18`, border: `1.5px solid ${service.color}40` }}
-                    >
-                      <IconComponent className="w-7 h-7" style={{ color: service.color }} />
-                    </div>
-                    <h3 className="text-xl lg:text-2xl font-bold text-[#2C3830] group-hover:text-[#1F2E22] transition-colors">{service.title}</h3>
+                  className="group relative rounded-2xl overflow-hidden border border-[#D5CCBE]/30 bg-white shadow-sm transition-all duration-500 hover:shadow-lg hover:border-[#D5CCBE]/50"
+                >
+                  {/* Imagen de fondo del servicio */}
+                  <div className="absolute inset-0">
+                    <Image
+                      src={service.bgImage}
+                      alt={service.title}
+                      fill
+                      className="object-cover opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
 
-                  {/* Descripción */}
-                  <p className="text-[#5A6E5E] leading-relaxed mb-8">{service.description}</p>
+                  {/* Resplandor hover */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `radial-gradient(circle at 30% 30%, ${service.color}10, transparent 70%)` }}
+                  />
 
-                  {/* Features */}
-                  <div className="space-y-3 mb-8">
-                    {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <div
-                          className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
-                          style={{ backgroundColor: service.color }}
-                        />
-                        <p className="text-sm text-[#4A5C4D] group-hover:text-[#2C3830] transition-colors">{feature}</p>
+                  <div className="relative z-10 p-8 lg:p-10">
+                    {/* Icono + Título */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div
+                        className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                        style={{ backgroundColor: `${service.color}18`, border: `1.5px solid ${service.color}40` }}
+                      >
+                        <IconComponent className="w-7 h-7" style={{ color: service.color }} />
                       </div>
-                    ))}
-                  </div>
+                      <h3 className="text-xl lg:text-2xl font-bold text-[#2C3830] group-hover:text-[#1F2E22] transition-colors">{service.title}</h3>
+                    </div>
 
-                  {/* CTA del servicio */}
-                  <a
-                    href="#contacto"
-                    className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group-hover:gap-3"
-                    style={{ color: service.color }}
-                  >
-                    {index === 0 ? 'Ver solución' : index === 1 ? 'Solicitar evaluación' : index === 2 ? 'Consultar ahora' : 'Optimizar operación'}
-                    <ChevronRight className="w-4 h-4" />
-                  </a>
+                    {/* Descripción */}
+                    <p className="text-[#5A6E5E] leading-relaxed mb-8">{service.description}</p>
+
+                    {/* Features */}
+                    <div className="space-y-3 mb-8">
+                      {service.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <div
+                            className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                            style={{ backgroundColor: service.color }}
+                          />
+                          <p className="text-sm text-[#4A5C4D] group-hover:text-[#2C3830] transition-colors">{feature}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* CTA del servicio */}
+                    <a
+                      href="#contacto"
+                      className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group-hover:gap-3"
+                      style={{ color: service.color }}
+                    >
+                      {index === 0 ? 'Ver solución' : index === 1 ? 'Solicitar evaluación' : index === 2 ? 'Consultar ahora' : 'Optimizar operación'}
+                      <ChevronRight className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
-              </div>
               </Reveal>
             );
           })}
@@ -1472,11 +1466,10 @@ function CasosDeExitoSection() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`transition-all duration-300 rounded-full ${
-                  i === current
+                className={`transition-all duration-300 rounded-full ${i === current
                     ? 'w-10 h-3'
                     : 'w-3 h-3 hover:scale-125'
-                }`}
+                  }`}
                 style={{
                   backgroundColor: i === current ? c.color : `${c.color}30`,
                 }}
@@ -1644,9 +1637,8 @@ function WhatsAppFloat() {
       href="https://wa.me/51XXXXXXXXXXX"
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-8 left-8 z-40 flex items-center gap-3 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group ${
-        show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-      }`}
+      className={`fixed bottom-8 left-8 z-40 flex items-center gap-3 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
       aria-label="Contactar por WhatsApp"
     >
       <div className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
@@ -1674,9 +1666,8 @@ function ScrollToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center border border-[#D5CCBE]/40 bg-white/80 backdrop-blur-md text-[#2C3830] shadow-md transition-all duration-500 hover:border-[#7CB394]/50 hover:shadow-lg ${
-        show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-      }`}
+      className={`fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center border border-[#D5CCBE]/40 bg-white/80 backdrop-blur-md text-[#2C3830] shadow-md transition-all duration-500 hover:border-[#7CB394]/50 hover:shadow-lg ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
       aria-label="Volver arriba"
     >
       <ArrowUp className="w-5 h-5" />
@@ -1720,10 +1711,10 @@ function Footer() {
           {/* Col 1: Logo + descripción */}
           <div className="lg:col-span-2">
             <Image
-              src="/logo_sma_111.png"
+              src="/sma_logo_hd.png"
               alt="SMA - Servicios Medio Ambientales"
-              width={120}
-              height={70}
+              width={140}
+              height={80}
               className="mb-6 opacity-90"
             />
             <p className="text-[#a3b5a8] leading-relaxed max-w-md mb-8">
