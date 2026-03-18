@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 
-const SMAIntegration = lazy(() => import('@/app/components/SMAIntegration'));
+import NewSMA from '@/app/components/NewSMA';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <Suspense fallback={<div className="min-h-screen bg-white" />}>
-      <SMAIntegration />
+      <NewSMA />
     </Suspense>
   );
 }
