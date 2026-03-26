@@ -17,12 +17,8 @@ export default function NewSMA() {
 
 <!-- NAVBAR -->
 <nav>
-  <div class="nav-logo">
-    <div class="nav-logo-icon"><span>SMA</span></div>
-    <div class="nav-logo-text">
-      <strong>Servicios Medioambientales</strong>
-      <span>Relleno de Seguridad · Ica</span>
-    </div>
+  <div class="nav-logo" style="display:flex; align-items:center;">
+    <a href="/"><img src="/logosma_1111.png" alt="SMA Logo" style="height: 52px; width: auto;" /></a>
   </div>
   <ul class="nav-links">
     <li><a href="#porque">Por qué SMA</a></li>
