@@ -1,6 +1,28 @@
 'use client';
 import React, { useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import '../propuesta.css';
+
+const RegistrosCarousel = () => {
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay({ delay: 3000, stopOnInteraction: true })]);
+
+  return (
+    <div className="band-certs">
+      <div className="band-label">Registros vigentes</div>
+      <div className="embla band-items" ref={emblaRef}>
+        <div className="embla__container">
+          <div className="embla__slide band-cert"><strong>EO-RS N°00198-2021</strong><span>MINAM · Empresa Operadora</span></div>
+          <div className="embla__slide band-cert"><strong>N°00678-2021</strong><span>MINAM · Relleno de Seguridad</span></div>
+          <div className="embla__slide band-cert"><strong>N°0071-2020</strong><span>SENACE · EIA Aprobado</span></div>
+          <div className="embla__slide band-cert"><strong>N°004-2017/DSA</strong><span>DIGESA · Autorización Sanitaria</span></div>
+          <div className="embla__slide band-cert"><strong>N°089-2024</strong><span>Inspección Técnica</span></div>
+          <div className="embla__slide band-cert"><strong>N°1857-2021</strong><span>Licencia Municipal</span></div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function NewSMA() {
   useEffect(() => {
@@ -13,7 +35,8 @@ export default function NewSMA() {
   }, []);
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: `
+    <>
+      <div dangerouslySetInnerHTML={{ __html: `
 
 <!-- NAVBAR -->
 <nav>
@@ -110,20 +133,9 @@ export default function NewSMA() {
     </div>
   </div>
 </section>
-
-<!-- BAND CERTIFICACIONES -->
-<div class="band-certs">
-  <div class="band-label">Registros vigentes</div>
-  <div class="band-items">
-    <div class="band-cert"><strong>EO-RS N°00198-2021</strong><span>MINAM · Empresa Operadora</span></div>
-    <div class="band-cert"><strong>N°00678-2021</strong><span>MINAM · Relleno de Seguridad</span></div>
-    <div class="band-cert"><strong>N°0071-2020</strong><span>SENACE · EIA Aprobado</span></div>
-    <div class="band-cert"><strong>N°004-2017/DSA</strong><span>DIGESA · Autorización Sanitaria</span></div>
-    <div class="band-cert"><strong>N°089-2024</strong><span>Inspección Técnica</span></div>
-    <div class="band-cert"><strong>N°1857-2021</strong><span>Licencia Municipal</span></div>
-  </div>
-</div>
-
+` }} />
+      <RegistrosCarousel />
+      <div dangerouslySetInnerHTML={{ __html: `
 <!-- POR QUÉ SMA -->
 <section class="porque" id="porque">
   <div class="section-header">
@@ -933,5 +945,6 @@ export default function NewSMA() {
 </section>
 
 ` }} />
+    </>
   );
 }

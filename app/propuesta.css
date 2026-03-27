@@ -1392,4 +1392,36 @@
     nav { padding: 0 20px; justify-content: space-between; }
     footer { grid-template-columns: 1fr !important; padding: 40px 20px; }
     
+    /* Band Certs Mobile Carousel */
+    .band-certs {
+      flex-direction: column;
+      padding: 0;
+      width: 100%;
+    }
+    .band-label {
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-right: 0;
+      padding: 16px 20px;
+      text-align: center;
+      width: 100%;
+    }
+    .band-items {
+      width: 100% !important;
+      overflow: hidden;
+      display: block !important;
+    }
+    .embla__container {
+      display: flex;
+    }
+    .embla__slide {
+      flex: 0 0 85%;
+      min-width: 85%;
+      padding: 24px;
+    }
+    .band-cert {
+      /* Estilos decorativos ya existentes se mantienen */
+      scroll-snap-align: center;
+    }
 }
+
