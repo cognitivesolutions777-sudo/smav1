@@ -22,21 +22,36 @@ const Hero = () => {
         </div>
         <div className="hero-kpis">
           <div className="kpi-item">
-            <div className="kpi-num">15+</div>
-            <div className="kpi-txt">Años de experiencia en el sector ambiental</div>
+            <div className="kpi-num">&lt;24h</div>
+            <div className="kpi-label">Tiempo de respuesta</div>
           </div>
           <div className="kpi-item">
-            <div className="kpi-num">24h</div>
-            <div className="kpi-txt">Respuesta garantizada para emergencias</div>
+            <div className="kpi-num">+10</div>
+            <div className="kpi-label">Años en Perú</div>
           </div>
           <div className="kpi-item">
             <div className="kpi-num">100%</div>
-            <div className="kpi-txt">Conformidad en auditorías OEFA y MINAM</div>
+            <div className="kpi-label">Cumplimiento legal</div>
           </div>
         </div>
       </div>
+
       <div className="hero-right">
+        <div 
+          className="hero-right-bg" 
+          style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+        ></div>
+        <div className="hero-right-overlay"></div>
+        <div className="hero-right-label">Infraestructura certificada</div>
         <div className="hero-tags">
+          <div className="hero-tag">
+            <div className="tag-titulo">Geomembranas HDPE · Celda propia</div>
+            <div className="tag-desc">Impermeabilización de celda. Aislamiento total del suelo y napas freáticas.</div>
+          </div>
+          <div className="hero-tag">
+            <div className="tag-titulo">Balanza 80 TN · Certificada INACAL</div>
+            <div className="tag-desc">Precisión metrológica garantizada. El peso reportado es el peso real.</div>
+          </div>
           <div className="hero-tag">
             <div className="tag-titulo">Manifiestos + SIGERSOL</div>
             <div className="tag-desc">Documentación 100% conforme. Lista para declaración MINAM sin trabajo adicional.</div>
@@ -46,10 +61,14 @@ const Hero = () => {
             <div className="tag-desc">Trazabilidad digital operativa. Reportes y alertas disponibles 24/7.</div>
           </div>
         </div>
+
         <div className="hero-contact-strip">
           <div className="hcs-item"><div className="hcs-dot"></div> Km 255.5 Panamericana Sur, Ica</div>
-          <div className="hcs-item"><div class="hcs-dot"></div> Lord Nelson 354, Miraflores, Lima</div>
-          <div className="hcs-item"><div class="hcs-dot"></div> <a href="mailto:comercial@sma.com.pe" style={{ color: 'inherit' }}>comercial@sma.com.pe</a> · (051) 994 624 116</div>
+          <div className="hcs-item"><div className="hcs-dot"></div> Lord Nelson 354, Miraflores, Lima</div>
+          <div className="hcs-item">
+            <div className="hcs-dot"></div> 
+            <a href="mailto:comercial@sma.com.pe" style={{ color: 'inherit' }}>comercial@sma.com.pe</a> · (051) 994 624 116
+          </div>
         </div>
       </div>
     </section>
