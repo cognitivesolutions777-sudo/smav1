@@ -1,12 +1,101 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import '../propuesta.css';
 import Hero from './Hero';
 import WhyUs from './WhyUs';
 
+const InfraAccordionItem = ({ item, isOpen, onClick }) => {
+  return (
+    <div className={`infra-detail ${isOpen ? 'active' : ''}`}>
+      <div className="infra-detail-header" onClick={onClick}>
+        <div className="infra-detail-titulo-wrap">
+          <div className="infra-detail-num">{item.num}</div>
+          <div className="infra-detail-titulo">{item.title}</div>
+        </div>
+        <div className="infra-accordion-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+        </div>
+      </div>
+      <div className="infra-detail-content">
+        <div className="infra-detail-desc">{item.desc}</div>
+      </div>
+    </div>
+  );
+};
 
+const Infraestructura = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+  const items = [
+    { num: 1, title: 'Impermeabilización HDPE', desc: 'Geomembranas de polietileno de alta densidad. Sistema de barreras múltiples para aislamiento total y definitivo de materiales peligrosos del suelo y napas freáticas.' },
+    { num: 2, title: 'Control Geotécnico', desc: 'Supervisión de estabilidad física en cada fase de confinamiento. Coberturas diarias que previenen dispersión de partículas.' },
+    { num: 3, title: 'Balanza Electrónica 80 TN', desc: 'Certificada por laboratorios acreditados ante INACAL. Garantía de exactitud en declaraciones ante el MINAM.' },
+    { num: 4, title: 'EIA Aprobado · SENACE', desc: 'Estudio de Impacto Ambiental N°0071-2020 aprobado. La operación más ambientalmente controlada del sur del Perú.' }
+  ];
+
+  return (
+    <section className="infra" id="infraestructura">
+      <div className="section-header">
+        <div className="eyebrow">Infraestructura</div>
+        <h2 className="section-titulo">Relleno de Seguridad <em>Ica</em></h2>
+        <p className="section-sub">Instalaciones autorizadas en Km 255.5 Panamericana Sur. Ingeniería de confinamiento con tecnología certificada.</p>
+      </div>
+      <div className="infra-layout">
+        <div className="infra-map">
+          <img src="/extracted_image_2.jpg" alt="Mapa de cobertura nacional SMA – Zona estratégica Ica/Sur" className="infra-mapa-img" />
+          <div className="infra-map-header">
+            <strong>Infraestructura &amp; Cobertura</strong>
+            <span>Km 255.5 · Panamericana Sur · Ica</span>
+          </div>
+          <div className="infra-map-body">
+            {items.map((item, index) => (
+              <InfraAccordionItem
+                key={index}
+                item={item}
+                isOpen={openIndex === index}
+                onClick={() => {
+                  console.log('Toggling index:', index);
+                  setOpenIndex(prev => (prev === index ? -1 : index));
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="infra-right">
+          <div className="infra-stat">
+            <div className="infra-stat-num">+10</div>
+            <div className="infra-stat-label">Años de excelencia operativa</div>
+            <div className="infra-stat-desc">Operación continua en Perú bajo normativa MINAM, OEFA y regulación ambiental vigente.</div>
+          </div>
+          <div className="infra-stat">
+            <div className="infra-stat-num">80 TN</div>
+            <div className="infra-stat-label">Capacidad balanza electrónica</div>
+            <div className="infra-stat-desc">Certificada por laboratorios acreditados ante INACAL. Precisión metrológica garantizada en cada operación.</div>
+          </div>
+          <div className="infra-locations">
+            <div className="infra-loc-titulo">Sedes operativas</div>
+            <div className="infra-loc-item">
+              <div className="infra-loc-dot"></div>
+              <div>
+                <strong>Relleno de Seguridad</strong>
+                Carretera Panamericana Sur Km 255.5, Salas – Ica
+              </div>
+            </div>
+            <div className="infra-loc-item">
+              <div className="infra-loc-dot"></div>
+              <div>
+                <strong>Oficina Comercial Lima</strong>
+                Almirante Lord Nelson 354, Miraflores
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const RegistrosCarousel = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay({ delay: 3000, stopOnInteraction: true })]);
@@ -30,17 +119,22 @@ const RegistrosCarousel = () => {
 
 export default function NewSMA() {
   useEffect(() => {
+    console.log('NewSMA mounted');
+    // We remove the legacy script as it might interfere with React event listeners
+    /*
     let s = document.createElement('script');
     s.src = '/propuesta_client.js';
     document.body.appendChild(s);
     return () => {
       if (s.parentNode) document.body.removeChild(s);
     };
+    */
   }, []);
 
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: `
+      <div dangerouslySetInnerHTML={{
+        __html: `
 
 <!-- NAVBAR -->
 <nav>
@@ -67,7 +161,7 @@ export default function NewSMA() {
     </li>
     <li><a href="#sectores">Sectores</a></li>
     <li><a href="#trazabilidad">Trazabilidad</a></li>
-    <li><a href="#auditoria">Auditoría</a></li>
+    {/* <li><a href="#auditoria">Auditoría</a></li> */}
     <li><a href="#certs">Certificaciones</a></li>
   </ul>
   <a href="#cotizacion" class="nav-cta">Solicitar cotización</a>
@@ -76,88 +170,13 @@ export default function NewSMA() {
 ` }} />
       <Hero />
       <RegistrosCarousel />
-      <div dangerouslySetInnerHTML={{ __html: `
+      <div dangerouslySetInnerHTML={{
+        __html: `
 ` }} />
       <WhyUs />
-      <div dangerouslySetInnerHTML={{ __html: `
-
-<!-- INFRAESTRUCTURA -->
-<section class="infra" id="infraestructura">
-  <div class="section-header">
-    <div class="eyebrow">Infraestructura</div>
-    <h2 class="section-titulo">Relleno de Seguridad <em>Ica</em></h2>
-    <p class="section-sub">Instalaciones autorizadas en Km 255.5 Panamericana Sur. Ingeniería de confinamiento con tecnología certificada.</p>
-  </div>
-  <div class="infra-layout">
-    <div class="infra-map">
-      <img src="/extracted_image_2.jpg" alt="Mapa de cobertura nacional SMA – Zona estratégica Ica/Sur" class="infra-mapa-img">
-      <div class="infra-map-header">
-        <strong>Infraestructura &amp; Cobertura</strong>
-        <span>Km 255.5 · Panamericana Sur · Ica</span>
-      </div>
-      <div class="infra-map-body">
-        <div class="infra-detail">
-          <div class="infra-detail-num">1</div>
-          <div>
-            <div class="infra-detail-titulo">Impermeabilización HDPE</div>
-            <div class="infra-detail-desc">Geomembranas de polietileno de alta densidad. Sistema de barreras múltiples para aislamiento total y definitivo de materiales peligrosos del suelo y napas freáticas.</div>
-          </div>
-        </div>
-        <div class="infra-detail">
-          <div class="infra-detail-num">2</div>
-          <div>
-            <div class="infra-detail-titulo">Control Geotécnico</div>
-            <div class="infra-detail-desc">Supervisión de estabilidad física en cada fase de confinamiento. Coberturas diarias que previenen dispersión de partículas.</div>
-          </div>
-        </div>
-        <div class="infra-detail">
-          <div class="infra-detail-num">3</div>
-          <div>
-            <div class="infra-detail-titulo">Balanza Electrónica 80 TN</div>
-            <div class="infra-detail-desc">Certificada por laboratorios acreditados ante INACAL. Garantía de exactitud en declaraciones ante el MINAM.</div>
-          </div>
-        </div>
-        <div class="infra-detail">
-          <div class="infra-detail-num">4</div>
-          <div>
-            <div class="infra-detail-titulo">EIA Aprobado · SENACE</div>
-            <div class="infra-detail-desc">Estudio de Impacto Ambiental N°0071-2020 aprobado. La operación más ambientalmente controlada del sur del Perú.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="infra-right">
-      <div class="infra-stat">
-        <div class="infra-stat-num">+10</div>
-        <div class="infra-stat-label">Años de excelencia operativa</div>
-        <div class="infra-stat-desc">Operación continua en Perú bajo normativa MINAM, OEFA y regulación ambiental vigente.</div>
-      </div>
-      <div class="infra-stat">
-        <div class="infra-stat-num">80 TN</div>
-        <div class="infra-stat-label">Capacidad balanza electrónica</div>
-        <div class="infra-stat-desc">Certificada por laboratorios acreditados ante INACAL. Precisión metrológica garantizada en cada operación.</div>
-      </div>
-      <div class="infra-locations">
-        <div class="infra-loc-titulo">Sedes operativas</div>
-        <div class="infra-loc-item">
-          <div class="infra-loc-dot"></div>
-          <div>
-            <strong>Relleno de Seguridad</strong>
-            Carretera Panamericana Sur Km 255.5, Salas – Ica
-          </div>
-        </div>
-        <div class="infra-loc-item">
-          <div class="infra-loc-dot"></div>
-          <div>
-            <strong>Oficina Comercial Lima</strong>
-            Almirante Lord Nelson 354, Miraflores
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <Infraestructura />
+      <div dangerouslySetInnerHTML={{
+        __html: `
 
 <!-- SERVICIOS -->
 <section class="servicios" id="servicios">
@@ -350,246 +369,17 @@ export default function NewSMA() {
   </div>
 </section>
 
-<!-- CERTIFICADO DIGITAL -->
-<section class="certdig" id="certificado-digital">
-  <div class="certdig-bg" style="background-image:url('/extracted_image_4.jpg')"></div>
-  <div class="certdig-overlay"></div>
-  <div class="section-header">
-    <div class="eyebrow">Diferenciador operativo</div>
-    <h2 class="section-titulo">Certificado Digital<br><em>por cada operación.</em></h2>
-    <p class="section-sub">Al finalizar cada servicio, SMA emite un certificado digital firmado que acredita la disposición final de tus residuos. Documento válido ante OEFA, auditorías internas y reportes de sostenibilidad.</p>
-  </div>
-
-  <div class="certdig-layout">
-
-    <!-- Tarjeta visual -->
-    <div class="cert-card-visual">
-      <div class="cert-card-header">
-        <div class="cert-card-logo">
-          <div class="cert-card-logo-sq"><span>SMA</span></div>
-          <div class="cert-card-logo-text">Servicios Medioambientales</div>
-        </div>
-        <div class="cert-card-badge">Verificado</div>
-      </div>
-
-      <div class="cert-card-shield">
-        <div class="shield-wrap">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L3 6V12C3 16.97 7.02 21.61 12 23C16.98 21.61 21 16.97 21 12V6L12 2Z" fill="rgba(90,154,42,0.2)" stroke="#7bbf3e" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M8.5 12L11 14.5L15.5 10" stroke="#7bbf3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="cert-card-titulo">Certificado de Disposición Final</div>
-      <div class="cert-card-subtitulo">Documento digital firmado · Válido ante OEFA y MINAM</div>
-
-      <div class="cert-card-datos">
-        <div class="cert-dato-fila">
-          <span class="cert-dato-key">Empresa generadora</span>
-          <span class="cert-dato-val">Razón Social del Cliente S.A.</span>
-        </div>
-        <div class="cert-dato-fila">
-          <span class="cert-dato-key">Tipo de residuo</span>
-          <span class="cert-dato-val">Aceites usados / Clase A4060</span>
-        </div>
-        <div class="cert-dato-fila">
-          <span class="cert-dato-key">Volumen dispuesto</span>
-          <span class="cert-dato-val">12.40 TN · Balanza INACAL</span>
-        </div>
-        <div class="cert-dato-fila">
-          <span class="cert-dato-key">Fecha de disposición</span>
-          <span class="cert-dato-val">Km 255.5 Pan. Sur · Ica</span>
-        </div>
-        <div class="cert-dato-fila">
-          <span class="cert-dato-key">N° Manifiesto</span>
-          <span class="cert-dato-val">MRS-2025-XXXX · SIGERSOL</span>
-        </div>
-      </div>
-
-      <div class="cert-card-footer">
-        <div class="cert-qr">⬛</div>
-        <div class="cert-firma">
-          <div class="cert-firma-linea"></div>
-          <div class="cert-firma-texto">Firma digital SMA · MINAM EO-RS N°00198-2021</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Beneficios -->
-    <div class="certdig-beneficios">
-      <div class="certdig-item">
-        <div class="certdig-icono">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L3 6V12C3 16.97 7.02 21.61 12 23C16.98 21.61 21 16.97 21 12V6L12 2Z" fill="rgba(90,154,42,0.2)" stroke="#7bbf3e" stroke-width="1.8" stroke-linejoin="round"/>
-            <path d="M9 12L11 14L15 10" stroke="#7bbf3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="certdig-item-titulo">Emisión automática al cierre</div>
-          <div class="certdig-item-desc">Al finalizar cada operación de disposición final, el certificado se genera y envía digitalmente a tu correo. Sin demoras, sin trámites adicionales.</div>
-          <span class="certdig-item-tag">Entrega inmediata</span>
-        </div>
-      </div>
-
-      <div class="certdig-item">
-        <div class="certdig-icono">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="18" height="18" rx="2" fill="rgba(90,154,42,0.2)" stroke="#7bbf3e" stroke-width="1.8"/>
-            <path d="M8 12H16M8 8H16M8 16H12" stroke="#7bbf3e" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="certdig-item-titulo">Válido ante OEFA y auditorías</div>
-          <div class="certdig-item-desc">Incluye número de manifiesto SIGERSOL, peso certificado INACAL, registro EO-RS y resoluciones vigentes de SMA. Acredita el cumplimiento normativo de tu empresa.</div>
-          <span class="certdig-item-tag">Aceptado por MINAM · OEFA · EFA</span>
-        </div>
-      </div>
-
-      <div class="certdig-item">
-        <div class="certdig-icono">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="9" fill="rgba(90,154,42,0.2)" stroke="#7bbf3e" stroke-width="1.8"/>
-            <path d="M12 7V12L15 15" stroke="#7bbf3e" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="certdig-item-titulo">Historial acumulado por operación</div>
-          <div class="certdig-item-desc">Cada certificado queda registrado en tu historial de operaciones. Accede al archivo completo desde el dashboard en cualquier momento para reportes de sostenibilidad o auditorías internas.</div>
-          <span class="certdig-item-tag">Archivo digital permanente</span>
-        </div>
-      </div>
-
-      <div class="certdig-item">
-        <div class="certdig-icono">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" fill="rgba(90,154,42,0.2)" stroke="#7bbf3e" stroke-width="1.8" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="certdig-item-titulo">Soporte para tu área de cumplimiento</div>
-          <div class="certdig-item-desc">Tu equipo legal, de medio ambiente o sostenibilidad recibe los documentos listos para archivar y presentar. Sin necesidad de solicitar información adicional a SMA.</div>
-          <span class="certdig-item-tag">Listo para archivar</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
+{/*
+<section className="certdig" id="certificado-digital">
+  ...
 </section>
 
-
-<!-- AUDITORÍA / CONSULTA CERTIFICADO DIGITAL -->
-<section id="auditoria" style="background: var(--gris-bg); padding: 96px 64px; scroll-margin-top: 72px;">
-  <div class="section-header">
-    <div class="eyebrow">Auditoría y trazabilidad</div>
-    <h2 class="section-titulo">Visualiza tu<br><em>Certificado Digital.</em></h2>
-    <p class="section-sub">Ingresa el RUC de tu empresa y el número de certificado para verificar y descargar tu constancia oficial de disposición final.</p>
-  </div>
-
-  <div id="aud-wrap" style="max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
-
-    <!-- PANEL CONSULTA -->
-    <div style="background: white; border: 1px solid var(--gris-borde); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
-      <div style="background: var(--negro-corp); padding: 20px 28px; display:flex; align-items:center; gap:12px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6V12C3 16.97 7.02 21.61 12 23C16.98 21.61 21 16.97 21 12V6L12 2Z" fill="rgba(123,191,62,0.2)" stroke="#7bbf3e" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="#7bbf3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.6); font-weight:600;">Consulta de certificado</span>
-      </div>
-      <div style="padding: 32px 28px;">
-        <div style="margin-bottom:20px;">
-          <label style="display:block; font-size:11px; font-weight:700; color:var(--negro-corp); margin-bottom:6px; letter-spacing:0.5px; text-transform:uppercase;">RUC del Generador <span style="color:var(--verde);">*</span></label>
-          <input type="text" id="aud-ruc" maxlength="11" placeholder="Ej. 20512345678"
-            style="width:100%; padding:11px 14px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--negro-corp); background:white; border:1.5px solid #dde5d4; border-radius:3px; outline:none; transition:border-color 0.2s;"
-            oninput="this.value=this.value.replace(/\D/g,'')"
-            onfocus="this.style.borderColor='var(--verde)'; this.style.boxShadow='0 0 0 3px rgba(90,154,42,0.1)'"
-            onblur="this.style.borderColor='#dde5d4'; this.style.boxShadow='none'">
-          <div id="aud-err-ruc" style="font-size:11px; color:#c0392b; margin-top:4px; display:none;">Ingresa un RUC válido de 11 dígitos.</div>
-        </div>
-        <div style="margin-bottom:28px;">
-          <label style="display:block; font-size:11px; font-weight:700; color:var(--negro-corp); margin-bottom:6px; letter-spacing:0.5px; text-transform:uppercase;">N° de Certificado <span style="color:var(--verde);">*</span></label>
-          <input type="text" id="aud-ncert" placeholder="Ej. SMA-2025-A7X3K2"
-            style="width:100%; padding:11px 14px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--negro-corp); background:white; border:1.5px solid #dde5d4; border-radius:3px; outline:none; transition:border-color 0.2s; text-transform:uppercase; letter-spacing:1px;"
-            oninput="this.value=this.value.toUpperCase()"
-            onfocus="this.style.borderColor='var(--verde)'; this.style.boxShadow='0 0 0 3px rgba(90,154,42,0.1)'"
-            onblur="this.style.borderColor='#dde5d4'; this.style.boxShadow='none'">
-          <div id="aud-err-cert" style="font-size:11px; color:#c0392b; margin-top:4px; display:none;">Ingresa el número de certificado.</div>
-        </div>
-
-        <!-- BOTÓN GENERAR DEMO -->
-        <button onclick="audGenerar()" style="width:100%; background:var(--verde); color:white; padding:13px 24px; font-size:14px; font-weight:700; border:none; border-radius:3px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:background 0.2s; display:flex; align-items:center; justify-content:center; gap:8px;"
-          onmouseover="this.style.background='var(--verde-oscuro)'" onmouseout="this.style.background='var(--verde)'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-          Consultar certificado
-        </button>
-
-        <div id="aud-err-notfound" style="display:none; margin-top:16px; background:#fdf0ee; border:1px solid #e8b4ae; border-left:4px solid #c0392b; padding:12px 16px; border-radius:3px; font-size:13px; color:#7a2020;">
-          <strong>Certificado no encontrado.</strong> Verifica el RUC y el número de certificado ingresados.
-        </div>
-
-        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--gris-borde); font-size:11px; color:var(--gris-suave); line-height:1.6;">
-          ¿No tienes tu número de certificado? Escríbenos a <strong><a href="/cdn-cgi/l/email-protection#d8bbb7b6acb9bbacb798abb5b9f6b6bdacf6a8bd" style="color:inherit;"><span class="__cf_email__" data-cfemail="0c6f6362786d6f78634c7f616d22626978227c69">[email&#160;protected]</span></a></strong> indicando tu RUC y fecha de servicio.
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL INSTRUCCIONES -->
-    <div style="display:flex; flex-direction:column; gap:16px;">
-      <div style="background:white; border:1px solid var(--gris-borde); border-radius:6px; padding:24px; display:flex; gap:16px; align-items:flex-start;">
-        <div style="width:40px; height:40px; border-radius:8px; background:var(--verde-ultra); border:1px solid var(--verde-medio); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;">📄</div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--negro-corp); margin-bottom:4px;">Certificado PDF con QR</div><div style="font-size:13px; color:var(--gris-texto); line-height:1.6;">El documento incluye todos los datos del servicio, firma digital SMA y código QR de verificación de autenticidad.</div></div>
-      </div>
-      <div style="background:white; border:1px solid var(--gris-borde); border-radius:6px; padding:24px; display:flex; gap:16px; align-items:flex-start;">
-        <div style="width:40px; height:40px; border-radius:8px; background:var(--verde-ultra); border:1px solid var(--verde-medio); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;">✅</div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--negro-corp); margin-bottom:4px;">Válido ante OEFA y auditorías</div><div style="font-size:13px; color:var(--gris-texto); line-height:1.6;">Acredita la disposición final de tus residuos. Aceotado por EFA, MINAM, SENACE y auditorías internas.</div></div>
-      </div>
-      <div style="background:white; border:1px solid var(--gris-borde); border-radius:6px; padding:24px; display:flex; gap:16px; align-items:flex-start;">
-        <div style="width:40px; height:40px; border-radius:8px; background:var(--verde-ultra); border:1px solid var(--verde-medio); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;">🔒</div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--negro-corp); margin-bottom:4px;">Número único no correlativo</div><div style="font-size:13px; color:var(--gris-texto); line-height:1.6;">Cada certificado tiene un código alfanumérico único generado de forma aleatoria. No es posible predecir ni falsificar.</div></div>
-      </div>
-      <div style="background: var(--verde-ultra); border:1px solid var(--verde-medio); border-radius:6px; padding:20px 24px; font-size:12px; color:var(--verde-oscuro); line-height:1.7;">
-        <strong style="display:block; margin-bottom:4px;">¿Quieres generar un certificado de demostración?</strong>
-        Ingresa cualquier RUC de 11 dígitos y haz clic en "Consultar" para ver cómo se genera el PDF con QR de ejemplo.
-      </div>
-    </div>
-  </div>
-
-  <!-- PREVIEW CERTIFICADO (oculto hasta consulta) -->
-  <div id="aud-resultado" style="display:none; max-width:960px; margin:48px auto 0;">
-    <div style="background:white; border:1px solid var(--gris-borde); border-radius:8px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.08);">
-
-      <!-- Header resultado -->
-      <div style="background:var(--verde-oscuro); padding:18px 28px; display:flex; align-items:center; justify-content:space-between;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6V12C3 16.97 7.02 21.61 12 23C16.98 21.61 21 16.97 21 12V6L12 2Z" fill="rgba(123,191,62,0.3)" stroke="#7bbf3e" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="#7bbf3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span style="font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:white; font-weight:700;">Certificado encontrado</span>
-        </div>
-        <span id="aud-badge" style="background:rgba(123,191,62,0.2); border:1px solid rgba(123,191,62,0.4); padding:4px 12px; border-radius:100px; font-size:11px; font-weight:700; color:#a8e060;"></span>
-      </div>
-
-      <!-- Datos del certificado -->
-      <div style="padding:28px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; border-bottom:1px solid var(--gris-borde);">
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">N° Certificado</div><div id="aud-d-ncert" style="font-size:15px; font-weight:700; color:var(--negro-corp); letter-spacing:0.5px;"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">RUC Generador</div><div id="aud-d-ruc" style="font-size:15px; font-weight:700; color:var(--negro-corp);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">Razón Social</div><div id="aud-d-razon" style="font-size:15px; font-weight:700; color:var(--negro-corp);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">N° Ticket</div><div id="aud-d-ticket" style="font-size:14px; font-weight:600; color:var(--negro-corp);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">Guía de Remisión</div><div id="aud-d-guia" style="font-size:14px; font-weight:600; color:var(--negro-corp);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">N° Manifiesto</div><div id="aud-d-manif" style="font-size:14px; font-weight:600; color:var(--negro-corp);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">Tipo de Residuo</div><div id="aud-d-tipo" style="font-size:14px; font-weight:600; color:var(--negro-corp);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">Cantidad (TN)</div><div id="aud-d-tn" style="font-size:14px; font-weight:600; color:var(--verde);"></div></div>
-        <div><div style="font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gris-suave); margin-bottom:5px;">Fecha de Emisión</div><div id="aud-d-fecha" style="font-size:14px; font-weight:600; color:var(--negro-corp);"></div></div>
-      </div>
-
-      <!-- Footer con botón descarga -->
-      <div style="padding:20px 28px; background:var(--gris-bg); display:flex; align-items:center; justify-content:space-between;">
-        <div style="font-size:12px; color:var(--gris-suave);">Emitido por SMA · MINAM EO-RS N°00198-2021 · Km 255.5 Panamericana Sur, Ica</div>
-        <button onclick="audDescargarPDF()" style="background:var(--verde); color:white; padding:11px 28px; font-size:13px; font-weight:700; border:none; border-radius:3px; cursor:pointer; font-family:'DM Sans',sans-serif; display:flex; align-items:center; gap:8px; transition:background 0.2s;"
-          onmouseover="this.style.background='var(--verde-oscuro)'" onmouseout="this.style.background='var(--verde)'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V17" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-          Descargar PDF con QR
-        </button>
-      </div>
-    </div>
-  </div>
+<section id="auditoria">
+  ...
 </section>
+*/}
+
+
 
 
 
