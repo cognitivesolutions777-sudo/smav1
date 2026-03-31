@@ -2,92 +2,109 @@
 import React, { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import {
+  ShieldCheck,
+  Eye,
+  ScalesBalanced,
+  CircleCheck,
+} from "@gravity-ui/icons";
 import '../propuesta.css';
 import Hero from './Hero';
 import WhyUs from './WhyUs';
 
-const InfraAccordionItem = ({ item, isOpen, onClick }) => {
-  return (
-    <div className={`infra-detail ${isOpen ? 'active' : ''}`}>
-      <div className="infra-detail-header" onClick={onClick}>
-        <div className="infra-detail-titulo-wrap">
-          <div className="infra-detail-num">{item.num}</div>
-          <div className="infra-detail-titulo">{item.title}</div>
-        </div>
-        <div className="infra-accordion-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-        </div>
-      </div>
-      <div className="infra-detail-content">
-        <div className="infra-detail-desc">{item.desc}</div>
-      </div>
-    </div>
-  );
-};
 
 const Infraestructura = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [open, setOpen] = useState(0);
+
   const items = [
-    { num: 1, title: 'Impermeabilización HDPE', desc: 'Geomembranas de polietileno de alta densidad. Sistema de barreras múltiples para aislamiento total y definitivo de materiales peligrosos del suelo y napas freáticas.' },
-    { num: 2, title: 'Control Geotécnico', desc: 'Supervisión de estabilidad física en cada fase de confinamiento. Coberturas diarias que previenen dispersión de partículas.' },
-    { num: 3, title: 'Balanza Electrónica 80 TN', desc: 'Certificada por laboratorios acreditados ante INACAL. Garantía de exactitud en declaraciones ante el MINAM.' },
-    { num: 4, title: 'EIA Aprobado · SENACE', desc: 'Estudio de Impacto Ambiental N°0071-2020 aprobado. La operación más ambientalmente controlada del sur del Perú.' }
+    { 
+      title: 'Impermeabilización HDPE', 
+      desc: 'Geomembranas de polietileno de alta densidad. Sistema de barreras múltiples para aislamiento total y definitivo de materiales peligrosos del suelo y napas freáticas.',
+      icon: <ShieldCheck />
+    },
+    { 
+      title: 'Control Geotécnico', 
+      desc: 'Supervisión de estabilidad física en cada fase de confinamiento. Coberturas diarias que previenen dispersión de partículas.',
+      icon: <Eye />
+    },
+    { 
+      title: 'Balanza Electrónica 80 TN', 
+      desc: 'Certificada por laboratorios acreditados ante INACAL. Garantía de exactitud en declaraciones ante el MINAM.',
+      icon: <ScalesBalanced />
+    },
+    { 
+      title: 'EIA Aprobado · SENACE', 
+      desc: 'Estudio de Impacto Ambiental N°0071-2020 aprobado. La operación más ambientalmente controlada del sur del Perú.',
+      icon: <CircleCheck />
+    }
   ];
 
   return (
     <section className="infra" id="infraestructura">
-      <div className="section-header">
-        <div className="eyebrow">Infraestructura</div>
-        <h2 className="section-titulo">Relleno de Seguridad <em>Ica</em></h2>
-        <p className="section-sub">Instalaciones autorizadas en Km 255.5 Panamericana Sur. Ingeniería de confinamiento con tecnología certificada.</p>
-      </div>
-      <div className="infra-layout">
-        <div className="infra-map">
-          <img src="/extracted_image_2.jpg" alt="Mapa de cobertura nacional SMA – Zona estratégica Ica/Sur" className="infra-mapa-img" />
-          <div className="infra-map-header">
-            <strong>Infraestructura &amp; Cobertura</strong>
-            <span>Km 255.5 · Panamericana Sur · Ica</span>
-          </div>
-          <div className="infra-map-body">
-            {items.map((item, index) => (
-              <InfraAccordionItem
-                key={index}
-                item={item}
-                isOpen={openIndex === index}
-                onClick={() => {
-                  console.log('Toggling index:', index);
-                  setOpenIndex(prev => (prev === index ? -1 : index));
-                }}
-              />
-            ))}
-          </div>
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">Infraestructura</div>
+          <h2 className="section-titulo">Relleno de Seguridad <em>Ica</em></h2>
+          <p className="section-sub">Instalaciones autorizadas en Km 255.5 Panamericana Sur. Ingeniería de confinamiento con tecnología certificada.</p>
         </div>
-
-        <div className="infra-right">
-          <div className="infra-stat">
-            <div className="infra-stat-num">+10</div>
-            <div className="infra-stat-label">Años de excelencia operativa</div>
-            <div className="infra-stat-desc">Operación continua en Perú bajo normativa MINAM, OEFA y regulación ambiental vigente.</div>
-          </div>
-          <div className="infra-stat">
-            <div className="infra-stat-num">80 TN</div>
-            <div className="infra-stat-label">Capacidad balanza electrónica</div>
-            <div className="infra-stat-desc">Certificada por laboratorios acreditados ante INACAL. Precisión metrológica garantizada en cada operación.</div>
-          </div>
-          <div className="infra-locations">
-            <div className="infra-loc-titulo">Sedes operativas</div>
-            <div className="infra-loc-item">
-              <div className="infra-loc-dot"></div>
-              <div>
-                <strong>Relleno de Seguridad</strong>
-                Carretera Panamericana Sur Km 255.5, Salas – Ica
-              </div>
+        <div className="infra-layout">
+          <div className="infra-map">
+            <img src="/extracted_image_2.jpg" alt="Mapa de cobertura nacional SMA – Zona estratégica Ica/Sur" className="infra-mapa-img" />
+            <div className="infra-map-header">
+              <strong>Infraestructura &amp; Cobertura</strong>
+              <span>Km 255.5 · Panamericana Sur · Ica</span>
             </div>
-            <div className="infra-loc-item">
-              <div className="infra-loc-dot"></div>
-              <div>
-                <strong>Oficina Comercial Lima</strong>
-                Almirante Lord Nelson 354, Miraflores
+            <div className="infra-map-body">
+              {items.map((item, index) => (
+                <div
+                  key={index}
+                  className={`ia-item${open === index ? ' ia-item--open' : ''}`}
+                >
+                  <button
+                    className="ia-trigger"
+                    onClick={() => setOpen(open === index ? -1 : index)}
+                    aria-expanded={open === index}
+                  >
+                    <span className="ia-icon">{item.icon}</span>
+                    <span className="ia-title">{item.title}</span>
+                    <svg className="ia-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <div className="ia-body">
+                    <p className="ia-desc">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+  
+          <div className="infra-right">
+            <div className="infra-stat">
+              <div className="infra-stat-num">+10</div>
+              <div className="infra-stat-label">Años de excelencia operativa</div>
+              <div className="infra-stat-desc">Operación continua en Perú bajo normativa MINAM, OEFA y regulación ambiental vigente.</div>
+            </div>
+            <div className="infra-stat">
+              <div className="infra-stat-num">80 TN</div>
+              <div className="infra-stat-label">Capacidad balanza electrónica</div>
+              <div className="infra-stat-desc">Certificada por laboratorios acreditados ante INACAL. Precisión metrológica garantizada en cada operación.</div>
+            </div>
+            <div className="infra-locations">
+              <div className="infra-loc-titulo">Sedes operativas</div>
+              <div className="infra-loc-item">
+                <div className="infra-loc-dot"></div>
+                <div>
+                  <strong>Relleno de Seguridad</strong>
+                  Carretera Panamericana Sur Km 255.5, Salas – Ica
+                </div>
+              </div>
+              <div className="infra-loc-item">
+                <div className="infra-loc-dot"></div>
+                <div>
+                  <strong>Oficina Comercial Lima</strong>
+                  Almirante Lord Nelson 354, Miraflores
+                </div>
               </div>
             </div>
           </div>
@@ -180,133 +197,139 @@ export default function NewSMA() {
 
 <!-- SERVICIOS -->
 <section class="servicios" id="servicios">
-  <div class="section-header">
-    <div class="eyebrow">Nuestros servicios</div>
-    <h2 class="section-titulo">Todo el ciclo. <em>Un solo responsable.</em></h2>
-  </div>
-  <div class="servicios-grid">
-    <div class="serv-card">
-      <div class="serv-icono">⚠️</div>
-      <div class="serv-titulo">Residuos Peligrosos</div>
-      <p class="serv-desc">Gestión integral de aceites usados, solventes, químicos, baterías y tierras contaminadas. Confinamiento con trazabilidad completa.</p>
-      <a href="#cotizacion" class="serv-link">Cotizar</a>
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Nuestros servicios</div>
+      <h2 class="section-titulo">Todo el ciclo. <em>Un solo responsable.</em></h2>
     </div>
-    <div class="serv-card">
-      <div class="serv-icono">♻️</div>
-      <div class="serv-titulo">Residuos No Peligrosos</div>
-      <p class="serv-desc">Residuos industriales y comerciales con certificación completa. Economía circular bajo normativa MINAM vigente.</p>
-      <a href="#cotizacion" class="serv-link">Cotizar</a>
-    </div>
-    <div class="serv-card">
-      <div class="serv-icono">🚛</div>
-      <div class="serv-titulo">Tercerización de Transporte</div>
-      <p class="serv-desc">Red de EO-RS certificadas para transporte de residuos peligrosos. Cobertura sur del Perú y operaciones nacionales.</p>
-      <a href="#cotizacion" class="serv-link">Cotizar</a>
-    </div>
-    <div class="serv-card">
-      <div class="serv-icono">🏭</div>
-      <div class="serv-titulo">Tratamiento y Disposición Final</div>
-      <p class="serv-desc">Instalaciones propias autorizadas Km 255.5. Geomembranas HDPE, control geotécnico y certificado por operación.</p>
-      <a href="#cotizacion" class="serv-link">Cotizar</a>
-    </div>
-    <div class="serv-card">
-      <div class="serv-icono">👷</div>
-      <div class="serv-titulo">Gestión Interna In-Situ</div>
-      <p class="serv-desc">Personal técnico certificado en tus instalaciones. Segregación en fuente, etiquetado, almacenamiento temporal y capacitación.</p>
-      <a href="#cotizacion" class="serv-link">Cotizar</a>
-    </div>
-    <div class="serv-card">
-      <div class="serv-icono">📋</div>
-      <div class="serv-titulo">Gestión de Información</div>
-      <p class="serv-desc">Dashboard y reportes en tiempo real. Declaraciones SIGERSOL, manifiestos y certificados listos para auditorías OEFA.</p>
-      <a href="#cotizacion" class="serv-link">Cotizar</a>
+    <div class="servicios-grid">
+      <div class="serv-card">
+        <div class="serv-icono">⚠️</div>
+        <div class="serv-titulo">Residuos Peligrosos</div>
+        <p class="serv-desc">Gestión integral de aceites usados, solventes, químicos, baterías y tierras contaminadas. Confinamiento con trazabilidad completa.</p>
+        <a href="#cotizacion" class="serv-link">Cotizar</a>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icono">♻️</div>
+        <div class="serv-titulo">Residuos No Peligrosos</div>
+        <p class="serv-desc">Residuos industriales y comerciales con certificación completa. Economía circular bajo normativa MINAM vigente.</p>
+        <a href="#cotizacion" class="serv-link">Cotizar</a>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icono">🚛</div>
+        <div class="serv-titulo">Tercerización de Transporte</div>
+        <p class="serv-desc">Red de EO-RS certificadas para transporte de residuos peligrosos. Cobertura sur del Perú y operaciones nacionales.</p>
+        <a href="#cotizacion" class="serv-link">Cotizar</a>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icono">🏭</div>
+        <div class="serv-titulo">Tratamiento y Disposición Final</div>
+        <p class="serv-desc">Instalaciones propias autorizadas Km 255.5. Geomembranas HDPE, control geotécnico y certificado por operación.</p>
+        <a href="#cotizacion" class="serv-link">Cotizar</a>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icono">👷</div>
+        <div class="serv-titulo">Gestión Interna In-Situ</div>
+        <p class="serv-desc">Personal técnico certificado en tus instalaciones. Segregación en fuente, etiquetado, almacenamiento temporal y capacitación.</p>
+        <a href="#cotizacion" class="serv-link">Cotizar</a>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icono">📋</div>
+        <div class="serv-titulo">Gestión de Información</div>
+        <p class="serv-desc">Dashboard y reportes en tiempo real. Declaraciones SIGERSOL, manifiestos y certificados listos para auditorías OEFA.</p>
+        <a href="#cotizacion" class="serv-link">Cotizar</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PROCESO -->
 <section class="proceso" id="proceso">
-  <div class="section-header">
-    <div class="eyebrow">Nuestro proceso</div>
-    <h2 class="section-titulo">De la generación al certificado final.</h2>
-    <p class="section-sub">Cinco pasos que garantizan la continuidad de tu operación y el cumplimiento normativo en cada etapa.</p>
-  </div>
-  <div class="proceso-steps">
-    <div class="paso">
-      <div class="paso-circulo">1</div>
-      <div class="paso-titulo">Evaluación</div>
-      <p class="paso-desc">Diagnóstico de residuo, volumen y frecuencia. Propuesta según tu modelo operativo.</p>
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Nuestro proceso</div>
+      <h2 class="section-titulo">De la generación al certificado final.</h2>
+      <p class="section-sub">Cinco pasos que garantizan la continuidad de tu operación y el cumplimiento normativo en cada etapa.</p>
     </div>
-    <div class="paso">
-      <div class="paso-circulo">2</div>
-      <div class="paso-titulo">Propuesta</div>
-      <p class="paso-desc">Contrato por tipo de residuo, frecuencia y volumen. SLA definido por escrito.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-circulo">3</div>
-      <div class="paso-titulo">Tratamiento</div>
-      <p class="paso-desc">Recepción, pesaje INACAL y tratamiento previo al confinamiento definitivo.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-circulo">4</div>
-      <div class="paso-titulo">Disposición</div>
-      <p class="paso-desc">Confinamiento en celda HDPE. Economía circular donde aplica la normativa.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-circulo">5</div>
-      <div class="paso-titulo">Certificación</div>
-      <p class="paso-desc">Certificado de disposición final + declaración SIGERSOL. Cierre de responsabilidad completo.</p>
+    <div class="proceso-steps">
+      <div class="paso">
+        <div class="paso-circulo">1</div>
+        <div class="paso-titulo">Evaluación</div>
+        <p class="paso-desc">Diagnóstico de residuo, volumen y frecuencia. Propuesta según tu modelo operativo.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-circulo">2</div>
+        <div class="paso-titulo">Propuesta</div>
+        <p class="paso-desc">Contrato por tipo de residuo, frecuencia y volumen. SLA definido por escrito.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-circulo">3</div>
+        <div class="paso-titulo">Tratamiento</div>
+        <p class="paso-desc">Recepción, pesaje INACAL y tratamiento previo al confinamiento definitivo.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-circulo">4</div>
+        <div class="paso-titulo">Disposición</div>
+        <p class="paso-desc">Confinamiento en celda HDPE. Economía circular donde aplica la normativa.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-circulo">5</div>
+        <div class="paso-titulo">Certificación</div>
+        <p class="paso-desc">Certificado de disposición final + declaración SIGERSOL. Cierre de responsabilidad completo.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SECTORES -->
 <section class="sectores" id="sectores">
-  <div class="section-header">
-    <div class="eyebrow">Sectores que atendemos</div>
-    <h2 class="section-titulo">Tu industria, nuestra <em>responsabilidad.</em></h2>
-    <p class="section-sub">Gestionamos residuos peligrosos y no peligrosos en los sectores más exigentes del Perú.</p>
-  </div>
-  <div class="sectores-grid">
-    <div class="sector-card">
-      <div class="sector-icono">⛏️</div>
-      <div class="sector-nombre">Minería y Metalurgia</div>
-      <p class="sector-detalle">Lodos industriales, relaves y reactivos químicos caducos. Gestión especializada a nivel nacional.</p>
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Sectores que atendemos</div>
+      <h2 class="section-titulo">Tu industria, nuestra <em>responsabilidad.</em></h2>
+      <p class="section-sub">Gestionamos residuos peligrosos y no peligrosos en los sectores más exigentes del Perú.</p>
     </div>
-    <div class="sector-card">
-      <div class="sector-icono">⚡</div>
-      <div class="sector-nombre">Energía e Hidrocarburos</div>
-      <p class="sector-detalle">Suelos contaminados, aceites usados y residuos de generación. Exploración hasta refinación.</p>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icono">🌾</div>
-      <div class="sector-nombre">Agroindustria</div>
-      <p class="sector-detalle">Envases de agroquímicos con triple lavado y residuos del procesamiento agrícola.</p>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icono">🏭</div>
-      <div class="sector-nombre">Manufactura y Química</div>
-      <p class="sector-detalle">Solventes, pinturas, resinas y materiales con características de peligrosidad CRETIB.</p>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icono">🚢</div>
-      <div class="sector-nombre">Sector Marítimo</div>
-      <p class="sector-detalle">Cumplimiento MARPOL y gestión de residuos portuarios con certificación.</p>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icono">🏗️</div>
-      <div class="sector-nombre">Construcción</div>
-      <p class="sector-detalle">RCD y residuos peligrosos de obra. Gestión durante todo el ciclo constructivo.</p>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icono">🔌</div>
-      <div class="sector-nombre">Energía Eléctrica</div>
-      <p class="sector-detalle">Residuos de generación, transmisión y distribución. PCBs y transformadores.</p>
-    </div>
-    <div class="sector-card" style="background: var(--verde-ultra); border-color: var(--verde-medio);">
-      <div class="sector-icono">📞</div>
-      <div class="sector-nombre" style="color: var(--verde-oscuro);">¿Tu sector?</div>
-      <p class="sector-detalle" style="color: var(--verde);">Evaluamos cada industria con un diagnóstico personalizado sin costo.</p>
+    <div class="sectores-grid">
+      <div class="sector-card">
+        <div class="sector-icono">⛏️</div>
+        <div class="sector-nombre">Minería y Metalurgia</div>
+        <p class="sector-detalle">Lodos industriales, relaves y reactivos químicos caducos. Gestión especializada a nivel nacional.</p>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icono">⚡</div>
+        <div class="sector-nombre">Energía e Hidrocarburos</div>
+        <p class="sector-detalle">Suelos contaminados, aceites usados y residuos de generación. Exploración hasta refinación.</p>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icono">🌾</div>
+        <div class="sector-nombre">Agroindustria</div>
+        <p class="sector-detalle">Envases de agroquímicos con triple lavado y residuos del procesamiento agrícola.</p>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icono">🏭</div>
+        <div class="sector-nombre">Manufactura y Química</div>
+        <p class="sector-detalle">Solventes, pinturas, resinas y materiales con características de peligrosidad CRETIB.</p>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icono">🚢</div>
+        <div class="sector-nombre">Sector Marítimo</div>
+        <p class="sector-detalle">Cumplimiento MARPOL y gestión de residuos portuarios con certificación.</p>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icono">🏗️</div>
+        <div class="sector-nombre">Construcción</div>
+        <p class="sector-detalle">RCD y residuos peligrosos de obra. Gestión durante todo el ciclo constructivo.</p>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icono">🔌</div>
+        <div class="sector-nombre">Energía Eléctrica</div>
+        <p class="sector-detalle">Residuos de generación, transmisión y distribución. PCBs y transformadores.</p>
+      </div>
+      <div class="sector-card" style="background: var(--verde-ultra); border-color: var(--verde-medio);">
+        <div class="sector-icono">📞</div>
+        <div class="sector-nombre" style="color: var(--verde-oscuro);">¿Tu sector?</div>
+        <p class="sector-detalle" style="color: var(--verde);">Evaluamos cada industria con un diagnóstico personalizado sin costo.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -315,55 +338,57 @@ export default function NewSMA() {
 <section class="trazabilidad" id="trazabilidad">
   <div class="trazabilidad-bg" style="background-image:url('/extracted_image_3.png')"></div>
   <div class="trazabilidad-overlay"></div>
-  <div class="section-header">
-    <div class="eyebrow">Diferenciador digital</div>
-    <h2 class="section-titulo">Trazabilidad digital <em>en tiempo real.</em></h2>
-    <p class="section-sub">Desde la generación hasta el destino final, cada residuo tiene historia. Información disponible para tu equipo en cualquier momento.</p>
-  </div>
-  <div class="traz-layout">
-    <div class="traz-pasos">
-      <div class="traz-paso">
-        <div class="traz-paso-num">01</div>
-        <div>
-          <div class="traz-paso-titulo">Generación certificada</div>
-          <div class="traz-paso-desc">Registro de origen con datos del generador, tipo de residuo y clasificación normativa MINAM.</div>
-        </div>
-      </div>
-      <div class="traz-paso">
-        <div class="traz-paso-num">02</div>
-        <div>
-          <div class="traz-paso-titulo">Recolección con EO-RS</div>
-          <div class="traz-paso-desc">Manifiesto verificado antes de autorizar ingreso. Transporte documentado con EO-RS certificada.</div>
-        </div>
-      </div>
-      <div class="traz-paso">
-        <div class="traz-paso-num">03</div>
-        <div>
-          <div class="traz-paso-titulo">Neutralización / Inertización</div>
-          <div class="traz-paso-desc">Tratamiento previo al confinamiento en infraestructura propia autorizada por SENACE.</div>
-        </div>
-      </div>
-      <div class="traz-paso">
-        <div class="traz-paso-num">04</div>
-        <div>
-          <div class="traz-paso-titulo">Disposición final documentada</div>
-          <div class="traz-paso-desc">Pesaje INACAL + certificado de disposición final. Declaración SIGERSOL incluida.</div>
-        </div>
-      </div>
+  <div class="container" style="position:relative; z-index:2">
+    <div class="section-header">
+      <div class="eyebrow">Diferenciador digital</div>
+      <h2 class="section-titulo">Trazabilidad digital <em>en tiempo real.</em></h2>
+      <p class="section-sub">Desde la generación hasta el destino final, cada residuo tiene historia. Información disponible para tu equipo en cualquier momento.</p>
     </div>
-
-    <div class="traz-features">
-      <div class="traz-feat">
-        <div class="traz-feat-titulo">Dashboard operativo en tiempo real</div>
-        <div class="traz-feat-desc">Acceso a reportes de tu empresa en cualquier momento. Visualiza volúmenes, fechas, certificados y estatus de cada operación desde tu computadora.</div>
+    <div class="traz-layout">
+      <div class="traz-pasos">
+        <div class="traz-paso">
+          <div class="traz-paso-num">01</div>
+          <div>
+            <div class="traz-paso-titulo">Generación certificada</div>
+            <div class="traz-paso-desc">Registro de origen con datos del generador, tipo de residuo y clasificación normativa MINAM.</div>
+          </div>
+        </div>
+        <div class="traz-paso">
+          <div class="traz-paso-num">02</div>
+          <div>
+            <div class="traz-paso-titulo">Recolección con EO-RS</div>
+            <div class="traz-paso-desc">Manifiesto verificado antes de autorizar ingreso. Transporte documentado con EO-RS certificada.</div>
+          </div>
+        </div>
+        <div class="traz-paso">
+          <div class="traz-paso-num">03</div>
+          <div>
+            <div class="traz-paso-titulo">Neutralización / Inertización</div>
+            <div class="traz-paso-desc">Tratamiento previo al confinamiento en infraestructura propia autorizada por SENACE.</div>
+          </div>
+        </div>
+        <div class="traz-paso">
+          <div class="traz-paso-num">04</div>
+          <div>
+            <div class="traz-paso-titulo">Disposición final documentada</div>
+            <div class="traz-paso-desc">Pesaje INACAL + certificado de disposición final. Declaración SIGERSOL incluida.</div>
+          </div>
+        </div>
       </div>
-      <div class="traz-feat">
-        <div class="traz-feat-titulo">Cobertura nacional con red EO-RS</div>
-        <div class="traz-feat-desc">Sur del Perú como base. Red de EO-RS aliadas para operaciones en Lima y otras regiones. Un solo interlocutor, cobertura completa.</div>
-      </div>
-      <div class="traz-feat">
-        <div class="traz-feat-titulo">Atención y respuesta en menos de 24 horas</div>
-        <div class="traz-feat-desc">Equipo técnico disponible para emergencias ambientales y urgencias operativas. Respuesta garantizada en menos de 24 horas.</div>
+  
+      <div class="traz-features">
+        <div class="traz-feat">
+          <div class="traz-feat-titulo">Dashboard operativo en tiempo real</div>
+          <div class="traz-feat-desc">Acceso a reportes de tu empresa en cualquier momento. Visualiza volúmenes, fechas, certificados y estatus de cada operación desde tu computadora.</div>
+        </div>
+        <div class="traz-feat">
+          <div class="traz-feat-titulo">Cobertura nacional con red EO-RS</div>
+          <div class="traz-feat-desc">Sur del Perú como base. Red de EO-RS aliadas para operaciones en Lima y otras regiones. Un solo interlocutor, cobertura completa.</div>
+        </div>
+        <div class="traz-feat">
+          <div class="traz-feat-titulo">Atención y respuesta en menos de 24 horas</div>
+          <div class="traz-feat-desc">Equipo técnico disponible para emergencias ambientales y urgencias operativas. Respuesta garantizada en menos de 24 horas.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -385,41 +410,43 @@ export default function NewSMA() {
 
 <!-- CERTIFICACIONES -->
 <section class="certs" id="certs">
-  <div class="section-header">
-    <div class="eyebrow">Respaldo institucional</div>
-    <h2 class="section-titulo">Respaldados por la <em>autoridad ambiental.</em></h2>
-    <p class="section-sub">Operamos bajo los más altos estándares del MINAM, DIGESA y SENACE. Todos los registros vigentes y auditables.</p>
-  </div>
-  <div class="certs-grid">
-    <div class="cert-card">
-      <div class="cert-ent">MINAM</div>
-      <div class="cert-num">EO-RS-00198-2021-MINAM/VMGA/DGRS</div>
-      <div class="cert-desc">Registro como Empresa Operadora de Residuos Sólidos (EO-RS)</div>
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Respaldo institucional</div>
+      <h2 class="section-titulo">Respaldados por la <em>autoridad ambiental.</em></h2>
+      <p class="section-sub">Operamos bajo los más altos estándares del MINAM, DIGESA y SENACE. Todos los registros vigentes y auditables.</p>
     </div>
-    <div class="cert-card">
-      <div class="cert-ent">MINAM</div>
-      <div class="cert-num">Resolución N° 00678-2021-MINAM/VMGA/DGRS</div>
-      <div class="cert-desc">Autorización para Operación de Relleno de Seguridad</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-ent">SENACE</div>
-      <div class="cert-num">Resolución N° 0071-2020-SENACE-PE/DEIN</div>
-      <div class="cert-desc">Estudio de Impacto Ambiental (EIA) Aprobado</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-ent">DIGESA</div>
-      <div class="cert-num">N° 004-2017/DSA</div>
-      <div class="cert-desc">Resolución Ministerial de Autorización Sanitaria</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-ent">Inspección Técnica</div>
-      <div class="cert-num">N° 089-2024</div>
-      <div class="cert-desc">Certificado de Inspección Técnica de Seguridad vigente 2024</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-ent">Municipal</div>
-      <div class="cert-num">Licencia N° 1857-2021</div>
-      <div class="cert-desc">Licencia de Funcionamiento Municipal vigente</div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-ent">MINAM</div>
+        <div class="cert-num">EO-RS-00198-2021-MINAM/VMGA/DGRS</div>
+        <div class="cert-desc">Registro como Empresa Operadora de Residuos Sólidos (EO-RS)</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ent">MINAM</div>
+        <div class="cert-num">Resolución N° 00678-2021-MINAM/VMGA/DGRS</div>
+        <div class="cert-desc">Autorización para Operación de Relleno de Seguridad</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ent">SENACE</div>
+        <div class="cert-num">Resolución N° 0071-2020-SENACE-PE/DEIN</div>
+        <div class="cert-desc">Estudio de Impacto Ambiental (EIA) Aprobado</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ent">DIGESA</div>
+        <div class="cert-num">N° 004-2017/DSA</div>
+        <div class="cert-desc">Resolución Ministerial de Autorización Sanitaria</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ent">Inspección Técnica</div>
+        <div class="cert-num">N° 089-2024</div>
+        <div class="cert-desc">Certificado de Inspección Técnica de Seguridad vigente 2024</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ent">Municipal</div>
+        <div class="cert-num">Licencia N° 1857-2021</div>
+        <div class="cert-desc">Licencia de Funcionamiento Municipal vigente</div>
+      </div>
     </div>
   </div>
 </section>
@@ -428,11 +455,13 @@ export default function NewSMA() {
 <div class="cta-section" id="contacto">
   <div class="cta-bg" style="background-image:url('/extracted_image_5.png')"></div>
   <div class="cta-overlay"></div>
-  <div>
-    <h2 class="cta-titulo">¿Tu empresa genera<br>residuos peligrosos?<br><em>Hablemos hoy.</em></h2>
-    <p class="cta-sub">Evaluamos tu operación sin costo y te entregamos una propuesta comercial en menos de 24 horas.</p>
+  <div class="container" style="position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:40px">
+    <div>
+      <h2 class="cta-titulo">¿Tu empresa genera<br>residuos peligrosos?<br><em>Hablemos hoy.</em></h2>
+      <p class="cta-sub">Evaluamos tu operación sin costo y te entregamos una propuesta comercial en menos de 24 horas.</p>
+    </div>
+    <a href="#cotizacion" class="btn-cta-blanco">Solicitar cotización</a>
   </div>
-  <a href="#cotizacion" class="btn-cta-blanco">Solicitar cotización</a>
 </div>
 
 
@@ -468,7 +497,8 @@ export default function NewSMA() {
     </div>
   </section>
 
-  <section id="cotizacion" style="background: var(--gris-bg); padding: 80px 64px; scroll-margin-top: 72px;">
+  <section id="cotizacion" style="background: var(--gris-bg); padding: 80px 0; scroll-margin-top: 72px;">
+    <div class="container">
   <div class="section-header" style="margin-bottom: 40px;">
     <div class="eyebrow">Solicitud sin costo</div>
     <h2 class="section-titulo">Cotiza tu operación<br><em>en 4 pasos.</em></h2>
@@ -638,8 +668,9 @@ export default function NewSMA() {
       </div>
 
     </main>
-  </div>
-</section>
+      </div>
+    </div>
+  </section>
 
 ` }} />
     </>

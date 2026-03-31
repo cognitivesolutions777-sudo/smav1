@@ -57,45 +57,47 @@ const WhyUs = () => {
 
   return (
     <section className="porque" id="porque">
-      <div className="section-header">
-        <div className="eyebrow">Por qué elegirnos</div>
-        <h2 className="section-titulo">Una sola empresa.<br />Cero brechas <em>regulatorias.</em></h2>
-      </div>
-      
-      <div className="porque-grid">
-        {cards.map((item, idx) => (
-          <div 
-            key={idx} 
-            data-index={idx}
-            className={`porque-card-v2 ${revealed.includes(idx) ? 'revealed' : ''}`}
-            style={{ transitionDelay: `${idx * 150}ms` }}
-          >
-            <div className="porque-card-bg"></div>
-            <div className="porque-card-content">
-              <div className="porque-num-v2">{item.num}</div>
-              
-              <div className="why-icon-container" style={{ '--icon-color': item.color }}>
-                <item.Icon className="why-icon" size={28} />
-                <div className="why-icon-glow"></div>
-              </div>
-
-              <h3 className="porque-titulo-v2">{item.title}</h3>
-              <p className="porque-desc-v2">{item.desc}</p>
-              
-              <div className="porque-footer-v2">
-                <span className="porque-pill-v2">
-                  <span className="pill-dot"></span>
-                  {item.pill}
-                </span>
-                <div className="card-arrow">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">Por qué elegirnos</div>
+          <h2 className="section-titulo">Una sola empresa.<br />Cero brechas <em>regulatorias.</em></h2>
+        </div>
+        
+        <div className="porque-grid">
+          {cards.map((item, idx) => (
+            <div 
+              key={idx} 
+              data-index={idx}
+              className={`porque-card-v2 ${revealed.includes(idx) ? 'revealed' : ''}`}
+              style={{ transitionDelay: `${idx * 150}ms` }}
+            >
+              <div className="porque-card-bg"></div>
+              <div className="porque-card-content">
+                <div className="porque-num-v2">{item.num}</div>
+                
+                <div className="why-icon-container" style={{ '--icon-color': item.color }}>
+                  <item.Icon className="why-icon" size={28} />
+                  <div className="why-icon-glow"></div>
+                </div>
+  
+                <h3 className="porque-titulo-v2">{item.title}</h3>
+                <p className="porque-desc-v2">{item.desc}</p>
+                
+                <div className="porque-footer-v2">
+                  <span className="porque-pill-v2">
+                    <span className="pill-dot"></span>
+                    {item.pill}
+                  </span>
+                  <div className="card-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

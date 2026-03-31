@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Providers } from './providers';
 import './globals.css';
 
 export const viewport: Viewport = {
@@ -69,7 +70,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="bg-white text-[#2C3830] overflow-x-hidden" suppressHydrationWarning>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
