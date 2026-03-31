@@ -7,6 +7,13 @@ import {
   Eye,
   ScalesBalanced,
   CircleCheck,
+  TriangleExclamation,
+  ArrowRotateLeft,
+  Route,
+  PersonWorker,
+  LayoutHeaderCells,
+  Magnifier,
+  FileText,
 } from "@gravity-ui/icons";
 import '../propuesta.css';
 import Hero from './Hero';
@@ -18,21 +25,25 @@ const Infraestructura = () => {
 
   const items = [
     { 
+      num: '01',
       title: 'Impermeabilización HDPE', 
       desc: 'Geomembranas de polietileno de alta densidad. Sistema de barreras múltiples para aislamiento total y definitivo de materiales peligrosos del suelo y napas freáticas.',
       icon: <ShieldCheck />
     },
     { 
+      num: '02',
       title: 'Control Geotécnico', 
       desc: 'Supervisión de estabilidad física en cada fase de confinamiento. Coberturas diarias que previenen dispersión de partículas.',
       icon: <Eye />
     },
     { 
+      num: '03',
       title: 'Balanza Electrónica 80 TN', 
       desc: 'Certificada por laboratorios acreditados ante INACAL. Garantía de exactitud en declaraciones ante el MINAM.',
       icon: <ScalesBalanced />
     },
     { 
+      num: '04',
       title: 'EIA Aprobado · SENACE', 
       desc: 'Estudio de Impacto Ambiental N°0071-2020 aprobado. La operación más ambientalmente controlada del sur del Perú.',
       icon: <CircleCheck />
@@ -65,10 +76,11 @@ const Infraestructura = () => {
                     onClick={() => setOpen(open === index ? -1 : index)}
                     aria-expanded={open === index}
                   >
-                    <span className="ia-icon">{item.icon}</span>
+                    <span className="ia-icon-box">{item.icon}</span>
                     <span className="ia-title">{item.title}</span>
-                    <svg className="ia-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <span className="ia-num">{item.num}</span>
+                    <svg className="ia-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </button>
                   <div className="ia-body">
@@ -134,18 +146,223 @@ const RegistrosCarousel = () => {
   );
 };
 
+const Servicios = () => {
+  const items = [
+    {
+      num: '01',
+      icon: <TriangleExclamation />,
+      title: 'Residuos Peligrosos',
+      desc: 'Gestión integral de aceites usados, solventes, químicos, baterías y tierras contaminadas. Confinamiento con trazabilidad completa.',
+      tag: 'Trazabilidad completa',
+    },
+    {
+      num: '02',
+      icon: <ArrowRotateLeft />,
+      title: 'Residuos No Peligrosos',
+      desc: 'Residuos industriales y comerciales con certificación completa. Economía circular bajo normativa MINAM vigente.',
+      tag: 'Certificación MINAM',
+    },
+    {
+      num: '03',
+      icon: <Route />,
+      title: 'Tercerización de Transporte',
+      desc: 'Red de EO-RS certificadas para transporte de residuos peligrosos. Cobertura sur del Perú y operaciones nacionales.',
+      tag: 'Cobertura nacional',
+    },
+    {
+      icon: <ShieldCheck />,
+      num: '04',
+      title: 'Tratamiento y Disposición Final',
+      desc: 'Instalaciones propias autorizadas Km 255.5. Geomembranas HDPE, control geotécnico y certificado por operación.',
+      tag: 'Infraestructura propia',
+    },
+    {
+      num: '05',
+      icon: <PersonWorker />,
+      title: 'Gestión Interna In-Situ',
+      desc: 'Personal técnico certificado en tus instalaciones. Segregación en fuente, etiquetado, almacenamiento temporal y capacitación.',
+      tag: 'Personal certificado',
+    },
+    {
+      num: '06',
+      icon: <LayoutHeaderCells />,
+      title: 'Gestión de Información',
+      desc: 'Dashboard y reportes en tiempo real. Declaraciones SIGERSOL, manifiestos y certificados listos para auditorías OEFA.',
+      tag: 'Reportes en tiempo real',
+    },
+  ];
+
+  return (
+    <section className="servicios" id="servicios">
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">Nuestros servicios</div>
+          <h2 className="section-titulo">Todo el ciclo. <em>Un solo responsable.</em></h2>
+        </div>
+        <div className="servicios-grid-premium">
+          {items.map((item, i) => (
+            <div className="serv-card-premium" key={i}>
+              <div className="serv-card-num">{item.num}</div>
+              <div className="serv-icono-box-premium">{item.icon}</div>
+              <div className="serv-titulo-premium">{item.title}</div>
+              <p className="serv-desc-premium">{item.desc}</p>
+              <div className="serv-tag-container">
+                <span className="serv-tag">
+                  <span className="serv-tag-dot"></span>
+                  {item.tag}
+                </span>
+              </div>
+              <a href="#cotizacion" className="serv-link-premium">Cotizar</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Trazabilidad = () => {
+  const steps = [
+    {
+      num: '01',
+      title: 'Generación certificada',
+      desc: 'Registro de origen con datos del generador, tipo de residuo y clasificación normativa MINAM.',
+    },
+    {
+      num: '02',
+      title: 'Recolección con EO-RS',
+      desc: 'Manifiesto verificado antes de autorizar ingreso. Transporte documentado con EO-RS certificada.',
+    },
+    {
+      num: '03',
+      title: 'Neutralización / Inertización',
+      desc: 'Tratamiento previo al confinamiento en infraestructura propia autorizada por SENACE.',
+    },
+    {
+      num: '04',
+      title: 'Disposición final documentada',
+      desc: 'Pesaje INACAL + certificado de disposición final. Declaración SIGERSOL incluida.',
+    },
+  ];
+
+  return (
+    <section className="traza-premium" id="trazabilidad">
+      <div className="container">
+        <div className="traza-layout-premium">
+          <div className="traza-left-premium">
+            <div className="eyebrow">Diferenciador digital</div>
+            <h2 className="section-titulo">Trazabilidad digital <em>en tiempo real.</em></h2>
+            <p className="section-sub">Desde la generación hasta el destino final, cada residuo tiene historia. Información disponible en cualquier momento.</p>
+            
+            <div className="traza-steps-premium">
+              {steps.map((step, i) => (
+                <div className="traza-step-item" key={i}>
+                  <div className="traza-step-num">{step.num}</div>
+                  <div className="traza-step-content">
+                    <div className="traza-step-titulo">{step.title}</div>
+                    <p className="traza-step-desc">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="traza-right-premium">
+            <div className="traza-features-premium">
+              <div className="traza-feat-card">
+                <div className="traza-feat-icono-box"><ShieldCheck /></div>
+                <div className="traza-feat-titulo">Dashboard operativo</div>
+                <p className="traza-feat-desc">Visualiza volúmenes, fechas y certificados desde tu computadora.</p>
+              </div>
+              <div className="traza-feat-card">
+                <div className="traza-feat-icono-box"><Route /></div>
+                <div className="traza-feat-titulo">Cobertura nacional</div>
+                <p className="traza-feat-desc">Red de EO-RS aliadas para operaciones en todo el país.</p>
+              </div>
+              <div className="traza-feat-card">
+                <div className="traza-feat-icono-box"><TriangleExclamation /></div>
+                <div className="traza-feat-titulo">Respuesta &lt;24h</div>
+                <p className="traza-feat-desc">Equipo técnico disponible para emergencias y urgencias operativas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CertificadoDigital = () => {
+  return (
+    <section className="certdig" id="consulta-certificado">
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">Auditoría y Trazabilidad</div>
+          <h2 className="section-titulo">Visualiza tu <em>Certificado Digital.</em></h2>
+          <p className="section-sub">Ingresa el RUC de tu empresa y el número de certificado para verificar y descargar tu constancia oficial de disposición final.</p>
+        </div>
+        
+        <div className="cert-panel-layout">
+          <div className="cert-form-card">
+            <div className="cert-form-hdr">
+              <ShieldCheck />
+              CONSULTA DE CERTIFICADO
+            </div>
+            <div className="cert-form-body">
+              <div className="cert-input-row">
+                <label>RUC DEL GENERADOR *</label>
+                <input type="text" placeholder="Ej. 20512345678" />
+              </div>
+              <div className="cert-input-row">
+                <label>N° DE CERTIFICADO *</label>
+                <input type="text" placeholder="EJ. SMA-2025-A7X3K2" />
+              </div>
+              <button className="cert-btn-consultar">
+                <Magnifier /> Consultar certificado
+              </button>
+              <p className="cert-form-footer">
+                ¿No tienes tu número de certificado? Escríbenos a <a href="#">contacto@smi.pe</a> indicando tu RUC y fecha de servicio.
+              </p>
+            </div>
+          </div>
+          
+          <div className="cert-info-side">
+            <div className="cert-mini-card">
+              <div className="cert-mini-icon"><FileText /></div>
+              <div className="cert-mini-content">
+                <strong>Certificado PDF con QR</strong>
+                <p>El documento incluye todos los datos del servicio, firma digital SMA y código QR de verificación de autenticidad.</p>
+              </div>
+            </div>
+            <div className="cert-mini-card">
+              <div className="cert-mini-icon"><CircleCheck /></div>
+              <div className="cert-mini-content">
+                <strong>Válido ante OEFA y auditorías</strong>
+                <p>Acredita la disposición final de tus residuos. Aceptado por FFA, MINAM, SENACE y auditorías internas.</p>
+              </div>
+            </div>
+            <div className="cert-mini-card">
+              <div className="cert-mini-icon"><ShieldCheck /></div>
+              <div className="cert-mini-content">
+                <strong>Número único no correlativo</strong>
+                <p>Cada certificado tiene un código alfanumérico único generado de forma aleatoria. No es posible predecir ni falsificar.</p>
+              </div>
+            </div>
+            
+            <div className="cert-demo-box">
+              <strong>¿Quieres generar un certificado de demostración?</strong>
+              <p>Ingresa cualquier RUC de 11 dígitos y haz clic en "Consultar" para ver cómo se genera el PDF con QR de ejemplo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function NewSMA() {
   useEffect(() => {
     console.log('NewSMA mounted');
-    // We remove the legacy script as it might interfere with React event listeners
-    /*
-    let s = document.createElement('script');
-    s.src = '/propuesta_client.js';
-    document.body.appendChild(s);
-    return () => {
-      if (s.parentNode) document.body.removeChild(s);
-    };
-    */
   }, []);
 
   return (
@@ -187,62 +404,12 @@ export default function NewSMA() {
 ` }} />
       <Hero />
       <RegistrosCarousel />
-      <div dangerouslySetInnerHTML={{
-        __html: `
-` }} />
       <WhyUs />
       <Infraestructura />
-      <div dangerouslySetInnerHTML={{
-        __html: `
-
-<!-- SERVICIOS -->
-<section class="servicios" id="servicios">
-  <div class="container">
-    <div class="section-header">
-      <div class="eyebrow">Nuestros servicios</div>
-      <h2 class="section-titulo">Todo el ciclo. <em>Un solo responsable.</em></h2>
-    </div>
-    <div class="servicios-grid">
-      <div class="serv-card">
-        <div class="serv-icono">⚠️</div>
-        <div class="serv-titulo">Residuos Peligrosos</div>
-        <p class="serv-desc">Gestión integral de aceites usados, solventes, químicos, baterías y tierras contaminadas. Confinamiento con trazabilidad completa.</p>
-        <a href="#cotizacion" class="serv-link">Cotizar</a>
-      </div>
-      <div class="serv-card">
-        <div class="serv-icono">♻️</div>
-        <div class="serv-titulo">Residuos No Peligrosos</div>
-        <p class="serv-desc">Residuos industriales y comerciales con certificación completa. Economía circular bajo normativa MINAM vigente.</p>
-        <a href="#cotizacion" class="serv-link">Cotizar</a>
-      </div>
-      <div class="serv-card">
-        <div class="serv-icono">🚛</div>
-        <div class="serv-titulo">Tercerización de Transporte</div>
-        <p class="serv-desc">Red de EO-RS certificadas para transporte de residuos peligrosos. Cobertura sur del Perú y operaciones nacionales.</p>
-        <a href="#cotizacion" class="serv-link">Cotizar</a>
-      </div>
-      <div class="serv-card">
-        <div class="serv-icono">🏭</div>
-        <div class="serv-titulo">Tratamiento y Disposición Final</div>
-        <p class="serv-desc">Instalaciones propias autorizadas Km 255.5. Geomembranas HDPE, control geotécnico y certificado por operación.</p>
-        <a href="#cotizacion" class="serv-link">Cotizar</a>
-      </div>
-      <div class="serv-card">
-        <div class="serv-icono">👷</div>
-        <div class="serv-titulo">Gestión Interna In-Situ</div>
-        <p class="serv-desc">Personal técnico certificado en tus instalaciones. Segregación en fuente, etiquetado, almacenamiento temporal y capacitación.</p>
-        <a href="#cotizacion" class="serv-link">Cotizar</a>
-      </div>
-      <div class="serv-card">
-        <div class="serv-icono">📋</div>
-        <div class="serv-titulo">Gestión de Información</div>
-        <p class="serv-desc">Dashboard y reportes en tiempo real. Declaraciones SIGERSOL, manifiestos y certificados listos para auditorías OEFA.</p>
-        <a href="#cotizacion" class="serv-link">Cotizar</a>
-      </div>
-    </div>
-  </div>
-</section>
-
+      <Servicios />
+      <Trazabilidad />
+      <CertificadoDigital />
+      <div dangerouslySetInnerHTML={{ __html: `
 <!-- PROCESO -->
 <section class="proceso" id="proceso">
   <div class="container">
@@ -334,75 +501,6 @@ export default function NewSMA() {
   </div>
 </section>
 
-<!-- TRAZABILIDAD -->
-<section class="trazabilidad" id="trazabilidad">
-  <div class="trazabilidad-bg" style="background-image:url('/extracted_image_3.png')"></div>
-  <div class="trazabilidad-overlay"></div>
-  <div class="container" style="position:relative; z-index:2">
-    <div class="section-header">
-      <div class="eyebrow">Diferenciador digital</div>
-      <h2 class="section-titulo">Trazabilidad digital <em>en tiempo real.</em></h2>
-      <p class="section-sub">Desde la generación hasta el destino final, cada residuo tiene historia. Información disponible para tu equipo en cualquier momento.</p>
-    </div>
-    <div class="traz-layout">
-      <div class="traz-pasos">
-        <div class="traz-paso">
-          <div class="traz-paso-num">01</div>
-          <div>
-            <div class="traz-paso-titulo">Generación certificada</div>
-            <div class="traz-paso-desc">Registro de origen con datos del generador, tipo de residuo y clasificación normativa MINAM.</div>
-          </div>
-        </div>
-        <div class="traz-paso">
-          <div class="traz-paso-num">02</div>
-          <div>
-            <div class="traz-paso-titulo">Recolección con EO-RS</div>
-            <div class="traz-paso-desc">Manifiesto verificado antes de autorizar ingreso. Transporte documentado con EO-RS certificada.</div>
-          </div>
-        </div>
-        <div class="traz-paso">
-          <div class="traz-paso-num">03</div>
-          <div>
-            <div class="traz-paso-titulo">Neutralización / Inertización</div>
-            <div class="traz-paso-desc">Tratamiento previo al confinamiento en infraestructura propia autorizada por SENACE.</div>
-          </div>
-        </div>
-        <div class="traz-paso">
-          <div class="traz-paso-num">04</div>
-          <div>
-            <div class="traz-paso-titulo">Disposición final documentada</div>
-            <div class="traz-paso-desc">Pesaje INACAL + certificado de disposición final. Declaración SIGERSOL incluida.</div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="traz-features">
-        <div class="traz-feat">
-          <div class="traz-feat-titulo">Dashboard operativo en tiempo real</div>
-          <div class="traz-feat-desc">Acceso a reportes de tu empresa en cualquier momento. Visualiza volúmenes, fechas, certificados y estatus de cada operación desde tu computadora.</div>
-        </div>
-        <div class="traz-feat">
-          <div class="traz-feat-titulo">Cobertura nacional con red EO-RS</div>
-          <div class="traz-feat-desc">Sur del Perú como base. Red de EO-RS aliadas para operaciones en Lima y otras regiones. Un solo interlocutor, cobertura completa.</div>
-        </div>
-        <div class="traz-feat">
-          <div class="traz-feat-titulo">Atención y respuesta en menos de 24 horas</div>
-          <div class="traz-feat-desc">Equipo técnico disponible para emergencias ambientales y urgencias operativas. Respuesta garantizada en menos de 24 horas.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/*
-<section className="certdig" id="certificado-digital">
-  ...
-</section>
-
-<section id="auditoria">
-  ...
-</section>
-*/}
 
 
 
