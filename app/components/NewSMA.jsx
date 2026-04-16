@@ -636,29 +636,29 @@ export default function NewSMA() {
   <!-- ══ BANDA LINKEDIN POSTS ══════════════════════════════════════════ -->
   <section class="linkedin-banda">
     <div class="container">
-      <div class="linkedin-tag">
+      <a href="https://www.linkedin.com/company/servicios-medio-ambientales/" target="_blank" rel="noopener noreferrer" class="linkedin-tag" style="text-decoration:none;">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         Síguenos en LinkedIn
-      </div>
+      </a>
       <h2 class="sec-titulo" style="text-align:center">Nuestra presencia <span>digital</span></h2>
       <p class="sec-sub" style="text-align:center;max-width:520px;margin:8px auto 0">Contenido especializado sobre gestión de residuos, normativa ambiental y operaciones en Perú.</p>
       <div class="posts-grid">
-        <div class="post-card">
+        <a href="https://www.linkedin.com/company/servicios-medio-ambientales/" target="_blank" rel="noopener noreferrer" class="post-card">
           <img src="/extracted_image_6.png" alt="SMA – Ubicación estratégica Km 255 Panamericana Sur" loading="lazy">
           <div class="post-card-overlay"><span class="post-card-label">Ubicación</span></div>
-        </div>
-        <div class="post-card">
+        </a>
+        <a href="https://www.linkedin.com/company/servicios-medio-ambientales/" target="_blank" rel="noopener noreferrer" class="post-card">
           <img src="/extracted_image_7.png" alt="SMA – Respaldados por la autoridad ambiental" loading="lazy">
           <div class="post-card-overlay"><span class="post-card-label">Certificaciones</span></div>
-        </div>
-        <div class="post-card">
+        </a>
+        <a href="https://www.linkedin.com/company/servicios-medio-ambientales/" target="_blank" rel="noopener noreferrer" class="post-card">
           <img src="/extracted_image_8.png" alt="SMA – Trazabilidad digital en tiempo real" loading="lazy">
           <div class="post-card-overlay"><span class="post-card-label">Trazabilidad</span></div>
-        </div>
-        <div class="post-card">
+        </a>
+        <a href="https://www.linkedin.com/company/servicios-medio-ambientales/" target="_blank" rel="noopener noreferrer" class="post-card">
           <img src="/extracted_image_9.png" alt="SMA – Tu industria, nuestra responsabilidad" loading="lazy">
           <div class="post-card-overlay"><span class="post-card-label">Sectores</span></div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
