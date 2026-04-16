@@ -22,6 +22,7 @@ import WhyUs from './WhyUs';
 
 const Infraestructura = () => {
   const [open, setOpen] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const items = [
     { 
@@ -119,6 +120,34 @@ const Infraestructura = () => {
                 </div>
               </div>
             </div>
+            <div className="infra-video">
+              {!isPlaying ? (
+                <div className="video-preview-container" onClick={() => setIsPlaying(true)}>
+                  <img
+                    src="https://img.youtube.com/vi/fJe77WCTgGQ/maxresdefault.jpg"
+                    alt="Vista previa de infraestructura SMA"
+                    className="video-thumbnail"
+                  />
+                  <div className="video-overlay-clean">
+                    <div className="play-btn-pulse">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" style={{ fill: 'white' }} />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <iframe
+                  src="https://www.youtube.com/embed/fJe77WCTgGQ?si=Xr2LOguz3Gn0arc-&autoplay=1&modestbranding=1&rel=0"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              )}
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -286,6 +315,7 @@ const Trazabilidad = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -362,7 +392,46 @@ const CertificadoDigital = () => {
 
 export default function NewSMA() {
   useEffect(() => {
-    console.log('NewSMA mounted');
+    const handleGlobalClick = (e) => {
+      // 1. Toggle Menú Móvil
+      const mobileBtn = e.target.closest('#mobile-btn');
+      if (mobileBtn) {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks) {
+          navLinks.classList.toggle('active');
+          mobileBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        }
+        return;
+      }
+
+      // 2. Toggle Megamenú (Móvil)
+      const megaToggle = e.target.closest('#mega-toggle');
+      if (megaToggle && window.innerWidth <= 900) {
+        e.preventDefault();
+        const megamenu = megaToggle.nextElementSibling;
+        if (megamenu) {
+          megamenu.classList.toggle('active');
+          // Opcional: rotar flecha
+          const arrow = megaToggle.querySelector('.mega-arrow');
+          if (arrow) arrow.style.transform = megamenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+        return;
+      }
+
+      // 3. Cerrar menú al hacer click en links normales
+      const link = e.target.closest('.nav-links a:not(#mega-toggle)');
+      if (link) {
+        const navLinks = document.querySelector('.nav-links');
+        const mBtn = document.getElementById('mobile-btn');
+        if (navLinks?.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          if (mBtn) mBtn.textContent = '☰';
+        }
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
   }, []);
 
   return (
@@ -395,7 +464,6 @@ export default function NewSMA() {
     </li>
     <li><a href="#sectores">Sectores</a></li>
     <li><a href="#trazabilidad">Trazabilidad</a></li>
-    {/* <li><a href="#auditoria">Auditoría</a></li> */}
     <li><a href="#certs">Certificaciones</a></li>
   </ul>
   <a href="#cotizacion" class="nav-cta">Solicitar cotización</a>
