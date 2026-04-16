@@ -4,9 +4,9 @@ import React from 'react';
 const Navbar = () => {
   return (
     <nav>
-      <div className="nav-logo" style={{ display: 'flex', alignItems: 'center' }}>
+      <div className="nav-logo">
         <a href="/">
-          <img src="/logosma_1111.png" alt="SMA Logo" style={{ height: '52px', width: 'auto' }} />
+          <img src="/logo_sma_111.png" alt="SMA Logo" style={{ height: '52px', width: 'auto' }} />
         </a>
       </div>
       <ul className="nav-links">
@@ -29,9 +29,8 @@ const Navbar = () => {
             </div>
           </div>
         </li>
-        <li><a href="#sectores">Sectores</a></li>
         <li><a href="#trazabilidad">Trazabilidad</a></li>
-        <li><a href="#auditoria">Auditoría</a></li>
+        <li><a href="#sectores">Sectores</a></li>
         <li><a href="#certs">Certificaciones</a></li>
       </ul>
       <a href="#cotizacion" className="nav-cta">Solicitar cotización</a>

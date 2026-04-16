@@ -441,8 +441,8 @@ export default function NewSMA() {
 
 <!-- NAVBAR -->
 <nav>
-  <div class="nav-logo" style="display:flex; align-items:center;">
-    <a href="/"><img src="/logosma_1111.png" alt="SMA Logo" style="height: 52px; width: auto;" /></a>
+  <div class="nav-logo">
+    <a href="/"><img src="/logo_sma_111.png" alt="SMA Logo" style="height: 52px; width: auto;" /></a>
   </div>
   <ul class="nav-links">
     <li><a href="#porque">Por qué SMA</a></li>
@@ -462,8 +462,8 @@ export default function NewSMA() {
         </div>
       </div>
     </li>
-    <li><a href="#sectores">Sectores</a></li>
     <li><a href="#trazabilidad">Trazabilidad</a></li>
+    <li><a href="#sectores">Sectores</a></li>
     <li><a href="#certs">Certificaciones</a></li>
   </ul>
   <a href="#cotizacion" class="nav-cta">Solicitar cotización</a>
@@ -526,42 +526,42 @@ export default function NewSMA() {
     </div>
     <div class="sectores-grid">
       <div class="sector-card">
-        <div class="sector-icono">⛏️</div>
+        <div class="sector-icono-box">⛏️</div>
         <div class="sector-nombre">Minería y Metalurgia</div>
         <p class="sector-detalle">Lodos industriales, relaves y reactivos químicos caducos. Gestión especializada a nivel nacional.</p>
       </div>
       <div class="sector-card">
-        <div class="sector-icono">⚡</div>
+        <div class="sector-icono-box">⚡</div>
         <div class="sector-nombre">Energía e Hidrocarburos</div>
         <p class="sector-detalle">Suelos contaminados, aceites usados y residuos de generación. Exploración hasta refinación.</p>
       </div>
       <div class="sector-card">
-        <div class="sector-icono">🌾</div>
+        <div class="sector-icono-box">🌾</div>
         <div class="sector-nombre">Agroindustria</div>
         <p class="sector-detalle">Envases de agroquímicos con triple lavado y residuos del procesamiento agrícola.</p>
       </div>
       <div class="sector-card">
-        <div class="sector-icono">🏭</div>
+        <div class="sector-icono-box">🏭</div>
         <div class="sector-nombre">Manufactura y Química</div>
         <p class="sector-detalle">Solventes, pinturas, resinas y materiales con características de peligrosidad CRETIB.</p>
       </div>
       <div class="sector-card">
-        <div class="sector-icono">🚢</div>
+        <div class="sector-icono-box">🚢</div>
         <div class="sector-nombre">Sector Marítimo</div>
         <p class="sector-detalle">Cumplimiento MARPOL y gestión de residuos portuarios con certificación.</p>
       </div>
       <div class="sector-card">
-        <div class="sector-icono">🏗️</div>
+        <div class="sector-icono-box">🏗️</div>
         <div class="sector-nombre">Construcción</div>
         <p class="sector-detalle">RCD y residuos peligrosos de obra. Gestión durante todo el ciclo constructivo.</p>
       </div>
       <div class="sector-card">
-        <div class="sector-icono">🔌</div>
+        <div class="sector-icono-box">🔌</div>
         <div class="sector-nombre">Energía Eléctrica</div>
         <p class="sector-detalle">Residuos de generación, transmisión y distribución. PCBs y transformadores.</p>
       </div>
       <div class="sector-card" style="background: var(--verde-ultra); border-color: var(--verde-medio);">
-        <div class="sector-icono">📞</div>
+        <div class="sector-icono-box">📞</div>
         <div class="sector-nombre" style="color: var(--verde-oscuro);">¿Tu sector?</div>
         <p class="sector-detalle" style="color: var(--verde);">Evaluamos cada industria con un diagnóstico personalizado sin costo.</p>
       </div>
