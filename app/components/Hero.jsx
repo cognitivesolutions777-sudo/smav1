@@ -1,23 +1,17 @@
 'use client';
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ data = {} }) => {
   return (
     <section className="hero" id="inicio">
       <div className="hero-left">
-        <div className="hero-pill">Empresa regulada y certificada · MINAM · SENACE</div>
-        <h1 className="hero-titulo">
-          Gestión de residuos<br />
-          peligrosos con<br />
-          <em>trazabilidad total.</em>
-        </h1>
+        <div className="hero-pill">{data.hero_eyebrow || 'Empresa regulada y certificada · MINAM · SENACE'}</div>
+        <h1 className="hero-titulo" dangerouslySetInnerHTML={{ __html: data.hero_title || 'Gestión de residuos<br />peligrosos con<br /><em>trazabilidad total.</em>' }} />
         <p className="hero-sub">
-          Asumimos la custodia legal y ambiental de tu operación desde la generación
-          hasta el certificado de disposición final. Relleno de seguridad propio en
-          Ica, cobertura nacional.
+          {data.hero_subtitle || 'Asumimos la custodia legal y ambiental de tu operación desde la generación hasta el certificado de disposición final. Relleno de seguridad propio en Ica, cobertura nacional.'}
         </p>
         <div className="hero-btns">
-          <a href="#cotizacion" className="btn-primary">Solicitar cotización</a>
+          <a href="#cotizacion" className="btn-primary">{data.hero_cta_text || 'Solicitar cotización'}</a>
           <a href="#servicios" className="btn-outline">Ver servicios</a>
         </div>
         <div className="hero-kpis">

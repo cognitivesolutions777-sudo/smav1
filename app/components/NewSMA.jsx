@@ -20,11 +20,11 @@ import Hero from './Hero';
 import WhyUs from './WhyUs';
 
 
-const Infraestructura = () => {
+const Infraestructura = ({ title, subtitle, itemsData }) => {
   const [open, setOpen] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const items = [
+  const defaultItems = [
     { 
       num: '01',
       title: 'Impermeabilización HDPE', 
@@ -51,13 +51,25 @@ const Infraestructura = () => {
     }
   ];
 
+  const displayItems = itemsData?.length > 0 ? itemsData : defaultItems;
+
+  const getIcon = (titleStr, fallbackIndex) => {
+    const defaultIcon = defaultItems[fallbackIndex % defaultItems.length].icon;
+    if (!titleStr) return defaultIcon;
+    const lower = titleStr.toLowerCase();
+    if (lower.includes('balanza')) return <ScalesBalanced />;
+    if (lower.includes('control')) return <Eye />;
+    if (lower.includes('eia') || lower.includes('aprobado')) return <CircleCheck />;
+    return <ShieldCheck />;
+  };
+
   return (
     <section className="infra" id="infraestructura">
       <div className="container">
         <div className="section-header">
           <div className="eyebrow">Infraestructura</div>
-          <h2 className="section-titulo">Relleno de Seguridad <em>Ica</em></h2>
-          <p className="section-sub">Instalaciones autorizadas en Km 255.5 Panamericana Sur. Ingeniería de confinamiento con tecnología certificada.</p>
+          <h2 className="section-titulo" dangerouslySetInnerHTML={{ __html: title || 'Relleno de Seguridad <em>Ica</em>' }} />
+          <p className="section-sub">{subtitle || 'Instalaciones autorizadas en Km 255.5 Panamericana Sur. Ingeniería de confinamiento con tecnología certificada.'}</p>
         </div>
         <div className="infra-layout">
           <div className="infra-map">
@@ -175,8 +187,8 @@ const RegistrosCarousel = () => {
   );
 };
 
-const Servicios = () => {
-  const items = [
+const Servicios = ({ title, itemsData }) => {
+  const defaultItems = [
     {
       num: '01',
       icon: <TriangleExclamation />,
@@ -221,20 +233,34 @@ const Servicios = () => {
     },
   ];
 
+  const displayItems = itemsData?.length > 0 ? itemsData : defaultItems;
+
+  const getIcon = (iconName, fallbackIndex) => {
+    switch(iconName) {
+      case 'TriangleExclamation': return <TriangleExclamation />;
+      case 'ArrowRotateLeft': return <ArrowRotateLeft />;
+      case 'Route': return <Route />;
+      case 'ShieldCheck': return <ShieldCheck />;
+      case 'PersonWorker': return <PersonWorker />;
+      case 'LayoutHeaderCells': return <LayoutHeaderCells />;
+      default: return defaultItems[fallbackIndex % defaultItems.length].icon;
+    }
+  };
+
   return (
     <section className="servicios" id="servicios">
       <div className="container">
         <div className="section-header">
           <div className="eyebrow">Nuestros servicios</div>
-          <h2 className="section-titulo">Todo el ciclo. <em>Un solo responsable.</em></h2>
+          <h2 className="section-titulo" dangerouslySetInnerHTML={{ __html: title || 'Todo el ciclo. <em>Un solo responsable.</em>' }} />
         </div>
         <div className="servicios-grid-premium">
-          {items.map((item, i) => (
+          {displayItems.map((item, i) => (
             <div className="serv-card-premium" key={i}>
-              <div className="serv-card-num">{item.num}</div>
-              <div className="serv-icono-box-premium">{item.icon}</div>
+              <div className="serv-card-num">{item.num || item.number || `0${i + 1}`}</div>
+              <div className="serv-icono-box-premium">{getIcon(item.icon_name, i)}</div>
               <div className="serv-titulo-premium">{item.title}</div>
-              <p className="serv-desc-premium">{item.desc}</p>
+              <p className="serv-desc-premium">{item.desc || item.description}</p>
               <div className="serv-tag-container">
                 <span className="serv-tag">
                   <span className="serv-tag-dot"></span>
@@ -390,8 +416,11 @@ const CertificadoDigital = () => {
   );
 };
 
-export default function NewSMA() {
+export default function NewSMA({ initialData }) {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const handleGlobalClick = (e) => {
       // 1. Toggle Menú Móvil
       const mobileBtn = e.target.closest('#mobile-btn');
@@ -433,6 +462,12 @@ export default function NewSMA() {
     document.addEventListener('click', handleGlobalClick);
     return () => document.removeEventListener('click', handleGlobalClick);
   }, []);
+  if (!mounted) {
+    return <div className="min-h-screen bg-white" />;
+  }
+
+  // Obtenemos los bloques de contenido desde initialData (de Strapi) o dejamos vacío por defecto
+  const data = initialData || {};
 
   return (
     <>
@@ -470,11 +505,11 @@ export default function NewSMA() {
   <div class="mobile-toggle" id="mobile-btn">☰</div>
 </nav>
 ` }} />
-      <Hero />
+      <Hero data={data} />
       <RegistrosCarousel />
       <WhyUs />
       <Infraestructura />
-      <Servicios />
+      <Servicios title={data.servicios_title} itemsData={data.servicios_items} />
       <Trazabilidad />
       <CertificadoDigital />
       <div dangerouslySetInnerHTML={{ __html: `

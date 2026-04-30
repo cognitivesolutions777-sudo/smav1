@@ -1,23 +1,16 @@
-'use client';
-
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-
+import React, { Suspense } from 'react';
 import NewSMA from '@/app/components/NewSMA';
+import { fetchStrapiData } from '@/lib/strapi';
 
-export default function Home() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div className="min-h-screen bg-white" />;
-  }
+export default async function Home() {
+  // Aquí hacemos fetch al Single Type 'landing-page' en Strapi
+  // Se usa ?populate=* para traer todos los componentes y campos anidados
+  const strapiRes = await fetchStrapiData('landing-page?populate=deep');
+  const landingData = strapiRes?.data?.attributes || null;
 
   return (
     <Suspense fallback={<div className="min-h-screen bg-white" />}>
-      <NewSMA />
+      <NewSMA initialData={landingData} />
     </Suspense>
   );
 }
