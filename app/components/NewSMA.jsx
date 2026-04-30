@@ -580,7 +580,7 @@ export default function NewSMA({ initialData }) {
 ` }} />
       <Hero data={data} />
       <RegistrosCarousel />
-      <WhyUs />
+      <WhyUs title={data.whyus_title} subtitle={data.whyus_subtitle} items={data.whyus_items} />
       <Infraestructura title={data.infra_title} subtitle={data.infra_subtitle} itemsData={data.infra_items} />
       <Servicios title={data.servicios_title} itemsData={data.servicios_items} />
       <Trazabilidad />
