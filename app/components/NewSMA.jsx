@@ -79,7 +79,7 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
               <span>Km 255.5 · Panamericana Sur · Ica</span>
             </div>
             <div className="infra-map-body">
-              {items.map((item, index) => (
+              {displayItems.map((item, index) => (
                 <div
                   key={index}
                   className={`ia-item${open === index ? ' ia-item--open' : ''}`}
@@ -89,15 +89,15 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
                     onClick={() => setOpen(open === index ? -1 : index)}
                     aria-expanded={open === index}
                   >
-                    <span className="ia-icon-box">{item.icon}</span>
+                    <span className="ia-icon-box">{item.icon || getIcon(item.title, index)}</span>
                     <span className="ia-title">{item.title}</span>
-                    <span className="ia-num">{item.num}</span>
+                    <span className="ia-num">{item.num || item.number}</span>
                     <svg className="ia-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </button>
                   <div className="ia-body">
-                    <p className="ia-desc">{item.desc}</p>
+                    <p className="ia-desc">{item.desc || item.description}</p>
                   </div>
                 </div>
               ))}
@@ -416,6 +416,79 @@ const CertificadoDigital = () => {
   );
 };
 
+const Proceso = ({ title, subtitle, steps }) => {
+  const defaultSteps = [
+    { step_number: 1, title: 'Evaluación', desc: 'Diagnóstico de residuo, volumen y frecuencia. Propuesta según tu modelo operativo.' },
+    { step_number: 2, title: 'Propuesta', desc: 'Contrato por tipo de residuo, frecuencia y volumen. SLA definido por escrito.' },
+    { step_number: 3, title: 'Tratamiento', desc: 'Recepción, pesaje INACAL y tratamiento previo al confinamiento definitivo.' },
+    { step_number: 4, title: 'Disposición', desc: 'Confinamiento en celda HDPE. Economía circular donde aplica la normativa.' },
+    { step_number: 5, title: 'Certificación', desc: 'Certificado de disposición final + declaración SIGERSOL. Cierre de responsabilidad completo.' }
+  ];
+
+  const displaySteps = steps?.length > 0 ? steps : defaultSteps;
+
+  return (
+    <section className="proceso" id="proceso">
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">Nuestro proceso</div>
+          <h2 className="section-titulo" dangerouslySetInnerHTML={{ __html: title || 'De la generación al certificado final.' }} />
+          <p className="section-sub">{subtitle || 'Cinco pasos que garantizan la continuidad de tu operación y el cumplimiento normativo en cada etapa.'}</p>
+        </div>
+        <div className="proceso-steps">
+          {displaySteps.map((step, idx) => (
+            <div className="paso" key={idx}>
+              <div className="paso-circulo">{step.step_number || idx + 1}</div>
+              <div className="paso-titulo">{step.title}</div>
+              <p className="paso-desc">{step.description || step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Sectores = ({ title, subtitle, items }) => {
+  const defaultItems = [
+    { icon_emoji: '⛏️', name: 'Minería y Metalurgia', desc: 'Lodos industriales, relaves y reactivos químicos caducos. Gestión especializada a nivel nacional.' },
+    { icon_emoji: '⚡', name: 'Energía e Hidrocarburos', desc: 'Suelos contaminados, aceites usados y residuos de generación. Exploración hasta refinación.' },
+    { icon_emoji: '🌾', name: 'Agroindustria', desc: 'Envases de agroquímicos con triple lavado y residuos del procesamiento agrícola.' },
+    { icon_emoji: '🏭', name: 'Manufactura y Química', desc: 'Solventes, pinturas, resinas y materiales con características de peligrosidad CRETIB.' },
+    { icon_emoji: '🚢', name: 'Sector Marítimo', desc: 'Cumplimiento MARPOL y gestión de residuos portuarios con certificación.' },
+    { icon_emoji: '🏗️', name: 'Construcción', desc: 'RCD y residuos peligrosos de obra. Gestión durante todo el ciclo constructivo.' },
+    { icon_emoji: '🔌', name: 'Energía Eléctrica', desc: 'Residuos de generación, transmisión y distribución. PCBs y transformadores.' }
+  ];
+
+  const displayItems = items?.length > 0 ? items : defaultItems;
+
+  return (
+    <section className="sectores" id="sectores">
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">Sectores que atendemos</div>
+          <h2 className="section-titulo" dangerouslySetInnerHTML={{ __html: title || 'Tu industria, nuestra <em>responsabilidad.</em>' }} />
+          <p className="section-sub">{subtitle || 'Gestionamos residuos peligrosos y no peligrosos en los sectores más exigentes del Perú.'}</p>
+        </div>
+        <div className="sectores-grid">
+          {displayItems.map((item, idx) => (
+            <div className="sector-card" key={idx}>
+              <div className="sector-icono-box">{item.icon_emoji}</div>
+              <div className="sector-nombre">{item.name}</div>
+              <p className="sector-detalle">{item.detail || item.desc}</p>
+            </div>
+          ))}
+          <div className="sector-card" style={{ background: 'var(--verde-ultra)', borderColor: 'var(--verde-medio)' }}>
+            <div className="sector-icono-box">📞</div>
+            <div className="sector-nombre" style={{ color: 'var(--verde-oscuro)' }}>¿Tu sector?</div>
+            <p className="sector-detalle" style={{ color: 'var(--verde)' }}>Evaluamos cada industria con un diagnóstico personalizado sin costo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function NewSMA({ initialData }) {
   const [mounted, setMounted] = useState(false);
 
@@ -508,107 +581,13 @@ export default function NewSMA({ initialData }) {
       <Hero data={data} />
       <RegistrosCarousel />
       <WhyUs />
-      <Infraestructura />
+      <Infraestructura title={data.infra_title} subtitle={data.infra_subtitle} itemsData={data.infra_items} />
       <Servicios title={data.servicios_title} itemsData={data.servicios_items} />
       <Trazabilidad />
       <CertificadoDigital />
+      <Proceso title={data.proceso_title} subtitle={data.proceso_subtitle} steps={data.proceso_steps} />
+      <Sectores title={data.sectores_title} subtitle={data.sectores_subtitle} items={data.sectores_list} />
       <div dangerouslySetInnerHTML={{ __html: `
-<!-- PROCESO -->
-<section class="proceso" id="proceso">
-  <div class="container">
-    <div class="section-header">
-      <div class="eyebrow">Nuestro proceso</div>
-      <h2 class="section-titulo">De la generación al certificado final.</h2>
-      <p class="section-sub">Cinco pasos que garantizan la continuidad de tu operación y el cumplimiento normativo en cada etapa.</p>
-    </div>
-    <div class="proceso-steps">
-      <div class="paso">
-        <div class="paso-circulo">1</div>
-        <div class="paso-titulo">Evaluación</div>
-        <p class="paso-desc">Diagnóstico de residuo, volumen y frecuencia. Propuesta según tu modelo operativo.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-circulo">2</div>
-        <div class="paso-titulo">Propuesta</div>
-        <p class="paso-desc">Contrato por tipo de residuo, frecuencia y volumen. SLA definido por escrito.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-circulo">3</div>
-        <div class="paso-titulo">Tratamiento</div>
-        <p class="paso-desc">Recepción, pesaje INACAL y tratamiento previo al confinamiento definitivo.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-circulo">4</div>
-        <div class="paso-titulo">Disposición</div>
-        <p class="paso-desc">Confinamiento en celda HDPE. Economía circular donde aplica la normativa.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-circulo">5</div>
-        <div class="paso-titulo">Certificación</div>
-        <p class="paso-desc">Certificado de disposición final + declaración SIGERSOL. Cierre de responsabilidad completo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTORES -->
-<section class="sectores" id="sectores">
-  <div class="container">
-    <div class="section-header">
-      <div class="eyebrow">Sectores que atendemos</div>
-      <h2 class="section-titulo">Tu industria, nuestra <em>responsabilidad.</em></h2>
-      <p class="section-sub">Gestionamos residuos peligrosos y no peligrosos en los sectores más exigentes del Perú.</p>
-    </div>
-    <div class="sectores-grid">
-      <div class="sector-card">
-        <div class="sector-icono-box">⛏️</div>
-        <div class="sector-nombre">Minería y Metalurgia</div>
-        <p class="sector-detalle">Lodos industriales, relaves y reactivos químicos caducos. Gestión especializada a nivel nacional.</p>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icono-box">⚡</div>
-        <div class="sector-nombre">Energía e Hidrocarburos</div>
-        <p class="sector-detalle">Suelos contaminados, aceites usados y residuos de generación. Exploración hasta refinación.</p>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icono-box">🌾</div>
-        <div class="sector-nombre">Agroindustria</div>
-        <p class="sector-detalle">Envases de agroquímicos con triple lavado y residuos del procesamiento agrícola.</p>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icono-box">🏭</div>
-        <div class="sector-nombre">Manufactura y Química</div>
-        <p class="sector-detalle">Solventes, pinturas, resinas y materiales con características de peligrosidad CRETIB.</p>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icono-box">🚢</div>
-        <div class="sector-nombre">Sector Marítimo</div>
-        <p class="sector-detalle">Cumplimiento MARPOL y gestión de residuos portuarios con certificación.</p>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icono-box">🏗️</div>
-        <div class="sector-nombre">Construcción</div>
-        <p class="sector-detalle">RCD y residuos peligrosos de obra. Gestión durante todo el ciclo constructivo.</p>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icono-box">🔌</div>
-        <div class="sector-nombre">Energía Eléctrica</div>
-        <p class="sector-detalle">Residuos de generación, transmisión y distribución. PCBs y transformadores.</p>
-      </div>
-      <div class="sector-card" style="background: var(--verde-ultra); border-color: var(--verde-medio);">
-        <div class="sector-icono-box">📞</div>
-        <div class="sector-nombre" style="color: var(--verde-oscuro);">¿Tu sector?</div>
-        <p class="sector-detalle" style="color: var(--verde);">Evaluamos cada industria con un diagnóstico personalizado sin costo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
 <!-- CERTIFICACIONES -->
 <section class="certs" id="certs">
   <div class="container">
