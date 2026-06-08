@@ -551,7 +551,8 @@ function cotIr(n) {
   document.getElementById(`cpaso${n}`).classList.add('activo');
   cot.paso = n; cotStepper(n);
   if (n === 4) cotResumen();
-  document.getElementById('cotizacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const targetId = window.innerWidth <= 900 ? 'cot-stepper' : 'cotizacion';
+  document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function cotEnviar() {

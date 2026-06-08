@@ -3391,6 +3391,10 @@ footer {
     padding: 30px 20px !important;
   }
 
+  #cot-stepper {
+    scroll-margin-top: 80px !important;
+  }
+
   .cot-fila,
   .cot-tipo-grid,
   .cot-checks {
@@ -3803,5 +3807,104 @@ footer {
   .cert-result-qr img {
     width: 90px;
     height: 90px;
+  }
+}
+
+/* --- MOBILE-FIRST UX/UI POLISH FOR SCREENS < 480px --- */
+@media (max-width: 480px) {
+  #cotizacion .cot-stepper {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 28px !important;
+    padding: 0 4px !important;
+  }
+
+  #cotizacion .cot-step-lbl {
+    display: none !important; /* Hide text labels on mobile to prevent horizontal overflow */
+  }
+
+  #cotizacion .cot-step {
+    flex: 0 0 auto !important;
+  }
+
+  #cotizacion .cot-linea {
+    flex: 1 1 auto !important;
+    margin: 0 8px !important;
+  }
+
+  #cotizacion .cot-der {
+    padding: 28px 16px !important; /* Maximize usable form area */
+  }
+
+  #cotizacion .cot-titulo-paso {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 6px !important;
+  }
+
+  #cotizacion .cot-sub-paso {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 24px !important;
+    color: #6a7565 !important;
+  }
+
+  #cotizacion .cot-campo label {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  /* Form inputs touch-friendly and prevents iOS Safari auto-zoom */
+  #cotizacion input[type="text"],
+  #cotizacion input[type="email"],
+  #cotizacion input[type="tel"],
+  #cotizacion input[type="number"],
+  #cotizacion select,
+  #cotizacion textarea {
+    padding: 12px 14px !important;
+    font-size: 16px !important; 
+    border-radius: 4px !important;
+  }
+
+  /* Need Selector Cards styling polish */
+  #cotizacion .cot-tipo {
+    padding: 14px 12px !important;
+    gap: 10px !important;
+  }
+
+  #cotizacion .cot-tipo-ico {
+    font-size: 18px !important;
+    margin-top: 1px !important;
+  }
+
+  #cotizacion .cot-tipo-txt strong {
+    font-size: 13px !important;
+  }
+
+  #cotizacion .cot-tipo-txt span {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Stepper navigation buttons touch-friendly */
+  #cotizacion .cot-nav {
+    margin-top: 24px !important;
+    padding-top: 16px !important;
+  }
+
+  #cotizacion .cot-btn-sig,
+  #cotizacion .cot-btn-env {
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+    height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #cotizacion .cot-btn-atras {
+    font-size: 14px !important;
   }
 }
