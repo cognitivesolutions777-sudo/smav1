@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import CertificadoDigital from './CertificadoDigital';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import {
@@ -348,73 +349,6 @@ const Trazabilidad = () => {
   );
 };
 
-const CertificadoDigital = () => {
-  return (
-    <section className="certdig" id="consulta-certificado">
-      <div className="container">
-        <div className="section-header">
-          <div className="eyebrow">Auditoría y Trazabilidad</div>
-          <h2 className="section-titulo">Visualiza tu <em>Certificado Digital.</em></h2>
-          <p className="section-sub">Ingresa el RUC de tu empresa y el número de certificado para verificar y descargar tu constancia oficial de disposición final.</p>
-        </div>
-        
-        <div className="cert-panel-layout">
-          <div className="cert-form-card">
-            <div className="cert-form-hdr">
-              <ShieldCheck />
-              CONSULTA DE CERTIFICADO
-            </div>
-            <div className="cert-form-body">
-              <div className="cert-input-row">
-                <label>RUC DEL GENERADOR *</label>
-                <input type="text" placeholder="Ej. 20512345678" />
-              </div>
-              <div className="cert-input-row">
-                <label>N° DE CERTIFICADO *</label>
-                <input type="text" placeholder="EJ. SMA-2025-A7X3K2" />
-              </div>
-              <button className="cert-btn-consultar">
-                <Magnifier /> Consultar certificado
-              </button>
-              <p className="cert-form-footer">
-                ¿No tienes tu número de certificado? Escríbenos a <a href="#">contacto@smi.pe</a> indicando tu RUC y fecha de servicio.
-              </p>
-            </div>
-          </div>
-          
-          <div className="cert-info-side">
-            <div className="cert-mini-card">
-              <div className="cert-mini-icon"><FileText /></div>
-              <div className="cert-mini-content">
-                <strong>Certificado PDF con QR</strong>
-                <p>El documento incluye todos los datos del servicio, firma digital SMA y código QR de verificación de autenticidad.</p>
-              </div>
-            </div>
-            <div className="cert-mini-card">
-              <div className="cert-mini-icon"><CircleCheck /></div>
-              <div className="cert-mini-content">
-                <strong>Válido ante OEFA y auditorías</strong>
-                <p>Acredita la disposición final de tus residuos. Aceptado por FFA, MINAM, SENACE y auditorías internas.</p>
-              </div>
-            </div>
-            <div className="cert-mini-card">
-              <div className="cert-mini-icon"><ShieldCheck /></div>
-              <div className="cert-mini-content">
-                <strong>Número único no correlativo</strong>
-                <p>Cada certificado tiene un código alfanumérico único generado de forma aleatoria. No es posible predecir ni falsificar.</p>
-              </div>
-            </div>
-            
-            <div className="cert-demo-box">
-              <strong>¿Quieres generar un certificado de demostración?</strong>
-              <p>Ingresa cualquier RUC de 11 dígitos y haz clic en "Consultar" para ver cómo se genera el PDF con QR de ejemplo.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const Proceso = ({ title, subtitle, steps }) => {
   const defaultSteps = [
