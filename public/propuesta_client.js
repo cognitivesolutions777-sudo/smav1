@@ -16,7 +16,7 @@ function audGenTicket() {
 }
 
 function audGenGuia() {
-  const series = ['T001','T002','T003','T004'];
+  const series = ['T001', 'T002', 'T003', 'T004'];
   const s = series[Math.floor(Math.random() * series.length)];
   return s + '-' + String(Math.floor(100000 + Math.random() * 899999));
 }
@@ -54,8 +54,8 @@ function audGetRazon(ruc) {
 }
 
 function audFormatFecha(d) {
-  return d.getDate().toString().padStart(2,'0') + '/' +
-    (d.getMonth()+1).toString().padStart(2,'0') + '/' + d.getFullYear();
+  return d.getDate().toString().padStart(2, '0') + '/' +
+    (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getFullYear();
 }
 
 function audGenerar() {
@@ -80,29 +80,29 @@ function audGenerar() {
   const fechaEmision = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - Math.floor(Math.random() * 30));
 
   audCert = {
-    ncert:   ncert && ncert.length > 4 ? ncert.toUpperCase() : audGenCodigo(),
-    ruc:     ruc,
-    razon:   audGetRazon(ruc),
-    ticket:  audGenTicket(),
-    guia:    audGenGuia(),
-    manif:   audGenManifiesto(),
-    tipo:    audTipos[Math.floor(Math.random() * audTipos.length)],
-    tn:      (Math.random() * 45 + 0.5).toFixed(3),
-    fecha:   audFormatFecha(fechaEmision),
-    hashQR:  'https://sma.net.pe/cert/' + (ncert || audGenCodigo()).replace(/[^A-Z0-9]/g,'') + '/' + ruc,
+    ncert: ncert && ncert.length > 4 ? ncert.toUpperCase() : audGenCodigo(),
+    ruc: ruc,
+    razon: audGetRazon(ruc),
+    ticket: audGenTicket(),
+    guia: audGenGuia(),
+    manif: audGenManifiesto(),
+    tipo: audTipos[Math.floor(Math.random() * audTipos.length)],
+    tn: (Math.random() * 45 + 0.5).toFixed(3),
+    fecha: audFormatFecha(fechaEmision),
+    hashQR: 'https://sma.net.pe/cert/' + (ncert || audGenCodigo()).replace(/[^A-Z0-9]/g, '') + '/' + ruc,
   };
 
   // Poblar la vista previa
-  document.getElementById('aud-d-ncert').textContent  = audCert.ncert;
-  document.getElementById('aud-d-ruc').textContent    = audCert.ruc;
-  document.getElementById('aud-d-razon').textContent  = audCert.razon;
+  document.getElementById('aud-d-ncert').textContent = audCert.ncert;
+  document.getElementById('aud-d-ruc').textContent = audCert.ruc;
+  document.getElementById('aud-d-razon').textContent = audCert.razon;
   document.getElementById('aud-d-ticket').textContent = audCert.ticket;
-  document.getElementById('aud-d-guia').textContent   = audCert.guia;
-  document.getElementById('aud-d-manif').textContent  = audCert.manif;
-  document.getElementById('aud-d-tipo').textContent   = audCert.tipo;
-  document.getElementById('aud-d-tn').textContent     = audCert.tn + ' TN';
-  document.getElementById('aud-d-fecha').textContent  = audCert.fecha;
-  document.getElementById('aud-badge').textContent    = '● VÁLIDO';
+  document.getElementById('aud-d-guia').textContent = audCert.guia;
+  document.getElementById('aud-d-manif').textContent = audCert.manif;
+  document.getElementById('aud-d-tipo').textContent = audCert.tipo;
+  document.getElementById('aud-d-tn').textContent = audCert.tn + ' TN';
+  document.getElementById('aud-d-fecha').textContent = audCert.fecha;
+  document.getElementById('aud-badge').textContent = '● VÁLIDO';
 
   const res = document.getElementById('aud-resultado');
   res.style.display = 'block';
@@ -141,7 +141,7 @@ function audDescargarPDF() {
       try {
         if (qrImg.tagName === 'CANVAS') qrDataUrl = qrImg.toDataURL('image/png');
         else qrDataUrl = qrImg.src;
-      } catch(e) {}
+      } catch (e) { }
       document.body.removeChild(qrDiv);
       audBuildPDF(qrDataUrl);
     }, 400);
@@ -161,22 +161,22 @@ function audBuildPDF(qrDataUrl) {
 
   // Paleta reducida
   const C = {
-    verde:    [61, 107, 28],
-    verdeClaro:[90, 154, 42],
-    negro:    [28, 33, 24],
-    gris1:    [80, 90, 75],         // texto secundario
-    gris2:    [140, 150, 135],      // texto terciario / footers
-    linea:    [210, 218, 205],      // bordes de tabla
-    fondoFila:[248, 250, 246],      // fila alternada
-    blanco:   [255, 255, 255],
+    verde: [61, 107, 28],
+    verdeClaro: [90, 154, 42],
+    negro: [28, 33, 24],
+    gris1: [80, 90, 75],         // texto secundario
+    gris2: [140, 150, 135],      // texto terciario / footers
+    linea: [210, 218, 205],      // bordes de tabla
+    fondoFila: [248, 250, 246],      // fila alternada
+    blanco: [255, 255, 255],
   };
 
-  const setFill  = (c) => doc.setFillColor(...c);
-  const setStroke= (c) => doc.setDrawColor(...c);
+  const setFill = (c) => doc.setFillColor(...c);
+  const setStroke = (c) => doc.setDrawColor(...c);
   const setColor = (c) => doc.setTextColor(...c);
-  const bold     = (sz) => { doc.setFont('helvetica','bold');   doc.setFontSize(sz); };
-  const normal   = (sz) => { doc.setFont('helvetica','normal'); doc.setFontSize(sz); };
-  const label    = (sz) => { doc.setFont('helvetica','bold');   doc.setFontSize(sz); };
+  const bold = (sz) => { doc.setFont('helvetica', 'bold'); doc.setFontSize(sz); };
+  const normal = (sz) => { doc.setFont('helvetica', 'normal'); doc.setFontSize(sz); };
+  const label = (sz) => { doc.setFont('helvetica', 'bold'); doc.setFontSize(sz); };
 
   // ── FONDO BLANCO ────────────────────────────────────────────────
   setFill(C.blanco);
@@ -269,14 +269,14 @@ function audBuildPDF(qrDataUrl) {
 
   const filas = [
     ['Raz\u00F3n Social del Generador', audCert.razon],
-    ['RUC del Generador',              audCert.ruc],
-    ['N\u00B0 de Ticket',              audCert.ticket],
-    ['Gu\u00EDa de Remisi\u00F3n',     audCert.guia],
+    ['RUC del Generador', audCert.ruc],
+    ['N\u00B0 de Ticket', audCert.ticket],
+    ['Gu\u00EDa de Remisi\u00F3n', audCert.guia],
     ['N\u00B0 de Manifiesto SIGERSOL', audCert.manif],
-    ['Tipo de Residuo',                audCert.tipo],
-    ['Cantidad Dispuesta (TN)',        audCert.tn + ' Tn \u2014 Balanza certificada INACAL'],
-    ['Instalaci\u00F3n de Destino',    'Relleno de Seguridad SMA \u00B7 Km 255.5 Pan. Sur, Salas \u2013 Ica'],
-    ['Operador EO-RS',                 'SMA Servicios Medioambientales S.A. \u00B7 N\u00B000198-2021-MINAM/VMGA/DGRS'],
+    ['Tipo de Residuo', audCert.tipo],
+    ['Cantidad Dispuesta (TN)', audCert.tn + ' Tn \u2014 Balanza certificada INACAL'],
+    ['Instalaci\u00F3n de Destino', 'Relleno de Seguridad SMA \u00B7 Km 255.5 Pan. Sur, Salas \u2013 Ica'],
+    ['Operador EO-RS', 'SMA Servicios Medioambientales S.A. \u00B7 N\u00B000198-2021-MINAM/VMGA/DGRS'],
   ];
 
   const ROW_H = 11;
@@ -326,7 +326,7 @@ function audBuildPDF(qrDataUrl) {
   doc.rect(ML, y, QR_SZ, QR_SZ, 'S');
 
   if (qrDataUrl) {
-    try { doc.addImage(qrDataUrl, 'PNG', ML, y, QR_SZ, QR_SZ); } catch(e) {}
+    try { doc.addImage(qrDataUrl, 'PNG', ML, y, QR_SZ, QR_SZ); } catch (e) { }
   }
 
   // Texto de verificación — a la derecha del QR
@@ -432,146 +432,146 @@ function audBuildPDF(qrDataUrl) {
 
 
 
-  // Estado aislado del formulario
-  var cot = { paso: 1, tipo: null, frec: null, priv: false };
+// Estado aislado del formulario
+var cot = { paso: 1, tipo: null, frec: null, priv: false };
 
-  function cotTipo(el, val) {
-    document.querySelectorAll('.cot-tipo').forEach(o => o.classList.remove('sel'));
-    el.classList.add('sel'); cot.tipo = val;
-    document.getElementById('cerr-tipo').classList.remove('vis');
-    const c = document.getElementById('ccond-cambio');
-    val === 'cambio' ? c.classList.add('vis') : c.classList.remove('vis');
+function cotTipo(el, val) {
+  document.querySelectorAll('.cot-tipo').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel'); cot.tipo = val;
+  document.getElementById('cerr-tipo').classList.remove('vis');
+  const c = document.getElementById('ccond-cambio');
+  val === 'cambio' ? c.classList.add('vis') : c.classList.remove('vis');
+}
+
+function cotChk(el) {
+  el.classList.toggle('sel');
+  el.querySelector('.cot-chk-box').textContent = el.classList.contains('sel') ? '✓' : '';
+}
+
+function cotChkOtro(el) {
+  cotChk(el);
+  const c = document.getElementById('ccond-otro');
+  el.classList.contains('sel') ? c.classList.add('vis') : c.classList.remove('vis');
+}
+
+function cotFrec(el, val) {
+  document.querySelectorAll('.cot-frec').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel'); cot.frec = val;
+  document.getElementById('cerr-frec').classList.remove('vis');
+}
+
+function cotRegion() {
+  const v = document.getElementById('c-region').value;
+  const c = document.getElementById('ccond-region');
+  v === 'Otra región' ? c.classList.add('vis') : c.classList.remove('vis');
+}
+
+function cotUrgencia() {
+  const v = document.getElementById('c-urgencia').value;
+  const a = document.getElementById('cot-alerta');
+  v === 'urgente' ? a.classList.add('vis') : a.classList.remove('vis');
+}
+
+function cotPriv() {
+  cot.priv = !cot.priv;
+  document.getElementById('cot-priv').classList.toggle('sel', cot.priv);
+  document.getElementById('cot-priv-box').textContent = cot.priv ? '✓' : '';
+  if (cot.priv) document.getElementById('cerr-priv').classList.remove('vis');
+}
+
+function cotVal(n) {
+  let ok = true;
+  const req = (id, eid) => {
+    const el = document.getElementById(id);
+    const er = document.getElementById(eid);
+    if (!el || !el.value.trim()) { el && el.classList.add('err'); er && er.classList.add('vis'); ok = false; }
+    else { el && el.classList.remove('err'); er && er.classList.remove('vis'); }
+  };
+  if (n === 1) {
+    req('c-nombre', 'cerr-nombre'); req('c-cargo', 'cerr-cargo'); req('c-empresa', 'cerr-empresa');
+    const em = document.getElementById('c-email');
+    if (!em.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)) { em.classList.add('err'); document.getElementById('cerr-email').classList.add('vis'); ok = false; }
+    else { em.classList.remove('err'); document.getElementById('cerr-email').classList.remove('vis'); }
+    req('c-tel', 'cerr-tel');
+    if (!cot.tipo) { document.getElementById('cerr-tipo').classList.add('vis'); ok = false; }
   }
-
-  function cotChk(el) {
-    el.classList.toggle('sel');
-    el.querySelector('.cot-chk-box').textContent = el.classList.contains('sel') ? '✓' : '';
+  if (n === 2) {
+    if (!document.querySelectorAll('#cchk-cat .sel').length) { document.getElementById('cerr-cat').classList.add('vis'); ok = false; } else document.getElementById('cerr-cat').classList.remove('vis');
+    if (!document.querySelectorAll('#cchk-tipos .sel').length) { document.getElementById('cerr-tipos').classList.add('vis'); ok = false; } else document.getElementById('cerr-tipos').classList.remove('vis');
   }
+  if (n === 3) { req('c-region', 'cerr-region'); req('c-vol', 'cerr-vol'); if (!cot.frec) { document.getElementById('cerr-frec').classList.add('vis'); ok = false; } }
+  return ok;
+}
 
-  function cotChkOtro(el) {
-    cotChk(el);
-    const c = document.getElementById('ccond-otro');
-    el.classList.contains('sel') ? c.classList.add('vis') : c.classList.remove('vis');
+function cotStepper(actual) {
+  for (let i = 1; i <= 4; i++) {
+    const n = document.getElementById(`csn${i}`); const l = document.getElementById(`csl${i}`);
+    n.className = 'cot-step-n'; l.className = 'cot-step-lbl';
+    if (i < actual) { n.classList.add('hecho'); n.textContent = '✓'; }
+    else if (i === actual) { n.classList.add('activo'); n.textContent = i; l.classList.add('activo'); }
+    else { n.textContent = i; }
+    if (i < 4) document.getElementById(`clin${i}`).className = 'cot-linea' + (i < actual ? ' hecha' : '');
   }
+}
 
-  function cotFrec(el, val) {
-    document.querySelectorAll('.cot-frec').forEach(b => b.classList.remove('sel'));
-    el.classList.add('sel'); cot.frec = val;
-    document.getElementById('cerr-frec').classList.remove('vis');
-  }
-
-  function cotRegion() {
-    const v = document.getElementById('c-region').value;
-    const c = document.getElementById('ccond-region');
-    v === 'Otra región' ? c.classList.add('vis') : c.classList.remove('vis');
-  }
-
-  function cotUrgencia() {
-    const v = document.getElementById('c-urgencia').value;
-    const a = document.getElementById('cot-alerta');
-    v === 'urgente' ? a.classList.add('vis') : a.classList.remove('vis');
-  }
-
-  function cotPriv() {
-    cot.priv = !cot.priv;
-    document.getElementById('cot-priv').classList.toggle('sel', cot.priv);
-    document.getElementById('cot-priv-box').textContent = cot.priv ? '✓' : '';
-    if (cot.priv) document.getElementById('cerr-priv').classList.remove('vis');
-  }
-
-  function cotVal(n) {
-    let ok = true;
-    const req = (id, eid) => {
-      const el = document.getElementById(id);
-      const er = document.getElementById(eid);
-      if (!el || !el.value.trim()) { el && el.classList.add('err'); er && er.classList.add('vis'); ok = false; }
-      else { el && el.classList.remove('err'); er && er.classList.remove('vis'); }
-    };
-    if (n === 1) {
-      req('c-nombre','cerr-nombre'); req('c-cargo','cerr-cargo'); req('c-empresa','cerr-empresa');
-      const em = document.getElementById('c-email');
-      if (!em.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)) { em.classList.add('err'); document.getElementById('cerr-email').classList.add('vis'); ok = false; }
-      else { em.classList.remove('err'); document.getElementById('cerr-email').classList.remove('vis'); }
-      req('c-tel','cerr-tel');
-      if (!cot.tipo) { document.getElementById('cerr-tipo').classList.add('vis'); ok = false; }
+function cotResumen() {
+  const tm = { recurrente: 'Residuos recurrentes (contrato)', puntual: 'Evento puntual', nuevo: 'Primera vez', cambio: 'Cambio de operador' };
+  const cats = [...document.querySelectorAll('#cchk-cat .sel')].map(e => {
+    const lbl = e.querySelector('.cot-chk-lbl').textContent.trim();
+    if (lbl === '📋 Otros') {
+      const otro = document.getElementById('c-cat-otro').value.trim();
+      return otro ? `Otros (${otro})` : 'Otros';
     }
-    if (n === 2) {
-      if (!document.querySelectorAll('#cchk-cat .sel').length) { document.getElementById('cerr-cat').classList.add('vis'); ok = false; } else document.getElementById('cerr-cat').classList.remove('vis');
-      if (!document.querySelectorAll('#cchk-tipos .sel').length) { document.getElementById('cerr-tipos').classList.add('vis'); ok = false; } else document.getElementById('cerr-tipos').classList.remove('vis');
+    return lbl;
+  }).join(', ');
+  const tipos = [...document.querySelectorAll('#cchk-tipos .sel')].map(e => e.querySelector('.cot-chk-lbl').textContent.trim()).join(', ');
+  const reg = document.getElementById('c-region').value === 'Otra región' ? document.getElementById('c-region-otro').value : document.getElementById('c-region').value;
+  const filas = [
+    ['Nombre', document.getElementById('c-nombre').value],
+    ['Empresa', document.getElementById('c-empresa').value],
+    ['Correo', document.getElementById('c-email').value],
+    ['Teléfono', document.getElementById('c-tel').value],
+    ['Tipo de necesidad', tm[cot.tipo] || '—'],
+    ['Categoría de residuo', cats || '—'],
+    ['Tipos específicos', tipos || '—'],
+    ['Región de generación', reg || '—'],
+    ['Volumen estimado', `${document.getElementById('c-vol').value} ${document.getElementById('c-unidad').value}`],
+    ['Frecuencia', cot.frec || '—'],
+    ['Plazo requerido', document.getElementById('c-urgencia').value || '—'],
+  ];
+  const notas = document.getElementById('c-notas').value;
+  if (notas) filas.push(['Notas adicionales', notas]);
+  document.getElementById('cot-resumen-body').innerHTML = filas.map(([k, v]) => `<div class="cot-res-fila"><span class="cot-res-k">${k}</span><span class="cot-res-v">${v}</span></div>`).join('');
+}
+
+function cotIr(n) {
+  const actual = cot.paso;
+  if (n > actual && !cotVal(actual)) return;
+  document.getElementById(`cpaso${actual}`).classList.remove('activo');
+  document.getElementById(`cpaso${n}`).classList.add('activo');
+  cot.paso = n; cotStepper(n);
+  if (n === 4) cotResumen();
+  document.getElementById('cotizacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function cotEnviar() {
+  if (!cot.priv) { document.getElementById('cerr-priv').classList.add('vis'); return; }
+  const tm = { recurrente: 'Residuos recurrentes', puntual: 'Evento puntual', nuevo: 'Primera vez', cambio: 'Cambio de operador' };
+  const cats = [...document.querySelectorAll('#cchk-cat .sel')].map(e => {
+    const lbl = e.querySelector('.cot-chk-lbl').textContent.trim();
+    if (lbl === '📋 Otros') {
+      const otro = document.getElementById('c-cat-otro').value.trim();
+      return otro ? `Otros (${otro})` : 'Otros';
     }
-    if (n === 3) { req('c-region','cerr-region'); req('c-vol','cerr-vol'); if (!cot.frec) { document.getElementById('cerr-frec').classList.add('vis'); ok = false; } }
-    return ok;
-  }
-
-  function cotStepper(actual) {
-    for (let i = 1; i <= 4; i++) {
-      const n = document.getElementById(`csn${i}`); const l = document.getElementById(`csl${i}`);
-      n.className = 'cot-step-n'; l.className = 'cot-step-lbl';
-      if (i < actual) { n.classList.add('hecho'); n.textContent = '✓'; }
-      else if (i === actual) { n.classList.add('activo'); n.textContent = i; l.classList.add('activo'); }
-      else { n.textContent = i; }
-      if (i < 4) document.getElementById(`clin${i}`).className = 'cot-linea' + (i < actual ? ' hecha' : '');
-    }
-  }
-
-  function cotResumen() {
-    const tm = { recurrente:'Residuos recurrentes (contrato)', puntual:'Evento puntual', nuevo:'Primera vez', cambio:'Cambio de operador' };
-    const cats = [...document.querySelectorAll('#cchk-cat .sel')].map(e => {
-      const lbl = e.querySelector('.cot-chk-lbl').textContent.trim();
-      if (lbl === '📋 Otros') {
-        const otro = document.getElementById('c-cat-otro').value.trim();
-        return otro ? `Otros (${otro})` : 'Otros';
-      }
-      return lbl;
-    }).join(', ');
-    const tipos = [...document.querySelectorAll('#cchk-tipos .sel')].map(e => e.querySelector('.cot-chk-lbl').textContent.trim()).join(', ');
-    const reg = document.getElementById('c-region').value === 'Otra región' ? document.getElementById('c-region-otro').value : document.getElementById('c-region').value;
-    const filas = [
-      ['Nombre', document.getElementById('c-nombre').value],
-      ['Empresa', document.getElementById('c-empresa').value],
-      ['Correo', document.getElementById('c-email').value],
-      ['Teléfono', document.getElementById('c-tel').value],
-      ['Tipo de necesidad', tm[cot.tipo] || '—'],
-      ['Categoría de residuo', cats || '—'],
-      ['Tipos específicos', tipos || '—'],
-      ['Región de generación', reg || '—'],
-      ['Volumen estimado', `${document.getElementById('c-vol').value} ${document.getElementById('c-unidad').value}`],
-      ['Frecuencia', cot.frec || '—'],
-      ['Plazo requerido', document.getElementById('c-urgencia').value || '—'],
-    ];
-    const notas = document.getElementById('c-notas').value;
-    if (notas) filas.push(['Notas adicionales', notas]);
-    document.getElementById('cot-resumen-body').innerHTML = filas.map(([k,v]) => `<div class="cot-res-fila"><span class="cot-res-k">${k}</span><span class="cot-res-v">${v}</span></div>`).join('');
-  }
-
-  function cotIr(n) {
-    const actual = cot.paso;
-    if (n > actual && !cotVal(actual)) return;
-    document.getElementById(`cpaso${actual}`).classList.remove('activo');
-    document.getElementById(`cpaso${n}`).classList.add('activo');
-    cot.paso = n; cotStepper(n);
-    if (n === 4) cotResumen();
-    document.getElementById('cotizacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function cotEnviar() {
-    if (!cot.priv) { document.getElementById('cerr-priv').classList.add('vis'); return; }
-    const tm = { recurrente:'Residuos recurrentes', puntual:'Evento puntual', nuevo:'Primera vez', cambio:'Cambio de operador' };
-    const cats = [...document.querySelectorAll('#cchk-cat .sel')].map(e => {
-      const lbl = e.querySelector('.cot-chk-lbl').textContent.trim();
-      if (lbl === '📋 Otros') {
-        const otro = document.getElementById('c-cat-otro').value.trim();
-        return otro ? `Otros (${otro})` : 'Otros';
-      }
-      return lbl;
-    }).join(', ');
-    const tipos = [...document.querySelectorAll('#cchk-tipos .sel')].map(e => e.querySelector('.cot-chk-lbl').textContent.trim()).join(', ');
-    const reg = document.getElementById('c-region').value === 'Otra región' ? document.getElementById('c-region-otro').value : document.getElementById('c-region').value;
-    const nombre = document.getElementById('c-nombre').value;
-    const empresa = document.getElementById('c-empresa').value;
-    const asunto = encodeURIComponent(`Solicitud de cotización — ${empresa} — SMA`);
-    const cuerpo = encodeURIComponent(
-`SOLICITUD DE COTIZACIÓN — SMA SERVICIOS MEDIOAMBIENTALES
+    return lbl;
+  }).join(', ');
+  const tipos = [...document.querySelectorAll('#cchk-tipos .sel')].map(e => e.querySelector('.cot-chk-lbl').textContent.trim()).join(', ');
+  const reg = document.getElementById('c-region').value === 'Otra región' ? document.getElementById('c-region-otro').value : document.getElementById('c-region').value;
+  const nombre = document.getElementById('c-nombre').value;
+  const empresa = document.getElementById('c-empresa').value;
+  const asunto = encodeURIComponent(`Solicitud de cotización — ${empresa} — SMA`);
+  const cuerpo = encodeURIComponent(
+    `SOLICITUD DE COTIZACIÓN — SMA SERVICIOS MEDIOAMBIENTALES
 =========================================================
 
 DATOS DE CONTACTO
@@ -601,39 +601,16 @@ ${document.getElementById('c-notas').value || '(ninguna)'}
 
 =========================================================
 Enviado desde: Web SMA — sma.net.pe`);
-    const correoUsuario = document.getElementById('c-email').value;
-    window.location.href = `mailto:datadriven111@gmail.com?cc=${correoUsuario}&subject=${asunto}&body=${cuerpo}`;
-    for (let i = 1; i <= 4; i++) document.getElementById(`cpaso${i}`).classList.remove('activo');
-    document.getElementById('cot-stepper').style.display = 'none';
-    document.getElementById('cot-exito').classList.add('vis');
-  }
-
-  function cotReset() {
-    cot.paso = 1; cot.tipo = null; cot.frec = null; cot.priv = false;
-    document.getElementById('cot-stepper').style.display = 'flex';
-  
+  const correoUsuario = document.getElementById('c-email').value;
+  window.location.href = `mailto:datadriven111@gmail.com?cc=contacto@sma.net.pe,${correoUsuario}&subject=${asunto}&body=${cuerpo}`;
+  for (let i = 1; i <= 4; i++) document.getElementById(`cpaso${i}`).classList.remove('activo');
+  document.getElementById('cot-stepper').style.display = 'none';
+  document.getElementById('cot-exito').classList.add('vis');
 }
 
-  // Mobile Menu Logic
-if (!window.mobileMenuInitialized) {
-  window.mobileMenuInitialized = true;
-  document.addEventListener('click', function(e) {
-    if (e.target && e.target.id === 'mobile-btn') {
-      const navLinks = document.querySelector('.nav-links');
-      if (navLinks) {
-        navLinks.classList.toggle('active');
-      }
-    }
-    
-    const megaToggle = e.target && e.target.closest && e.target.closest('#mega-toggle');
-    if (megaToggle) {
-      if (window.innerWidth <= 900) {
-        e.preventDefault();
-        const mega = document.querySelector('.megamenu');
-        if (mega) {
-          mega.classList.toggle('active');
-        }
-      }
-    }
-  });
+function cotReset() {
+  cot.paso = 1; cot.tipo = null; cot.frec = null; cot.priv = false;
+  document.getElementById('cot-stepper').style.display = 'flex';
+
 }
+

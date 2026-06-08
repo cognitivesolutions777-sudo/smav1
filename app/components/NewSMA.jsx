@@ -17,6 +17,7 @@ import {
   FileText,
 } from "@gravity-ui/icons";
 import '../propuesta.css';
+import Script from 'next/script';
 import Hero from './Hero';
 import WhyUs from './WhyUs';
 
@@ -478,6 +479,7 @@ export default function NewSMA({ initialData }) {
 
   return (
     <>
+      <Script src="/propuesta_client.js" strategy="afterInteractive" />
       <div dangerouslySetInnerHTML={{
         __html: `
 
