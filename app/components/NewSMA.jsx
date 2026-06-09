@@ -107,16 +107,16 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
           </div>
 
           <div className="infra-right">
-            <div className="infra-stat">
+            {/*<div className="infra-stat">
               <div className="infra-stat-num">+10</div>
               <div className="infra-stat-label">Años de excelencia operativa</div>
               <div className="infra-stat-desc">Operación continua en Perú bajo normativa MINAM, OEFA y regulación ambiental vigente.</div>
-            </div>
-            <div className="infra-stat">
+            </div>*/}
+            {/*<div className="infra-stat">
               <div className="infra-stat-num">80 TN</div>
               <div className="infra-stat-label">Capacidad balanza electrónica</div>
               <div className="infra-stat-desc">Certificada por laboratorios acreditados ante INACAL. Precisión metrológica garantizada en cada operación.</div>
-            </div>
+            </div>*/}
             <div className="infra-locations">
               <div className="infra-loc-titulo">Sedes operativas</div>
               <div className="infra-loc-item">
@@ -650,12 +650,6 @@ export default function NewSMA({ initialData }) {
           <div class="cot-prom">
             <div class="cot-prom-ico">📄</div>
             <div class="cot-prom-txt"><strong>Propuesta con certificados</strong><span>Incluimos constancias regulatorias vigentes.</span></div>
-          </div>
-          <div class="cot-prom">
-            <div class="cot-prom-ico verde">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6V12C3 16.97 7.02 21.61 12 23C16.98 21.61 21 16.97 21 12V6L12 2Z" fill="rgba(123,191,62,0.25)" stroke="#7bbf3e" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="#7bbf3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="cot-prom-txt"><strong class="verde-txt">Validación Certificado Digital</strong><span>Registros MINAM, SENACE y DIGESA verificables en línea.</span></div>
           </div>
         </div>
         <div class="cot-divider"></div>
