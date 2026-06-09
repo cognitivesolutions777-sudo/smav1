@@ -75,7 +75,15 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
         </div>
         <div className="infra-layout">
           <div className="infra-map">
-            <img src="/extracted_image_2.jpg" alt="Mapa de cobertura nacional SMA – Zona estratégica Ica/Sur" className="infra-mapa-img" />
+            <iframe
+              src="https://maps.google.com/maps?q=-14.008,-76.012&t=&z=9&ie=UTF8&iwloc=&output=embed"
+              className="infra-mapa-img"
+              style={{ border: 0, width: '100%', height: '100%', minHeight: '300px', maxHeight: '50vh' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación Relleno de Seguridad SMA - Ica"
+            ></iframe>
             <div className="infra-map-header">
               <strong>Infraestructura &amp; Cobertura</strong>
               <span>Km 255.5 · Panamericana Sur · Ica</span>

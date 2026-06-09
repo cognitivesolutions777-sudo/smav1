@@ -159,12 +159,26 @@ nav {
   background: var(--verde-oscuro);
 }
 
-/* ── HERO ───────────────────────────────── */
 .hero {
   padding-top: 72px;
-  min-height: 100vh;
+  min-height: min(100vh, 900px);
   display: grid;
   grid-template-columns: 55% 45%;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-left {
+    padding: 60px var(--container-padding) 40px;
+  }
+  .hero-right {
+    min-height: 400px;
+    height: auto;
+    padding-bottom: 40px;
+  }
 }
 
 .hero-left {
@@ -307,6 +321,7 @@ nav {
   letter-spacing: 1px;
 }
 
+
 .hero-right {
   background: var(--verde-oscuro);
   position: relative;
@@ -415,10 +430,11 @@ nav {
 
 .hcs-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
 }
 
 .hcs-dot {
@@ -590,7 +606,7 @@ section {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 36px;
+  padding: 12px;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
@@ -1115,7 +1131,7 @@ section {
 .servicios-grid-premium {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 10px;
 }
 
 .serv-card-premium {

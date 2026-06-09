@@ -57,11 +57,24 @@ const Hero = ({ data = {} }) => {
         </div>*/}
 
         <div className="hero-contact-strip">
-          <div className="hcs-item"><div className="hcs-dot"></div> Infraestructura de disposición: Km 255.5 Panamericana Sur, Ica</div>
-          <div className="hcs-item"><div className="hcs-dot"></div> Oficina: Lord Nelson 354, Miraflores, Lima</div>
           <div className="hcs-item">
-            <div className="hcs-dot"></div>
-            <a href="mailto:contacto@sma.com.pe" style={{ color: 'inherit' }}> Correo corporativo:contacto@sma.com.pe</a> · (051) 994 624 116
+            <div className="hcs-dot" style={{ marginTop: '6px' }}></div>
+            <span>Infraestructura de disposición: Km 255.5 Panamericana Sur, Ica</span>
+          </div>
+          <div className="hcs-item">
+            <div className="hcs-dot" style={{ marginTop: '6px' }}></div>
+            <span>Oficina: Lord Nelson 354, Miraflores, Lima</span>
+          </div>
+          <div className="hcs-item">
+            <div className="hcs-dot" style={{ marginTop: '6px' }}></div>
+            <span>
+              <a href="mailto:contacto@sma.com.pe" style={{ color: 'inherit' }}>Correo corporativo: contacto@sma.com.pe</a>
+            </span>
+          </div>
+          <div className="hcs-item">
+            <div className="hcs-dot" style={{ marginTop: '6px' }}></div>
+            <span>Celular: +51 994 624 116
+            </span>
           </div>
         </div>
       </div>
