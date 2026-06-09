@@ -531,7 +531,7 @@ export default function NewSMA({ initialData }) {
     <div class="section-header">
       <div class="eyebrow">Respaldo institucional</div>
       <h2 class="section-titulo">Respaldados por la <em>autoridad ambiental.</em></h2>
-      <p class="section-sub">Operamos bajo los más altos estándares del MINAM, DIGESA y SENACE. Todos los registros vigentes y auditables.</p>
+      <p class="section-sub">Operamos bajo los más altos estándares. Todos los registros vigentes y auditables.</p>
     </div>
     <div class="certs-grid">
       <div class="cert-card">
