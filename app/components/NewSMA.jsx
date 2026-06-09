@@ -282,23 +282,23 @@ const Trazabilidad = () => {
   const steps = [
     {
       num: '01',
-      title: 'Generación certificada',
-      desc: 'Registro de origen con datos del generador, tipo de residuo y clasificación normativa MINAM.',
+      title: 'Generación del residuo',
+      desc: 'Registro de origen con datos del generador, tipo de residuo y clasificación.',
     },
     {
       num: '02',
       title: 'Recolección con EO-RS',
-      desc: 'Manifiesto verificado antes de autorizar ingreso. Transporte documentado con EO-RS certificada.',
+      desc: 'Manifiesto verificado antes de autorizar ingreso. Transporte con EO-RS autorizada.',
     },
     {
       num: '03',
-      title: 'Neutralización / Inertización',
-      desc: 'Tratamiento previo al confinamiento en infraestructura propia autorizada por SENACE.',
+      title: 'Tratamiento de residuos',
+      desc: 'Tratamiento previo al confinamiento en infraestructura.',
     },
     {
       num: '04',
-      title: 'Disposición final documentada',
-      desc: 'Pesaje INACAL + certificado de disposición final. Declaración SIGERSOL incluida.',
+      title: 'Disposición final de residuos',
+      desc: 'Confinamiento de residuos dentro de las celdas de seguridad.',
     },
   ];
 
@@ -336,11 +336,11 @@ const Trazabilidad = () => {
                 <div className="traza-feat-titulo">Cobertura nacional</div>
                 <p className="traza-feat-desc">Red de EO-RS aliadas para operaciones en todo el país.</p>
               </div>
-              <div className="traza-feat-card">
+              {/*<div className="traza-feat-card">
                 <div className="traza-feat-icono-box"><TriangleExclamation /></div>
                 <div className="traza-feat-titulo">Respuesta &lt;24h</div>
                 <p className="traza-feat-desc">Equipo técnico disponible para emergencias y urgencias operativas.</p>
-              </div>
+              </div>*/}
             </div>
           </div>
 

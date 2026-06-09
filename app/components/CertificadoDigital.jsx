@@ -5,27 +5,27 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://app.sma.net.pe';
 
 const ShieldCheck = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" />
   </svg>
 );
 const Magnifier = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
   </svg>
 );
 const FileText = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-    <polyline points="14 2 14 8 20 8"/>
-    <line x1="16" y1="13" x2="8" y2="13"/>
-    <line x1="16" y1="17" x2="8" y2="17"/>
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
   </svg>
 );
 
 function formatDate(isoDate) {
   if (!isoDate) return '-';
   const [y, m, d] = isoDate.split('-');
-  const months = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+  const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
   return `${d} ${months[parseInt(m, 10) - 1]} ${y}`;
 }
 
@@ -198,13 +198,13 @@ export default function CertificadoDigital() {
                     <p>El documento incluye todos los datos del servicio, firma digital SMA y código QR de verificación de autenticidad.</p>
                   </div>
                 </div>
-                <div className="cert-mini-card">
+                {/*<div className="cert-mini-card">
                   <div className="cert-mini-icon" style={{color: 'var(--verde)'}}><ShieldCheck /></div>
                   <div className="cert-mini-content">
                     <strong>Válido ante OEFA y auditorías</strong>
                     <p>Acredita la disposición final de tus residuos. Aceptado por FFA, MINAM, SENACE y auditorías internas.</p>
                   </div>
-                </div>
+                </div>*/}
                 <div className="cert-demo-box">
                   <strong>¿Quieres verificar tu certificado?</strong>
                   <p>Ingresa tu RUC de 11 dígitos y el número de certificado (formato SMA-YYYY-XXXXXX) y haz clic en "Consultar".</p>

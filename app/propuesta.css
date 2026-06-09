@@ -36,7 +36,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   scroll-behavior: smooth;
   max-width: 100%;
   overflow-x: hidden;
@@ -1072,7 +1073,8 @@ section {
 .play-btn-pulse svg {
   width: 32px;
   height: 32px;
-  margin-left: 4px; /* Centrar visualmente el triángulo */
+  margin-left: 4px;
+  /* Centrar visualmente el triángulo */
 }
 
 .video-preview-container:hover .play-btn-pulse {
@@ -1081,9 +1083,20 @@ section {
 }
 
 @keyframes pulse-verde {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(123, 191, 62, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(123, 191, 62, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(123, 191, 62, 0); }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(123, 191, 62, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 20px rgba(123, 191, 62, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(123, 191, 62, 0);
+  }
 }
 
 
@@ -1424,6 +1437,13 @@ section {
   gap: 20px;
 }
 
+.traza-features-premium {
+  display: flex;
+  flex-direction: column;
+  gap: 83px;
+}
+
+
 .traza-feat-card {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(8px);
@@ -1483,7 +1503,8 @@ section {
 
 /* ── CERTIFICADO DIGITAL ─────────────────── */
 .certdig {
-  background-color: #f9fbf8 !important; /* Force light off-white from image 2 */
+  background-color: #f9fbf8 !important;
+  /* Force light off-white from image 2 */
   padding: 100px 0;
   color: var(--negro-corp);
 }
@@ -3571,9 +3592,20 @@ footer {
 }
 
 /* Color accents for specific sectors if desired */
-.sector-card:nth-child(2) .sector-icono-box { background: #ff9800; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.25); }
-.sector-card:nth-child(4) .sector-icono-box { background: #e91e63; box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25); }
-.sector-card:nth-child(6) .sector-icono-box { background: #2196f3; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25); }
+.sector-card:nth-child(2) .sector-icono-box {
+  background: #ff9800;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.25);
+}
+
+.sector-card:nth-child(4) .sector-icono-box {
+  background: #e91e63;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
+}
+
+.sector-card:nth-child(6) .sector-icono-box {
+  background: #2196f3;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+}
 
 @media (max-width: 1024px) {
   .sectores-grid {
@@ -3807,16 +3839,20 @@ footer {
 }
 
 @keyframes certSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 600px) {
   .cert-result-body {
     flex-direction: column;
   }
+
   .cert-result-qr {
     align-items: flex-start;
   }
+
   .cert-result-qr img {
     width: 90px;
     height: 90px;
@@ -3834,7 +3870,8 @@ footer {
   }
 
   #cotizacion .cot-step-lbl {
-    display: none !important; /* Hide text labels on mobile to prevent horizontal overflow */
+    display: none !important;
+    /* Hide text labels on mobile to prevent horizontal overflow */
   }
 
   #cotizacion .cot-step {
@@ -3847,7 +3884,8 @@ footer {
   }
 
   #cotizacion .cot-der {
-    padding: 28px 16px !important; /* Maximize usable form area */
+    padding: 28px 16px !important;
+    /* Maximize usable form area */
   }
 
   #cotizacion .cot-titulo-paso {
@@ -3877,7 +3915,7 @@ footer {
   #cotizacion select,
   #cotizacion textarea {
     padding: 12px 14px !important;
-    font-size: 16px !important; 
+    font-size: 16px !important;
     border-radius: 4px !important;
   }
 
