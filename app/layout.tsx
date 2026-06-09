@@ -70,6 +70,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="bg-white text-[#2C3830] overflow-x-hidden" suppressHydrationWarning>
+        <script dangerouslySetInnerHTML={{
+          __html: `window.NEXT_PUBLIC_API_URL = "${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}";`
+        }} />
         <Providers>
           {children}
         </Providers>

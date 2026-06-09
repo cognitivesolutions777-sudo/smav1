@@ -479,9 +479,6 @@ export default function NewSMA({ initialData }) {
 
   return (
     <>
-      <script dangerouslySetInnerHTML={{
-        __html: `window.NEXT_PUBLIC_API_URL = "${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}";`
-      }} />
       <Script src="/propuesta_client.js" strategy="afterInteractive" />
       <div dangerouslySetInnerHTML={{
         __html: `
