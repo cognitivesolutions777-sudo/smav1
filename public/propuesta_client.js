@@ -557,7 +557,9 @@ function cotIr(n) {
 
 function cotEnviar() {
   if (!cot.priv) { document.getElementById('cerr-priv').classList.add('vis'); return; }
+  
   const tm = { recurrente: 'Residuos recurrentes', puntual: 'Evento puntual', nuevo: 'Primera vez', cambio: 'Cambio de operador' };
+  
   const cats = [...document.querySelectorAll('#cchk-cat .sel')].map(e => {
     const lbl = e.querySelector('.cot-chk-lbl').textContent.trim();
     if (lbl === '📋 Otros') {
@@ -566,52 +568,125 @@ function cotEnviar() {
     }
     return lbl;
   }).join(', ');
+  
   const tipos = [...document.querySelectorAll('#cchk-tipos .sel')].map(e => e.querySelector('.cot-chk-lbl').textContent.trim()).join(', ');
-  const reg = document.getElementById('c-region').value === 'Otra región' ? document.getElementById('c-region-otro').value : document.getElementById('c-region').value;
-  const nombre = document.getElementById('c-nombre').value;
-  const empresa = document.getElementById('c-empresa').value;
-  const asunto = encodeURIComponent(`Solicitud de cotización — ${empresa} — SMA`);
-  const cuerpo = encodeURIComponent(
-    `SOLICITUD DE COTIZACIÓN — SMA SERVICIOS MEDIOAMBIENTALES
-=========================================================
+  const reg = document.getElementById('c-region').value === 'Otra región' ? document.getElementById('c-region-otro').value.trim() : document.getElementById('c-region').value;
+  
+  const payload = {
+    nombre_completo: document.getElementById('c-nombre').value.trim(),
+    cargo: document.getElementById('c-cargo').value.trim(),
+    empresa: document.getElementById('c-empresa').value.trim(),
+    correo: document.getElementById('c-email').value.trim(),
+    telefono: document.getElementById('c-tel').value.trim(),
+    tipo_necesidad: tm[cot.tipo] || '—',
+    razon_mejora: document.getElementById('c-mejora').value ? document.getElementById('c-mejora').value.trim() : null,
+    categoria_residuo: cats || '—',
+    tipos_especificos: tipos || '—',
+    otro_residuo: document.getElementById('c-otro') ? document.getElementById('c-otro').value.trim() : null,
+    clasificacion_peligrosidad: document.getElementById('c-clasif').value ? document.getElementById('c-clasif').value.trim() : null,
+    ubicacion_generacion: reg || '—',
+    volumen_estimado: parseFloat(document.getElementById('c-vol').value) || 0.0,
+    unidad_volumen: document.getElementById('c-unidad').value || 'TN/mes',
+    frecuencia_recojo: cot.frec || '—',
+    plazo_requerido: document.getElementById('c-urgencia').value ? document.getElementById('c-urgencia').value.trim() : null,
+    almacenamiento_temporal: document.getElementById('c-almac').value ? document.getElementById('c-almac').value.trim() : null,
+    informacion_adicional_relevante: document.getElementById('c-notas').value ? document.getElementById('c-notas').value.trim() : null,
+    autorizo_datos: cot.priv
+  };
 
-DATOS DE CONTACTO
-Nombre:    ${nombre}
-Cargo:     ${document.getElementById('c-cargo').value}
-Empresa:   ${empresa}
-Correo:    ${document.getElementById('c-email').value}
-Teléfono:  ${document.getElementById('c-tel').value}
+  const btn = document.querySelector('.cot-btn-env');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+  }
 
-TIPO DE NECESIDAD
-${tm[cot.tipo] || '—'}
-
-RESIDUOS
-Categoría: ${cats}
-Tipos:     ${tipos}
-Clasificación: ${document.getElementById('c-clasif').value}
-
-OPERACIÓN
-Región:      ${reg}
-Volumen:     ${document.getElementById('c-vol').value} ${document.getElementById('c-unidad').value}
-Frecuencia:  ${cot.frec}
-Plazo:       ${document.getElementById('c-urgencia').value}
-Almacenamiento: ${document.getElementById('c-almac').value}
-
-NOTAS ADICIONALES
-${document.getElementById('c-notas').value || '(ninguna)'}
-
-=========================================================
-Enviado desde: Web SMA — sma.net.pe`);
-  const correoUsuario = document.getElementById('c-email').value;
-  window.location.href = `mailto:datadriven111@gmail.com?cc=contacto@sma.net.pe,${correoUsuario}&subject=${asunto}&body=${cuerpo}`;
-  for (let i = 1; i <= 4; i++) document.getElementById(`cpaso${i}`).classList.remove('activo');
-  document.getElementById('cot-stepper').style.display = 'none';
-  document.getElementById('cot-exito').classList.add('vis');
+  const apiUrl = window.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  
+  fetch(`${apiUrl}/api/v1/cotizaciones`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error al enviar la solicitud al servidor');
+    }
+    return response.json();
+  })
+  .then(data => {
+    for (let i = 1; i <= 4; i++) {
+      const p = document.getElementById(`cpaso${i}`);
+      if (p) p.classList.remove('activo');
+    }
+    const stepper = document.getElementById('cot-stepper');
+    if (stepper) stepper.style.display = 'none';
+    const exito = document.getElementById('cot-exito');
+    if (exito) exito.classList.add('vis');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Hubo un error al procesar tu solicitud de cotización. Por favor, inténtalo de nuevo.');
+  })
+  .finally(() => {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Enviar solicitud';
+    }
+  });
 }
 
 function cotReset() {
   cot.paso = 1; cot.tipo = null; cot.frec = null; cot.priv = false;
+  
+  // Reset form fields
+  document.getElementById('c-nombre').value = '';
+  document.getElementById('c-cargo').value = '';
+  document.getElementById('c-empresa').value = '';
+  document.getElementById('c-email').value = '';
+  document.getElementById('c-tel').value = '';
+  
+  document.querySelectorAll('.cot-tipo').forEach(o => o.classList.remove('sel'));
+  document.querySelectorAll('.cot-chk').forEach(o => {
+    o.classList.remove('sel');
+    const chk = o.querySelector('.cot-chk-box');
+    if (chk) chk.textContent = '';
+  });
+  
+  const cmejora = document.getElementById('ccond-cambio');
+  if (cmejora) cmejora.classList.remove('vis');
+  
+  const cotro = document.getElementById('ccond-otro');
+  if (cotro) cotro.classList.remove('vis');
+  if (document.getElementById('c-otro')) document.getElementById('c-otro').value = '';
+  
+  document.getElementById('c-clasif').value = '';
+  document.getElementById('c-region').value = '';
+  
+  const cregion = document.getElementById('ccond-region');
+  if (cregion) cregion.classList.remove('vis');
+  if (document.getElementById('c-region-otro')) document.getElementById('c-region-otro').value = '';
+  
+  document.getElementById('c-vol').value = '';
+  document.getElementById('c-unidad').value = 'TN/mes';
+  
+  document.querySelectorAll('.cot-frec').forEach(b => b.classList.remove('sel'));
+  
+  document.getElementById('c-urgencia').value = '';
+  const alerta = document.getElementById('cot-alerta');
+  if (alerta) alerta.classList.remove('vis');
+  
+  document.getElementById('c-almac').value = '';
+  document.getElementById('c-notas').value = '';
+  
+  document.getElementById('cot-priv').classList.remove('sel');
+  document.getElementById('cot-priv-box').textContent = '';
+  
+  // Re-display stepper and first step
   document.getElementById('cot-stepper').style.display = 'flex';
-
+  document.getElementById('cot-exito').classList.remove('vis');
+  document.getElementById('cpaso1').classList.add('activo');
+  cotStepper(1);
 }
 

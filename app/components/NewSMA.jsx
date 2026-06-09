@@ -27,27 +27,27 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const defaultItems = [
-    { 
+    {
       num: '01',
-      title: 'Impermeabilización HDPE', 
+      title: 'Impermeabilización HDPE',
       desc: 'Geomembranas de polietileno de alta densidad. Sistema de barreras múltiples para aislamiento total y definitivo de materiales peligrosos del suelo y napas freáticas.',
       icon: <ShieldCheck />
     },
-    { 
+    {
       num: '02',
-      title: 'Control Geotécnico', 
+      title: 'Control Geotécnico',
       desc: 'Supervisión de estabilidad física en cada fase de confinamiento. Coberturas diarias que previenen dispersión de partículas.',
       icon: <Eye />
     },
-    { 
+    {
       num: '03',
-      title: 'Balanza Electrónica 80 TN', 
+      title: 'Balanza Electrónica 80 TN',
       desc: 'Certificada por laboratorios acreditados ante INACAL. Garantía de exactitud en declaraciones ante el MINAM.',
       icon: <ScalesBalanced />
     },
-    { 
+    {
       num: '04',
-      title: 'EIA Aprobado · SENACE', 
+      title: 'EIA Aprobado · SENACE',
       desc: 'Estudio de Impacto Ambiental N°0071-2020 aprobado. La operación más ambientalmente controlada del sur del Perú.',
       icon: <CircleCheck />
     }
@@ -95,7 +95,7 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
                     <span className="ia-title">{item.title}</span>
                     <span className="ia-num">{item.num || item.number}</span>
                     <svg className="ia-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
                   <div className="ia-body">
@@ -105,7 +105,7 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
               ))}
             </div>
           </div>
-  
+
           <div className="infra-right">
             <div className="infra-stat">
               <div className="infra-stat-num">+10</div>
@@ -238,7 +238,7 @@ const Servicios = ({ title, itemsData }) => {
   const displayItems = itemsData?.length > 0 ? itemsData : defaultItems;
 
   const getIcon = (iconName, fallbackIndex) => {
-    switch(iconName) {
+    switch (iconName) {
       case 'TriangleExclamation': return <TriangleExclamation />;
       case 'ArrowRotateLeft': return <ArrowRotateLeft />;
       case 'Route': return <Route />;
@@ -310,7 +310,7 @@ const Trazabilidad = () => {
             <div className="eyebrow">Diferenciador digital</div>
             <h2 className="section-titulo">Trazabilidad digital <em>en tiempo real.</em></h2>
             <p className="section-sub">Desde la generación hasta el destino final, cada residuo tiene historia. Información disponible en cualquier momento.</p>
-            
+
             <div className="traza-steps-premium">
               {steps.map((step, i) => (
                 <div className="traza-step-item" key={i}>
@@ -323,7 +323,7 @@ const Trazabilidad = () => {
               ))}
             </div>
           </div>
-          
+
           <div className="traza-right-premium">
             <div className="traza-features-premium">
               <div className="traza-feat-card">
@@ -479,6 +479,9 @@ export default function NewSMA({ initialData }) {
 
   return (
     <>
+      <script dangerouslySetInnerHTML={{
+        __html: `window.NEXT_PUBLIC_API_URL = "${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}";`
+      }} />
       <Script src="/propuesta_client.js" strategy="afterInteractive" />
       <div dangerouslySetInnerHTML={{
         __html: `
@@ -523,7 +526,8 @@ export default function NewSMA({ initialData }) {
       <CertificadoDigital />
       <Proceso title={data.proceso_title} subtitle={data.proceso_subtitle} steps={data.proceso_steps} />
       <Sectores title={data.sectores_title} subtitle={data.sectores_subtitle} items={data.sectores_list} />
-      <div dangerouslySetInnerHTML={{ __html: `
+      <div dangerouslySetInnerHTML={{
+        __html: `
 <!-- CERTIFICACIONES -->
 <section class="certs" id="certs">
   <div class="container">
@@ -635,7 +639,7 @@ export default function NewSMA({ initialData }) {
             <em>Ica, Perú</em>
           </div>
         </div>
-        <h3 class="cot-titulo">Cotización<br><em>sin costo.</em><br>Respuesta<br>en &lt;24h.</h3>
+        <h3 class="cot-titulo">Cotización <em>sin costo.</em><br>Respuestaen &lt;24h.</h3>
         <p class="cot-sub">Completa el formulario y nuestro equipo elabora una propuesta comercial a medida.</p>
         <div class="cot-promesas">
           <div class="cot-prom">
