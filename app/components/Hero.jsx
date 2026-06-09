@@ -31,12 +31,12 @@ const Hero = ({ data = {} }) => {
       </div>
 
       <div className="hero-right">
-        <div 
-          className="hero-right-bg" 
+        <div
+          className="hero-right-bg"
           style={{ backgroundImage: "url('/hero-bg.jpg')" }}
         ></div>
         <div className="hero-right-overlay"></div>
-        <div className="hero-right-label">Infraestructura certificada</div>
+        {/*<div className="hero-right-label">Infraestructura certificada</div>
         <div className="hero-tags">
           <div className="hero-tag">
             <div className="tag-titulo">Geomembranas HDPE · Celda propia</div>
@@ -54,14 +54,14 @@ const Hero = ({ data = {} }) => {
             <div className="tag-titulo">Dashboard en tiempo real</div>
             <div className="tag-desc">Trazabilidad digital operativa. Reportes y alertas disponibles 24/7.</div>
           </div>
-        </div>
+        </div>*/}
 
         <div className="hero-contact-strip">
-          <div className="hcs-item"><div className="hcs-dot"></div> Km 255.5 Panamericana Sur, Ica</div>
-          <div className="hcs-item"><div className="hcs-dot"></div> Lord Nelson 354, Miraflores, Lima</div>
+          <div className="hcs-item"><div className="hcs-dot"></div> Infraestructura de disposición: Km 255.5 Panamericana Sur, Ica</div>
+          <div className="hcs-item"><div className="hcs-dot"></div> Oficina: Lord Nelson 354, Miraflores, Lima</div>
           <div className="hcs-item">
-            <div className="hcs-dot"></div> 
-            <a href="mailto:comercial@sma.com.pe" style={{ color: 'inherit' }}>comercial@sma.com.pe</a> · (051) 994 624 116
+            <div className="hcs-dot"></div>
+            <a href="mailto:contacto@sma.com.pe" style={{ color: 'inherit' }}> Correo corporativo:contacto@sma.com.pe</a> · (051) 994 624 116
           </div>
         </div>
       </div>
