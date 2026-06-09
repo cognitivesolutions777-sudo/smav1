@@ -506,6 +506,10 @@ section {
   }
 }
 
+#cotizacion {
+  background: var(--gris-bg);
+}
+
 .section-header {
   margin-bottom: 56px;
 }
@@ -3391,7 +3395,18 @@ footer {
     gap: 30px !important;
   }
 
+  section,
+  .porque,
+  .infra,
+  .servicios,
+  .traza-premium,
   .certdig,
+  .certs,
+  #cotizacion {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+
   .cta-section,
   .linkedin-banda {
     padding: 50px 20px !important;

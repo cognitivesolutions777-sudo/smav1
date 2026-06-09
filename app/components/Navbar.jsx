@@ -12,10 +12,10 @@ const Navbar = () => {
       <ul className="nav-links">
         <li><a href="#porque">Por qué SMA</a></li>
         <li>
-          <a href="#servicios" id="mega-toggle">
-            Servicios <span className="mega-arrow">▼</span>
+          <a href="#servicios">
+            Servicios
           </a>
-          <div className="megamenu">
+          {/*<div className="megamenu">
             <div className="mega-col">
               <h4>Gestión Residuos</h4>
               <a href="#">Relleno de Seguridad</a>
@@ -27,7 +27,7 @@ const Navbar = () => {
               <a href="#">Reportes SIGERSOL</a>
               <a href="#">Dashboards en Tiempo Real</a>
             </div>
-          </div>
+          </div>*/}
         </li>
         <li><a href="#trazabilidad">Trazabilidad</a></li>
         <li><a href="#sectores">Sectores</a></li>

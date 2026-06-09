@@ -441,22 +441,8 @@ export default function NewSMA({ initialData }) {
         return;
       }
 
-      // 2. Toggle Megamenú (Móvil)
-      const megaToggle = e.target.closest('#mega-toggle');
-      if (megaToggle && window.innerWidth <= 900) {
-        e.preventDefault();
-        const megamenu = megaToggle.nextElementSibling;
-        if (megamenu) {
-          megamenu.classList.toggle('active');
-          // Opcional: rotar flecha
-          const arrow = megaToggle.querySelector('.mega-arrow');
-          if (arrow) arrow.style.transform = megamenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-        return;
-      }
-
-      // 3. Cerrar menú al hacer click en links normales
-      const link = e.target.closest('.nav-links a:not(#mega-toggle)');
+      // 2. Cerrar menú al hacer click en links normales
+      const link = e.target.closest('.nav-links a');
       if (link) {
         const navLinks = document.querySelector('.nav-links');
         const mBtn = document.getElementById('mobile-btn');
@@ -490,22 +476,7 @@ export default function NewSMA({ initialData }) {
   </div>
   <ul class="nav-links">
     <li><a href="#porque">Por qué SMA</a></li>
-    <li>
-      <a href="#servicios" id="mega-toggle">Servicios <span class="mega-arrow">▼</span></a>
-      <div class="megamenu">
-        <div class="mega-col">
-          <h4>Gestión Residuos</h4>
-          <a href="#">Relleno de Seguridad</a>
-          <a href="#">Tratamiento Ecológico</a>
-          <a href="#">Disposición Final</a>
-        </div>
-        <div class="mega-col">
-          <h4>Auditoría & Trazabilidad</h4>
-          <a href="#">Reportes SIGERSOL</a>
-          <a href="#">Dashboards en Tiempo Real</a>
-        </div>
-      </div>
-    </li>
+    <li><a href="#servicios">Servicios</a></li>
     <li><a href="#trazabilidad">Trazabilidad</a></li>
     <li><a href="#sectores">Sectores</a></li>
     <li><a href="#certs">Certificaciones</a></li>
@@ -614,7 +585,7 @@ export default function NewSMA({ initialData }) {
     </div>
   </section>
 
-  <section id="cotizacion" style="background: var(--gris-bg); padding: 80px 0; scroll-margin-top: 72px;">
+  <section id="cotizacion">
     <div class="container">
   <div class="section-header" style="margin-bottom: 40px;">
     <div class="eyebrow">Solicitud sin costo</div>
