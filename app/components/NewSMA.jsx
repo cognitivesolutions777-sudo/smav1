@@ -76,7 +76,7 @@ const Infraestructura = ({ title, subtitle, itemsData }) => {
         <div className="infra-layout">
           <div className="infra-map">
             <iframe
-              src="https://maps.google.com/maps?q=-14.008,-76.012&t=&z=9&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=-13.922527,-75.997202&t=&z=16&ie=UTF8&iwloc=&output=embed"
               className="infra-mapa-img"
               style={{ border: 0, width: '100%', height: '100%', minHeight: '300px', maxHeight: '50vh' }}
               allowFullScreen=""

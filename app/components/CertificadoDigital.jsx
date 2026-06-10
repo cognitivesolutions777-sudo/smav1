@@ -177,9 +177,15 @@ export default function CertificadoDigital() {
                     </a>
                   </div>
 
-                  {result.qr_url && (
+                  {(result.pdf_url || result.qr_url) && (
                     <div className="cert-result-qr">
-                      <img src={result.qr_url} alt="Código QR de verificación" />
+                      <img 
+                        src={result.pdf_url 
+                          ? `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(result.pdf_url)}`
+                          : result.qr_url
+                        } 
+                        alt="Código QR de verificación" 
+                      />
                       <span>Escanear para verificar</span>
                     </div>
                   )}

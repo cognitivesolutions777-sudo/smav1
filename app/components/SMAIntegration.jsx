@@ -97,7 +97,7 @@ const AXES_DATA = [
     icon: MapPin,
     color: '#DBA07A',
     image: '/ubicacion.jpg',
-    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122048.30773498626!2d-75.78726839453124!3d-14.066354899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9110e301c4d0e76b%3A0xa5b0d14028a5ab4a!2sIca%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1',
+    mapEmbed: 'https://maps.google.com/maps?q=-13.922527,-75.997202&t=&z=16&ie=UTF8&iwloc=&output=embed',
     description: 'Relleno de Seguridad Ica',
     details: 'Nuestra planta, ubicada estratégicamente en el Km 255.5 de la Panamericana Sur (Ica), es una infraestructura diseñada para el aislamiento total y definitivo de materiales peligrosos.',
     features: [
