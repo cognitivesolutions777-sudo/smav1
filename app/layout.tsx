@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sma-integration.vercel.app'),
+  metadataBase: new URL('https://www.sma.net.pe/'),
   alternates: {
     canonical: '/',
   },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_PE',
-    url: 'https://sma-integration.vercel.app',
+    url: 'https://www.sma.net.pe/',
     title: 'SMA - Integración 360°',
     description: 'Solución completa de gestión ambiental',
     images: [
