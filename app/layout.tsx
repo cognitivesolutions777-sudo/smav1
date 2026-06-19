@@ -10,6 +10,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sma-integration.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   title: 'SMA - Integración 360° | Servicios Medioambientales',
   description: 'Solución completa de trazabilidad, ubicación, certificaciones y experiencia sectorial para disposición final de residuos en Perú.',
   keywords: [
